@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\Data",
+    "\\Data\\Configuration",
+    "\\Data\\Model",
+    "\\Features\\Task",
+    "\\Features\\Task\\Mutation"
+  ],
+  "SelectedNode": "\\Data\\Configuration\\LoginModelConfiguration.cs",
+  "PreviewInSolutionExplorer": false
+}
