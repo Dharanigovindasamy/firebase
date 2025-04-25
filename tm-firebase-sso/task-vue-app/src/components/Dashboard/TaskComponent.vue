@@ -6,7 +6,11 @@ import { useTaskStore } from "@/store/taskStore";
 import { useRouter } from "vue-router";
 import sidebarNavigation from "../Common/SidebarComponent.vue";
 import DeleteButtonRenderer from "@/components/Dashboard/DeleteButtonRenderer.vue";
+import { useAuthStore } from "@/store/authStore"; 
+//import {useAuthStore} from "../store/taskStore.js";
+//import { useAuthStore } from "@/stores/authStore"; // Adjust the import path as necessary
 
+const authStore = useAuthStore();
 const modules = ref([ClientSideRowModelModule]);
 const taskStore = useTaskStore();
 const router = useRouter();
@@ -57,6 +61,15 @@ const deletedTask = (taskId) => {
 
 onMounted(async () => {
   console.log("mounted", rowData.value);
+  // if(!taskStore.useAuthStore.isAuthentication) {
+   console.log("User authentication!", authStore.isAuthentication);
+
+  if(!authStore.isAuthentication) {
+        console.log("User is not authenticated!", authStore.isAuthentication);
+        alert("You are not authenticated!");
+        window.location.href = "/";
+      }
+      
   if (rowData.value.length === 0) {
     await taskStore.fetchTask();
     rowData.value = [...taskStore.tasks];

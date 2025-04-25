@@ -7,25 +7,22 @@ const isMenuOpen = ref(false);
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-      <div class="collapse navbar-collapse" id="navbarNav">
 
-  <RouterLink class="nav-link text-white" to="/register-login" @click="isMenuOpen = false">
-        <i class="bi bi-house-door me-2"></i> Firebase Register & Login
+    <RouterLink class="nav-link text-white" to="/register-login" @click="isMenuOpen = false">
+        <img src = "@/assets/register.png" alt="firebase-register" /> Firebase Register & Login
       </RouterLink>
 
        <RouterLink class="nav-link text-white" to="/login" @click="isMenuOpen = false">
-        <i class="bi bi-folder me-2"></i> Login
+        <!-- <i class="bi bi-folder me-2"></i> -->
+         <img src = "@/assets/login.png" alt="login" />
+        Login 
       </RouterLink>
 
-        </div>
-
-
-     
-
-      <div class="container">
-        <RouterLink class="navbar-brand d-flex" to="/">
+      <div class="welcome">
+        <h3>Task Management </h3>
+        <!-- <RouterLink class="navbar-brand d-flex" to="/">
           <i class="bi fs-4 me-2"></i> Task Management
-        </RouterLink>
+        </RouterLink> -->
 
         <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -47,19 +44,14 @@ const isMenuOpen = ref(false);
 </template>
 
 <style scoped>
+
 .nav-link {
   transition: color 0.3s ease-in-out;
+  margin: 20px;
+  row-gap: 20px;
 }
 .nav-link:hover {
   color: #ffdd57 !important; }
-
-.settings-icon {
-  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-.settings-icon:hover {
-  transform: rotate(20deg);
-  color: #ffdd57 !important;
-}
 
 .navbar {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -67,8 +59,13 @@ const isMenuOpen = ref(false);
 
 .welcome {
   text-align: center;
-  margin-top: 20px;
-  padding: 15px;
-  font-size: 2rem;
+    padding: 10px;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /* margin: 5px; */
+    margin-left: 90px;
 }
 </style>

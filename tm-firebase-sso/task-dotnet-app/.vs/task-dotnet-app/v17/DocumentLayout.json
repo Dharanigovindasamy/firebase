@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\firebase-service-account.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:firebase-service-account.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -226,7 +234,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 173,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -234,20 +242,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LoginModelConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\LoginModelConfiguration.cs",
-              "RelativeDocumentMoniker": "Data\\Configuration\\LoginModelConfiguration.cs",
-              "ToolTip": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\LoginModelConfiguration.cs",
-              "RelativeToolTip": "Data\\Configuration\\LoginModelConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T10:50:08.097Z",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowCEAAAAKAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHgSURBVEhLtZVdTsJAFIWroTyDK3ELJuCbsA1ZhQRFRETkV6yV8AAsgAI\u002BugW3wAr0RUop7Tj3dmagtLXFhJOc3mEynXu\u002BSWmlg4oQcsSGqOFwSKcIzAcY7rFZdeZkWf42DOMsl7v8ZNsEazAYEMuyXF5zr7nXWG3bJqPRiMznc6Kqb1\u002BtdueUbePSMasoSASiN0sW2AJbwrSRMKwBJZNJKZVOJeJx\u002BaPRbHma\u002BDbAqzOMpBPa5DydxiZsSijGKoo30MZjrH8pm81iVRQFKygmxxNs6K9\u002Bv4/nvlqZ1CticBuOl8IGWS4NogsviWmuSe2p7uH2EMAKTQsn2FUmkxUnEKher4dPjH9ymjogva47BNXHWhgBXCRpomnOxB6KRKCqKhJsznoneUD6BSOoPFSjEUwnByJQlFf8l7rTO6ndyalZcm7TNEn5vhJG4CD8h\u002BAikwkn6HZf8F3jSSu8OfNt/yx0sqIEpbtyOAGsmE4nzsQeikTQ7jwTkxKItCyxX2qenBsIirelcAJAmB2KoNlq4/Psl1Z4K/UuQeGmGIGA6n02xbqPgIBuwH4FqN5o4vMMKYOSBhkI8oVrTwfPBwdWxOQYWt7D/P5duT768D7HJhFtU9MBVj5XyF\u002B59jywJOkX7ucXnGOxDX8AAAAASUVORK5CYII=",
+              "WhenOpened": "2025-04-23T07:45:02.037Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "firebase-service-account.json",
+              "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\firebase-service-account.json",
+              "RelativeDocumentMoniker": "firebase-service-account.json",
+              "ToolTip": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\firebase-service-account.json",
+              "RelativeToolTip": "firebase-service-account.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-23T06:33:39.398Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "LoginModel.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\LoginModel.cs",
               "RelativeDocumentMoniker": "Data\\Model\\LoginModel.cs",
@@ -255,25 +276,24 @@
               "RelativeToolTip": "Data\\Model\\LoginModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T10:48:05.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T10:48:05.295Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAUwHcAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAUwHkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-21T12:55:30.12Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "AppUser.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\AppUser.cs",
               "RelativeDocumentMoniker": "Data\\Model\\AppUser.cs",
@@ -281,12 +301,11 @@
               "RelativeToolTip": "Data\\Model\\AppUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T16:31:08.682Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T16:31:08.682Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "TaskDbContext.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\TaskDbContext.cs",
               "RelativeDocumentMoniker": "Data\\TaskDbContext.cs",
@@ -294,16 +313,11 @@
               "RelativeToolTip": "Data\\TaskDbContext.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAAACUAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T05:03:50.586Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+              "WhenOpened": "2025-04-10T05:03:50.586Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -311,8 +325,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-21T12:13:30.203Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T12:13:30.203Z"
             },
             {
               "$type": "Bookmark",
@@ -320,7 +333,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
+              "Title": "LoginModelConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\LoginModelConfiguration.cs",
+              "RelativeDocumentMoniker": "Data\\Configuration\\LoginModelConfiguration.cs",
+              "ToolTip": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\LoginModelConfiguration.cs",
+              "RelativeToolTip": "Data\\Configuration\\LoginModelConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T10:50:08.097Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "LoginConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\LoginConfiguration.cs",
               "RelativeDocumentMoniker": "Data\\Configuration\\LoginConfiguration.cs",
@@ -328,12 +353,11 @@
               "RelativeToolTip": "Data\\Configuration\\LoginConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T13:07:26.791Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T13:07:26.791Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "FirebaseLoginRequest.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\FirebaseLoginRequest.cs",
               "RelativeDocumentMoniker": "Data\\Model\\FirebaseLoginRequest.cs",
@@ -341,12 +365,11 @@
               "RelativeToolTip": "Data\\Model\\FirebaseLoginRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T12:54:16.992Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T12:54:16.992Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Roles.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\Roles.cs",
               "RelativeDocumentMoniker": "Data\\Model\\Roles.cs",
@@ -354,12 +377,11 @@
               "RelativeToolTip": "Data\\Model\\Roles.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T17:26:29.512Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-10T17:26:29.512Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -367,12 +389,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAFQAAAAAAAAAAAAowGIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T06:05:55.379Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-11T06:05:55.379Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "AppUserConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\AppUserConfiguration.cs",
               "RelativeDocumentMoniker": "Data\\Configuration\\AppUserConfiguration.cs",
@@ -380,12 +401,11 @@
               "RelativeToolTip": "Data\\Configuration\\AppUserConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T16:33:53.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T16:33:53.674Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "RolesConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\RolesConfiguration.cs",
               "RelativeDocumentMoniker": "Data\\Configuration\\RolesConfiguration.cs",
@@ -397,7 +417,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "TaskController.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Controllers\\TaskController.cs",
               "RelativeDocumentMoniker": "Controllers\\TaskController.cs",
@@ -409,7 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "ProjectRoleConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\ProjectRoleConfiguration.cs",
               "RelativeDocumentMoniker": "Data\\Configuration\\ProjectRoleConfiguration.cs",
@@ -421,7 +441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "Projects.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\Projects.cs",
               "RelativeDocumentMoniker": "Data\\Model\\Projects.cs",
@@ -433,7 +453,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "TaskItems.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\TaskItems.cs",
               "RelativeDocumentMoniker": "Data\\Model\\TaskItems.cs",
@@ -445,7 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "ProjectRole.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\ProjectRole.cs",
               "RelativeDocumentMoniker": "Data\\Model\\ProjectRole.cs",
@@ -457,7 +477,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "ProjectConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\ProjectConfiguration.cs",
               "RelativeDocumentMoniker": "Data\\Configuration\\ProjectConfiguration.cs",
@@ -469,7 +489,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "CreateTask.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Task\\Mutation\\CreateTask.cs",
               "RelativeDocumentMoniker": "Features\\Task\\Mutation\\CreateTask.cs",
@@ -481,7 +501,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "GetTasks.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Task\\Query\\GetTasks.cs",
               "RelativeDocumentMoniker": "Features\\Task\\Query\\GetTasks.cs",
@@ -493,7 +513,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "TaskQuery.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Task\\TaskQuery.cs",
               "RelativeDocumentMoniker": "Features\\Task\\TaskQuery.cs",
@@ -505,7 +525,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "TaskMutation.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Task\\TaskMutation.cs",
               "RelativeDocumentMoniker": "Features\\Task\\TaskMutation.cs",
@@ -517,7 +537,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "UpdateTask.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Task\\Mutation\\UpdateTask.cs",
               "RelativeDocumentMoniker": "Features\\Task\\Mutation\\UpdateTask.cs",
@@ -529,7 +549,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "GetTaskById.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Task\\Query\\GetTaskById.cs",
               "RelativeDocumentMoniker": "Features\\Task\\Query\\GetTaskById.cs",
@@ -541,7 +561,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "UserConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\UserConfiguration.cs",
               "RelativeDocumentMoniker": "Data\\Configuration\\UserConfiguration.cs",
@@ -553,7 +573,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "Users.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\Users.cs",
               "RelativeDocumentMoniker": "Data\\Model\\Users.cs",
@@ -565,7 +585,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": "CreateUser.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\User\\Mutation\\CreateUser.cs",
               "RelativeDocumentMoniker": "Features\\User\\Mutation\\CreateUser.cs",
@@ -577,7 +597,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "UserQuery.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\User\\UserQuery.cs",
               "RelativeDocumentMoniker": "Features\\User\\UserQuery.cs",
@@ -589,7 +609,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "GetUser.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\User\\Query\\GetUser.cs",
               "RelativeDocumentMoniker": "Features\\User\\Query\\GetUser.cs",
@@ -601,7 +621,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "TaskItemConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\TaskItemConfiguration.cs",
               "RelativeDocumentMoniker": "Data\\Configuration\\TaskItemConfiguration.cs",
@@ -613,7 +633,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "CreateRole.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Role\\Mutation\\CreateRole.cs",
               "RelativeDocumentMoniker": "Features\\Role\\Mutation\\CreateRole.cs",
@@ -625,7 +645,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "RoleMutation.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Role\\RoleMutation.cs",
               "RelativeDocumentMoniker": "Features\\Role\\RoleMutation.cs",
@@ -637,7 +657,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "RoleQuery.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Role\\RoleQuery.cs",
               "RelativeDocumentMoniker": "Features\\Role\\RoleQuery.cs",
@@ -649,7 +669,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "CreateProjectRole.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Project\\Mutation\\CreateProjectRole.cs",
               "RelativeDocumentMoniker": "Features\\Project\\Mutation\\CreateProjectRole.cs",
@@ -661,7 +681,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 36,
               "Title": "ProjectMutation.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Project\\ProjectMutation.cs",
               "RelativeDocumentMoniker": "Features\\Project\\ProjectMutation.cs",
@@ -673,7 +693,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 37,
               "Title": "UserMutation.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\User\\UserMutation.cs",
               "RelativeDocumentMoniker": "Features\\User\\UserMutation.cs",
@@ -685,7 +705,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 38,
               "Title": "ProjectQuery.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Project\\ProjectQuery.cs",
               "RelativeDocumentMoniker": "Features\\Project\\ProjectQuery.cs",
@@ -697,7 +717,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 39,
               "Title": "CreateProject.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Project\\Mutation\\CreateProject.cs",
               "RelativeDocumentMoniker": "Features\\Project\\Mutation\\CreateProject.cs",
@@ -709,7 +729,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "UserTaskConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\UserTaskConfiguration.cs",
               "RelativeDocumentMoniker": "Data\\Configuration\\UserTaskConfiguration.cs",
@@ -721,7 +741,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 41,
               "Title": "UserRoleConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Configuration\\UserRoleConfiguration.cs",
               "RelativeDocumentMoniker": "Data\\Configuration\\UserRoleConfiguration.cs",
@@ -733,7 +753,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 42,
               "Title": "UserTasks.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\UserTasks.cs",
               "RelativeDocumentMoniker": "Data\\Model\\UserTasks.cs",
@@ -745,7 +765,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 43,
               "Title": "UserRoles.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Data\\Model\\UserRoles.cs",
               "RelativeDocumentMoniker": "Data\\Model\\UserRoles.cs",
@@ -757,7 +777,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "GetRoleById.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Role\\Query\\GetRoleById.cs",
               "RelativeDocumentMoniker": "Features\\Role\\Query\\GetRoleById.cs",
@@ -769,7 +789,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "GetUsersByRoleId.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\User\\Query\\GetUsersByRoleId.cs",
               "RelativeDocumentMoniker": "Features\\User\\Query\\GetUsersByRoleId.cs",
@@ -781,7 +801,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 46,
               "Title": "GetUserById.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\User\\Query\\GetUserById.cs",
               "RelativeDocumentMoniker": "Features\\User\\Query\\GetUserById.cs",
@@ -793,7 +813,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 47,
               "Title": "UpdateUser.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\User\\Mutation\\UpdateUser.cs",
               "RelativeDocumentMoniker": "Features\\User\\Mutation\\UpdateUser.cs",
@@ -805,7 +825,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 48,
               "Title": "DeleteUser.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\User\\Mutation\\DeleteUser.cs",
               "RelativeDocumentMoniker": "Features\\User\\Mutation\\DeleteUser.cs",
@@ -817,7 +837,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 49,
               "Title": "GetRoles.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Role\\Query\\GetRoles.cs",
               "RelativeDocumentMoniker": "Features\\Role\\Query\\GetRoles.cs",
@@ -829,7 +849,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 50,
               "Title": "DeleteTask.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Task\\Mutation\\DeleteTask.cs",
               "RelativeDocumentMoniker": "Features\\Task\\Mutation\\DeleteTask.cs",
@@ -841,7 +861,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 51,
               "Title": "UpdateProject.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Project\\Mutation\\UpdateProject.cs",
               "RelativeDocumentMoniker": "Features\\Project\\Mutation\\UpdateProject.cs",
@@ -853,7 +873,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 52,
               "Title": "DeleteProject.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Project\\Mutation\\DeleteProject.cs",
               "RelativeDocumentMoniker": "Features\\Project\\Mutation\\DeleteProject.cs",
@@ -865,7 +885,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 53,
               "Title": "GetProjects.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Project\\Query\\GetProjects.cs",
               "RelativeDocumentMoniker": "Features\\Project\\Query\\GetProjects.cs",
@@ -877,7 +897,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 54,
               "Title": "GetProjectsById.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Project\\Query\\GetProjectsById.cs",
               "RelativeDocumentMoniker": "Features\\Project\\Query\\GetProjectsById.cs",
@@ -889,7 +909,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 55,
               "Title": "DeleteRole.cs",
               "DocumentMoniker": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\Features\\Role\\Mutation\\DeleteRole.cs",
               "RelativeDocumentMoniker": "Features\\Role\\Mutation\\DeleteRole.cs",
@@ -898,6 +918,10 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-10T08:48:37.603Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             }
           ]
         }

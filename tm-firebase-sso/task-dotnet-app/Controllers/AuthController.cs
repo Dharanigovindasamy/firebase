@@ -99,12 +99,10 @@ namespace task_dotnet_app.Controllers
         {
             try
             {
-                // Check if the user already exists by email
                 var user = await _db.LoginModels.FirstOrDefaultAsync(u => u.Email == login.Email);
 
                 if (user == null)
                 {
-                    // First-time user, hash password before storing
                     string passwordHash = BCrypt.Net.BCrypt.HashPassword(login.Password);
 
                     user = new LoginModel
@@ -121,7 +119,6 @@ namespace task_dotnet_app.Controllers
                 }
                 else
                 {
-                    // Existing user, validate password
                     bool isValid = BCrypt.Net.BCrypt.Verify(login.Password, user.Password);
                     if (!isValid)
                         return Unauthorized(new { error = "Invalid email or password." });

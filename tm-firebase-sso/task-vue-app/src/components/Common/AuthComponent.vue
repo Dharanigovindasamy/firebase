@@ -36,12 +36,14 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
+import { useAuthStore } from "@/store/authStore"; 
 
 export default {
   setup() {
     const email = ref("");
     const password = ref("");
     const user = ref(null);
+    const authStore = useAuthStore();
 
     onAuthStateChanged(auth, (currentUser) => {
       user.value = currentUser;
@@ -74,6 +76,9 @@ export default {
     const jwt = response.data.jwt
     localStorage.setItem('jwt', jwt)
     alert('Logged in successfully')
+    authStore.setAuthentication(true); 
+    window.location.href = '/Home';
+    
   } catch (err) {
     console.error(err)
     alert('Login failed')
@@ -97,8 +102,9 @@ export default {
     console.log('jwt', jwt);
     //localStorage.setItem('jwt', jwt); 
     sessionStorage.setItem('jwt', jwt);
-
+    authStore.setAuthentication(true); 
     alert("Google Sign-In Successful!", result);
+    window.location.href = '/Home';
       } catch (error) {
         console.error("Google Sign-In Error:", error.message);
       }
@@ -107,6 +113,7 @@ export default {
     const logout = async () => {
       await signOut(auth);
       user.value = null;
+      authStore.setAuthentication(true); 
       alert("User Logged Out!");
     };
 

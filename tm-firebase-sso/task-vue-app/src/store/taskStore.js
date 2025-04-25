@@ -122,6 +122,7 @@ export const useTaskStore = defineStore("taskStore", () => {
   //     console.error("Error fetching tasks:", error);
   //   }
   // };
+
   const fetchTask = async () => {
     try {
       const response = await getTask();
