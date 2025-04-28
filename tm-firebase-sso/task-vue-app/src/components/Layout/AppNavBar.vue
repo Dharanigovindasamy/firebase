@@ -6,42 +6,33 @@ const isMenuOpen = ref(false);
 
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-
-    <RouterLink class="nav-link text-white" to="/register-login" @click="isMenuOpen = false">
-        <img src = "@/assets/register.png" alt="firebase-register" /> Firebase Register & Login
-      </RouterLink>
-
-       <RouterLink class="nav-link text-white" to="/login" @click="isMenuOpen = false">
-        <!-- <i class="bi bi-folder me-2"></i> -->
-         <img src = "@/assets/login.png" alt="login" />
-        Login 
-      </RouterLink>
-
-        <h3 class="welcome">Task Management </h3>
-      
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">      
       <div class="admin-container">
 
         <RouterLink class="navbar-brand d-flex" to="/admin" @click="isMenuOpen = false">
           <i class="bi fs-4 me-2"></i>Admin
         </RouterLink>
 
+        <RouterLink class="navbar-brand d-flex" to="/others" @click="isMenuOpen = false">
+          <i class="bi fs-4 me-2"></i>Others
+        </RouterLink>
+
         <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button> -->
 
-        <!-- <div class="collapse navbar-collapse justify-content-center">
+        <div class="collapse navbar-collapse justify-content-center">
           <div class="d-flex gap-4">  
-            <RouterLink class="nav-link text-white" to="/Home" @click="isMenuOpen = false">Home</RouterLink>
-            <RouterLink class="nav-link text-white" to="/Organise" @click="isMenuOpen = false">Organise</RouterLink>
+            <RouterLink class="navbar-brand d-flex" to="/Task" @click="isMenuOpen = false">Task</RouterLink>
+            <RouterLink class="navbar-brand d-flex" to="/Organise" @click="isMenuOpen = false">Organise</RouterLink>
           </div>
-        </div> -->
+        </div> 
 
           <img class = "logout_img" src = "@/assets/logout.png" alt="logout" />
 
-        <!-- <a class="nav-link text-white settings-icon" href="#">
+        <a class="nav-link text-white settings-icon" href="#">
           <i class="bi bi-gear-fill fs-4"></i>
-        </a> -->
+        </a>
       </div>
     </nav>
   </div>
@@ -62,7 +53,7 @@ const isMenuOpen = ref(false);
 }
 
 navbar-brand {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   margin-right: 390px;
   font-weight: bold;
   color: #fff !important;

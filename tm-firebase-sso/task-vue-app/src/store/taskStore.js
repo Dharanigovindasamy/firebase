@@ -95,10 +95,10 @@
 
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getTask } from "@/service/getTask";
-import { addTask } from "@/service/addTask";
-import { updatedTask } from "@/service/updatedTask";
-import { deletedTask } from "@/service/deletedTask";
+import { getTask } from "@/service/task/getTask";
+import { addTask } from "@/service/task/addTask";
+import { updatedTask } from "@/service/task/updatedTask";
+import { deletedTask } from "@/service/task/deletedTask";
 export const useTaskStore = defineStore("taskStore", () => {
   const tasks = ref([]);
 

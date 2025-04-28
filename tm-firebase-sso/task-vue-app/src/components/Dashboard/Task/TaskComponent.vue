@@ -4,17 +4,19 @@ import { AgGridVue } from "ag-grid-vue3";
 import { ClientSideRowModelModule } from "ag-grid-community";
 import { useTaskStore } from "@/store/taskStore";
 import { useRouter } from "vue-router";
-import sidebarNavigation from "../Common/SidebarComponent.vue";
+// import sidebarNavigation from "../../Common/SidebarComponent.vue";
 import DeleteButtonRenderer from "@/components/Dashboard/DeleteButtonRenderer.vue";
 import { useAuthStore } from "@/store/authStore"; 
 //import {useAuthStore} from "../store/taskStore.js";
 //import { useAuthStore } from "@/stores/authStore"; // Adjust the import path as necessary
+import BaseLayout from "../../Layout/BaseLayout.vue";
+import HomePage from "../HomePage.vue";
 
 const authStore = useAuthStore();
 const modules = ref([ClientSideRowModelModule]);
 const taskStore = useTaskStore();
 const router = useRouter();
-const rowData = ref(taskStore.tasks.length > 0 ? [...taskStore.tasks] : []);
+const rowData = ref(taskStore.tasks.length > 0 ? [...taskStore.tasks] : "No Task available");
 const gridApi = ref(null);
 
 const columnDefs = ref([
@@ -64,11 +66,11 @@ onMounted(async () => {
   // if(!taskStore.useAuthStore.isAuthentication) {
    console.log("User authentication!", authStore.isAuthentication);
 
-  if(!authStore.isAuthentication) {
-        console.log("User is not authenticated!", authStore.isAuthentication);
-        alert("You are not authenticated!");
-        window.location.href = "/";
-      }
+  // if(!authStore.isAuthentication) {
+  //       console.log("User is not authenticated!", authStore.isAuthentication);
+  //       alert("You are not authenticated!");
+  //       window.location.href = "/";
+  //     }
       
   if (rowData.value.length === 0) {
     await taskStore.fetchTask();
@@ -99,9 +101,10 @@ const handleAddTask = () => {
 </script>
 
 <template>
+     <BaseLayout>
   <div>
-    <sidebarNavigation />
-
+    <!-- <sidebarNavigation /> -->
+    <HomePage/>
     <h3 class="task-list">Task List</h3>
 
     <div class="container mt-4">
@@ -126,6 +129,7 @@ const handleAddTask = () => {
       </div>
     </div>
   </div>
+  </BaseLayout>
 </template>
 
 <style>

@@ -1,6 +1,6 @@
 <template>
   <div class="auth-container">
-    <h2>Authentication</h2>
+    <!-- <h2>Authentication</h2> -->
 
     <div class="auth-box">
       <h3>Email & Password Login</h3>

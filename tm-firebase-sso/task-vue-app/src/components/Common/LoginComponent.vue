@@ -22,6 +22,8 @@ const password = ref('')
 const router = useRouter()
 
 const login = async () => {
+  sessionStorage.removeItem('jwt');
+  authStore.setAuthentication(false);
   if (!email.value.trim() || !password.value) {
     alert('Email and password are required.')
     return

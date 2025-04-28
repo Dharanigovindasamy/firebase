@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
-    <navigationBar />
-    <h2 class="title">Welcome to the Home Page</h2>
+    <!-- <navigationBar />
+    <h2 class="title">Welcome to the Home Page</h2> -->
 
     <Carousel
       ref="carousel"
