@@ -114,6 +114,7 @@ export default {
       await signOut(auth);
       user.value = null;
       authStore.setAuthentication(true); 
+      sessionStorage.removeItem('jwt');
       alert("User Logged Out!");
     };
 

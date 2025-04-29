@@ -7,8 +7,6 @@ import { useRouter } from "vue-router";
 // import sidebarNavigation from "../../Common/SidebarComponent.vue";
 import DeleteButtonRenderer from "@/components/Dashboard/DeleteButtonRenderer.vue";
 import { useAuthStore } from "@/store/authStore"; 
-//import {useAuthStore} from "../store/taskStore.js";
-//import { useAuthStore } from "@/stores/authStore"; // Adjust the import path as necessary
 import BaseLayout from "../../Layout/BaseLayout.vue";
 import HomePage from "../HomePage.vue";
 
@@ -16,7 +14,7 @@ const authStore = useAuthStore();
 const modules = ref([ClientSideRowModelModule]);
 const taskStore = useTaskStore();
 const router = useRouter();
-const rowData = ref(taskStore.tasks.length > 0 ? [...taskStore.tasks] : "No Task available");
+const rowData = ref([]);
 const gridApi = ref(null);
 
 const columnDefs = ref([
@@ -71,12 +69,15 @@ onMounted(async () => {
   //       alert("You are not authenticated!");
   //       window.location.href = "/";
   //     }
-      
+      console.log("row data", rowData.value.length);
   if (rowData.value.length === 0) {
     await taskStore.fetchTask();
+    console.log("fetching task", taskStore.tasks);
     rowData.value = [...taskStore.tasks];
     console.log("row data", rowData.value);
   }
+      console.log("fetching task", taskStore.tasks);
+
 });
 
 const onCellClicked = (event) => {

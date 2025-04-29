@@ -1,13 +1,11 @@
 <script>
 import { defineComponent, ref, onMounted } from 'vue';
-import { AgGridVue } from 'ag-grid-vue3';
 import BaseLayout from  '../../Layout/BaseLayout.vue';
 import HomePage from '../HomePage.vue';
 import { useAdminStore } from '@/store/adminStore';
 import router from '@/routes';
-
-import { ModuleRegistry } from '@ag-grid-community/core';
-import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
+import { ModuleRegistry, ClientSideRowModelModule } from 'ag-grid-community';
+import { AgGridVue } from 'ag-grid-vue3';
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
@@ -25,8 +23,10 @@ export default defineComponent({
     const adminStore = useAdminStore();
     const gridApi = ref(null);
     const rowData = ref([]);
-    const isGridReady = ref(false); 
+   // const rowData = ref(adminStore.admin.length > 0 ? [...adminStore.admin] : "No Admin available");
 
+    const isGridReady = ref(false); 
+    const modules = [ClientSideRowModelModule];
     const defaultColDef = {
       sortable: true,
       filter: true,
@@ -36,11 +36,12 @@ export default defineComponent({
     };
 
     const columnDefs = [
-      { headerName: 'ID', field: 'id' },
-      { headerName: 'Name', field: 'name' },
+      { headerName: 'ID', field: 'adminId' },
+      { headerName: 'Name', field: 'adminName' },
       { headerName: 'Email', field: 'email' },
       { headerName: 'Role', field: 'role' },
-      { headerName: 'Created At', field: 'created_at' },
+      { headerName: 'Category', field: 'category' },
+      {headerName: 'Contact Number', field: 'phone'}
     ];
 
     const onGridReady = (params) => {
@@ -54,7 +55,9 @@ export default defineComponent({
     onMounted(async () => {
       await adminStore.retrieveAdmin();
       const adminData = adminStore.state.admin?.$values || [];
+      console.log("Admin table", adminData);
       rowData.value = Array.isArray(adminData) ? adminData : [];
+      console.log("rowdata table", rowData.value);
       isGridReady.value = true;
     });
 
@@ -65,6 +68,7 @@ export default defineComponent({
       onGridReady,
       AddAdmin,
       isGridReady,
+      modules,
     };
   },
 });
@@ -76,7 +80,7 @@ export default defineComponent({
 
   <div class="admin-container">
   <div class="admin-header">
-    <h3>Admin</h3>
+    <h3 class="admin">Admin</h3>
     <b-button class ="create-admin" @click="AddAdmin">Create Admin</b-button>
 </div>
 
@@ -87,6 +91,7 @@ export default defineComponent({
         :rowData="rowData"
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
+        :modules="modules" 
         animateRows
         rowSelection="multiple"
         rowModelType="clientSide"
@@ -104,9 +109,9 @@ export default defineComponent({
   flex-direction: column;
   gap: 16px;
   margin: auto;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+  width: 70%;
+  /* align-items: center;
+  justify-content: center; */
 }
 
 .admin-header {
@@ -123,5 +128,13 @@ export default defineComponent({
   border-radius: 5px;
   cursor: pointer;
   margin-left: auto;
+}
+.admin{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-left: 300px;
+  font-size: 2rem;
 }
 </style>

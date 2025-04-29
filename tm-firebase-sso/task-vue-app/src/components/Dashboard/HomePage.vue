@@ -37,7 +37,7 @@ import {
   Slide
 } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-import navigationBar from "../Common/NavBarComponent.vue";
+// import navigationBar from "../Common/NavBarComponent.vue";
 import 'vue3-carousel/carousel.css'
 
 export default {
@@ -45,7 +45,7 @@ export default {
   components: {
     Carousel,
     Slide,
-    navigationBar,
+    // navigationBar,
     CarouselNavigation,
     Pagination
   },

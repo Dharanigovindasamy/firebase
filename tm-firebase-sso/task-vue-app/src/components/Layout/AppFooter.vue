@@ -17,7 +17,7 @@
     color: #ffffff;
     padding: 20px 0;
     position: relative;
-    bottom: -370px;
+    bottom: -492px;
     width: 100%;
     }
 

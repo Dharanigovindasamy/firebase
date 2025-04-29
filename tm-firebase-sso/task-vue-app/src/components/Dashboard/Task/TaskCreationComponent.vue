@@ -99,13 +99,14 @@ export default {
       await taskStore.createTask(task.value);
       console.log("task added", task.value);
       alert("Task added successfully!", task.value);
+      router.push({ name: "Task" });
       await taskStore.fetchTask();
 
       resetForm();
     };
 
     const handleBack = async () => {
-      router.push({ name: "Home" });
+      router.push({ name: "Task" });
     };
 
     const resetForm = () => {
