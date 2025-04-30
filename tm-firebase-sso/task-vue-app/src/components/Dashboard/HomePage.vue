@@ -1,7 +1,6 @@
 <template>
   <div class="home-page">
-    <!-- <navigationBar />
-    <h2 class="title">Welcome to the Home Page</h2> -->
+    <!-- <h2 class="title">Welcome to the Home Page</h2> -->
 
     <Carousel
       ref="carousel"
@@ -20,7 +19,6 @@
         <img :src="image" class="carousel-img" />
       </Slide>
 
-      <!-- Custom Arrows Slot -->
       <template #addons>
       <CarouselNavigation />
       <Pagination />
@@ -37,7 +35,6 @@ import {
   Slide
 } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-// import navigationBar from "../Common/NavBarComponent.vue";
 import 'vue3-carousel/carousel.css'
 
 export default {
@@ -45,7 +42,6 @@ export default {
   components: {
     Carousel,
     Slide,
-    // navigationBar,
     CarouselNavigation,
     Pagination
   },

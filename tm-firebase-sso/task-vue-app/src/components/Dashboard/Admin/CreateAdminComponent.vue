@@ -1,9 +1,16 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import { useAdminStore } from '@/store/adminStore'; 
+//import BaseLayout from '../../Layout/BaseLayout.vue';
+// import AppHeader from '../../Layout/AppHeader.vue';
+// import AppFooter from '../../Layout/AppFooter.vue';
 import router from '@/routes';
 
 export default defineComponent({
+  components: {
+    // AppHeader,
+    // AppFooter,
+  },
   name: 'CreateAdminComponent',
   setup() {
     const adminName = ref('');
@@ -53,12 +60,14 @@ export default defineComponent({
       phone,
       role,
       submitAdmin,
-      deleteAdmin
+      deleteAdmin,
     };
   },
 });
 </script>
+
 <template>
+<!-- <AppHeader /> -->
   <div class="create-admin-container">
     <h1 class="title">Create New Admin</h1>
     <form @submit.prevent="submitAdmin" class="admin-form">
@@ -98,6 +107,7 @@ export default defineComponent({
       
     </form>
   </div>
+  <!-- <AppFooter /> -->
 </template>
 
 <style scoped>

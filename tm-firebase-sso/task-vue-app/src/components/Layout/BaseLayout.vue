@@ -1,19 +1,28 @@
 <template>
     <div>
-        <AppHeader/>
+        <!-- <AppHeader/> -->
         <AppNavBar/>
         <main>
-            <slot></slot>
+            <slot>
+                <h3 class = "home-page" > Welcome to home page</h3>
+                <HomePage/>
+            </slot>
         </main>
-        <AppFooter/>
+        <!-- <AppFooter/> -->
     </div>
 </template>
 <script setup>
-import AppHeader from './AppHeader.vue';
-import AppFooter from './AppFooter.vue';
+// import AppHeader from './AppHeader.vue';
+// import AppFooter from './AppFooter.vue';
 import AppNavBar from './AppNavBar.vue';
+import HomePage from '../Dashboard/HomePage.vue';
+
 </script>
 
 <style scoped>
 
+.home-page{
+    text-align: center;
+    margin-top: 20px;
+}
 </style>

@@ -1,31 +1,33 @@
 <script>
-import { defineComponent, ref, onMounted } from 'vue';
-import BaseLayout from  '../../Layout/BaseLayout.vue';
-import HomePage from '../HomePage.vue';
-import { useAdminStore } from '@/store/adminStore';
-import router from '@/routes';
-import { ModuleRegistry, ClientSideRowModelModule } from 'ag-grid-community';
-import { AgGridVue } from 'ag-grid-vue3';
+import { defineComponent, ref, onMounted } from "vue";
+// import BaseLayout from "../../Layout/BaseLayout.vue";
+import AppNavBar from '../../Layout/AppNavBar.vue';
+import HomePage from "../HomePage.vue";
+import { useAdminStore } from "@/store/adminStore";
+import router from "@/routes";
+import { ModuleRegistry, ClientSideRowModelModule } from "ag-grid-community";
+import { AgGridVue } from "ag-grid-vue3";
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
 
 export default defineComponent({
-  name: 'AdminComponent',
+  name: "AdminComponent",
   components: {
     HomePage,
-    BaseLayout,
+    // BaseLayout,
     AgGridVue,
+    AppNavBar,
   },
   setup() {
     const adminStore = useAdminStore();
     const gridApi = ref(null);
     const rowData = ref([]);
-   // const rowData = ref(adminStore.admin.length > 0 ? [...adminStore.admin] : "No Admin available");
+    // const rowData = ref(adminStore.admin.length > 0 ? [...adminStore.admin] : "No Admin available");
 
-    const isGridReady = ref(false); 
+    const isGridReady = ref(false);
     const modules = [ClientSideRowModelModule];
     const defaultColDef = {
       sortable: true,
@@ -36,12 +38,12 @@ export default defineComponent({
     };
 
     const columnDefs = [
-      { headerName: 'ID', field: 'adminId' },
-      { headerName: 'Name', field: 'adminName' },
-      { headerName: 'Email', field: 'email' },
-      { headerName: 'Role', field: 'role' },
-      { headerName: 'Category', field: 'category' },
-      {headerName: 'Contact Number', field: 'phone'}
+      { headerName: "ID", field: "adminId" },
+      { headerName: "Name", field: "adminName" },
+      { headerName: "Email", field: "email" },
+      { headerName: "Role", field: "role" },
+      { headerName: "Category", field: "category" },
+      { headerName: "Contact Number", field: "phone" },
     ];
 
     const onGridReady = (params) => {
@@ -49,7 +51,7 @@ export default defineComponent({
     };
 
     const AddAdmin = () => {
-      router.push('/admin/createAdmin');
+      router.push("/admin/createAdmin");
     };
 
     onMounted(async () => {
@@ -75,31 +77,32 @@ export default defineComponent({
 </script>
 
 <template>
-  <BaseLayout>
+  <!-- <BaseLayout>  -->
+    <AppNavBar /> 
     <home-page />
 
-  <div class="admin-container">
-  <div class="admin-header">
-    <h3 class="admin">Admin</h3>
-    <b-button class ="create-admin" @click="AddAdmin">Create Admin</b-button>
-</div>
+    <div class="admin-container">
+      <div class="admin-header">
+        <h3 class="admin">Admin</h3>
+        <b-button class="create-admin" @click="AddAdmin">Create Admin</b-button>
+      </div>
 
-    <div class="ag-theme-alpine" style="height: 500px; width: 100%;">
-      <AgGridVue
-        v-if="isGridReady"
-        class="ag-grid"
-        :rowData="rowData"
-        :columnDefs="columnDefs"
-        :defaultColDef="defaultColDef"
-        :modules="modules" 
-        animateRows
-        rowSelection="multiple"
-        rowModelType="clientSide"
-        @grid-ready="onGridReady"
-      />
+      <div class="grid-container">
+        <AgGridVue
+          v-if="isGridReady"
+          class="ag-grid"
+          :rowData="rowData"
+          :columnDefs="columnDefs"
+          :defaultColDef="defaultColDef"
+          :modules="modules"
+          animateRows
+          rowSelection="multiple"
+          rowModelType="clientSide"
+          @grid-ready="onGridReady"
+        />
+      </div>
     </div>
-  </div>
-  </BaseLayout>
+  <!-- </BaseLayout> -->
 </template>
 
 <style scoped>
@@ -120,7 +123,7 @@ export default defineComponent({
   align-items: center;
   margin-bottom: 20px;
 }
-.create-admin{
+.create-admin {
   background-color: #5097e9;
   color: white;
   font-weight: bold;
@@ -129,12 +132,23 @@ export default defineComponent({
   cursor: pointer;
   margin-left: auto;
 }
-.admin{
+.admin {
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
   margin-left: 300px;
   font-size: 2rem;
+}
+
+.grid-container {
+  height: 300px;
+  width: 100%;
+  overflow-y: auto; 
+}
+
+.ag-grid {
+  width: 100%;
+  height: 100%;
 }
 </style>

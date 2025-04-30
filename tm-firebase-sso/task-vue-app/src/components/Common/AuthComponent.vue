@@ -17,11 +17,6 @@
       <button @click="signInWithGoogle" class="google-btn">Sign in with Google</button>
     </div>
 
-    <div v-if="user" class="user-info">
-      <p>Welcome, {{ user.displayName || user.email }}</p>
-      <!-- <img v-if="user.photoURL" :src="user.photoURL" alt="User Photo" class="user-photo" /> -->
-      <button @click="logout" class="logout-btn">Logout</button>
-    </div>
   </div>
 </template>
 

@@ -1,12 +1,22 @@
 <script setup>
 import { ref } from "vue";
-
+import { useAuthStore } from "@/store/authStore";
+const authStore = useAuthStore();
 const isMenuOpen = ref(false);
+// const isAuthenticated = ref(false);
+
+const handleLogout = () => {
+  sessionStorage.removeItem("jwt");
+  authStore.setAuthentication(false);
+  alert("Logged out successfully");
+  authStore.setAuthentication(false);
+  window.location.href = "/";
+};
 </script>
 
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">      
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info d-flex justify-content-end">      
       <div class="admin-container">
 
         <RouterLink class="navbar-brand d-flex" to="/admin" @click="isMenuOpen = false">
@@ -28,7 +38,7 @@ const isMenuOpen = ref(false);
           </div>
         </div> 
 
-          <img class = "logout_img" src = "@/assets/logout.png" alt="logout" />
+          <img class = "logout_img" @click="handleLogout" src = "@/assets/logout.png" alt="logout" />
 
         <a class="nav-link text-white settings-icon" href="#">
           <i class="bi bi-gear-fill fs-4"></i>
@@ -73,10 +83,10 @@ navbar-brand {
 
 .admin-container {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: flex-end; */
   align-items: center;
-  margin-left: 430px;
-  gap: 20px;
+  /* margin-left: 850px;
+  gap: 20px; */
 }
 
 .logout_img {

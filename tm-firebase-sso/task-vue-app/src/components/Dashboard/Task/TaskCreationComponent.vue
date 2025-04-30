@@ -1,4 +1,5 @@
 <template>
+<AppHeader />
   <div>
     <div class="taskCreateContainer">
       <h6 class="create_task">Create Task</h6>
@@ -60,14 +61,21 @@
       </form>
     </div>
   </div>
+  <AppFooter />
 </template>
 
 <script>
 import { ref, computed, onMounted } from "vue";
 import { useTaskStore } from "@/store/taskStore";
 import { useRouter } from "vue-router";
+// import AppHeader from "../../Layout/AppHeader.vue";
+// import AppFooter from "../../Layout/AppFooter.vue";
 
 export default {
+   components: {
+    // AppHeader,
+    // AppFooter, 
+  },
   setup() {
     const taskStore = useTaskStore();
     const router = useRouter();
@@ -118,7 +126,7 @@ export default {
       };
     };
 
-    return { task, handleSubmit, resetForm, handleBack };
+    return { task, handleSubmit, resetForm, handleBack};
   },
 };
 </script>

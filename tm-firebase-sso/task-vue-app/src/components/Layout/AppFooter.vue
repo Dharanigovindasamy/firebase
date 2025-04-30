@@ -16,8 +16,7 @@
     background-color: #0b0b0b;
     color: #ffffff;
     padding: 20px 0;
-    position: relative;
-    bottom: -492px;
+    margin-top: 100px;
     width: 100%;
     }
 
@@ -38,6 +37,10 @@
 
     .footer-text {
     font-size: 16px;
+    color: #ffffff;
+    align-items: center;
+    text-align: center;
+    margin-left: 420px;
     }
 
     .footer-right {

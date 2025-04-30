@@ -7,7 +7,8 @@ import { useRouter } from "vue-router";
 // import sidebarNavigation from "../../Common/SidebarComponent.vue";
 import DeleteButtonRenderer from "@/components/Dashboard/DeleteButtonRenderer.vue";
 import { useAuthStore } from "@/store/authStore"; 
-import BaseLayout from "../../Layout/BaseLayout.vue";
+// import BaseLayout from "../../Layout/BaseLayout.vue";
+import AppNavBar from '../../Layout/AppNavBar.vue';
 import HomePage from "../HomePage.vue";
 
 const authStore = useAuthStore();
@@ -102,14 +103,14 @@ const handleAddTask = () => {
 </script>
 
 <template>
-     <BaseLayout>
+     <!-- <BaseLayout> -->
   <div>
-    <!-- <sidebarNavigation /> -->
+<AppNavBar/>
     <HomePage/>
-    <h3 class="task-list">Task List</h3>
-
-    <div class="container mt-4">
+    
+    <div class="container">
       <div class="task-progress">
+        <h3 class="task-list">Task List</h3>
         <b-button class="addTask" @click="handleAddTask">Add Task</b-button>
       </div>
       <div class="task-table">
@@ -130,31 +131,38 @@ const handleAddTask = () => {
       </div>
     </div>
   </div>
-  </BaseLayout>
+  <!-- </BaseLayout> -->
 </template>
 
 <style>
 .task-list {
+  justify-content: space-between;
   text-align: center;
-  margin-top: 20px;
-  padding: 15px;
-  font-size: 2rem;
+  align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 2rem;
+    margin-left: 450px;
 }
 .task-progress {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  margin-top: 20px;
-  padding: 15px;
+  justify-content: space-between;
+  margin-top: 5px;
+  padding: 10px;
   font-size: 1rem;
 }
 .deleteTask,
 .addTask {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   background-color: #719dd0;
 }
 .ag-layout-normal {
   height: auto !important;
+}
+.ag-theme-alpine{
+   overflow-y: auto; 
+
 }
 .ag-theme-alpine .ag-header {
   background-color: #719dd0 !important;
@@ -172,13 +180,17 @@ const handleAddTask = () => {
 }
 .ag-theme-alpine .ag-row-selected {
   background-color: #d4e8ff !important;
+   overflow-y: auto; 
 }
 .task-table {
   margin: 20px;
-  align-content: center;
-  align-items: center;
-  margin-left: 250px;
-  padding: 15px;
+    align-content: center;
+    align-items: center;
+    margin-left: 150px;
+    padding: 15px;
+    overflow-y: auto;
+    width: 80%;
+    height: 300px;
 }
 .task-link {
   color: #007bff;

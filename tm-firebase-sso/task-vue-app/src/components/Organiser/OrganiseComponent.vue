@@ -1,5 +1,4 @@
 <template>
-<BaseLayout>
   <div class="task-board">
     <div class="content">
       <h4 class="board-title">Task Board</h4>
@@ -84,7 +83,6 @@
       </div>
     </div>
   </div>
-</BaseLayout>
 </template>
 
 <script>
@@ -93,7 +91,7 @@ import { onMounted, ref, watch } from "vue";
 import { useTaskStore } from "../../store/taskStore";
 import { useRoute } from "vue-router";
 import { AlertCircleIcon, LoaderIcon, CheckCircleIcon, ClockIcon } from "lucide-vue-next";
-import BaseLayout from "../Layout/BaseLayout.vue";
+// import BaseLayout from "../Layout/BaseLayout.vue";
 export default {
   components: {
     draggable,
@@ -101,7 +99,6 @@ export default {
     LoaderIcon,
     CheckCircleIcon,
     ClockIcon,
-    BaseLayout
   },
   setup() {
     const taskStore = useTaskStore();

@@ -1,57 +1,54 @@
 <script setup>
-import { ref } from 'vue'
-import axios from 'axios'
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/store/authStore'
+import { ref } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/store/authStore";
 
 const authStore = useAuthStore();
-const email = ref('')
-const password = ref('')
-const router = useRouter()
+const email = ref("");
+const password = ref("");
+const router = useRouter();
 
 const login = async () => {
   if (!email.value.trim() || !password.value) {
-    alert('Email and password are required.')
-    return
+    alert("Email and password are required.");
+    return;
   }
 
   try {
-    const result = await axios.post('http://localhost:5000/api/auth/login', {
+    const result = await axios.post("http://localhost:5000/api/auth/login", {
       email: email.value,
       password: password.value,
-    })
+    });
 
-    const jwt = result.data.jwt
-    sessionStorage.setItem('jwt', jwt)
-    console.log('Logged in successfully', jwt)
-    alert('Logged in successfully');
+    const jwt = result.data.jwt;
+    sessionStorage.setItem("jwt", jwt);
+    console.log("Logged in successfully", jwt);
+    alert("Logged in successfully");
     authStore.setAuthentication(true);
-    router.push('/Home')
+    router.push("/Home");
   } catch (err) {
-    console.error(err)
-    alert(err.response?.data?.error || 'Login failed')
+    console.error(err);
+    alert(err.response?.data?.error || "Login failed");
   }
-}
+};
 
 const signUp = () => {
-  sessionStorage.removeItem('jwt');
+  sessionStorage.removeItem("jwt");
   authStore.setAuthentication(false);
-  router.push('/FirebaseSignIn');
-}
+  router.push("/FirebaseSignIn");
+};
 </script>
 
 <template>
   <div class="dashboard-header">
-    <b-navbar class="navbar" toggleable="lg" type="dark" variant="info">
-      <div class="navbar-content">
-        <img src="@/assets/task_m.png" class="logo" />
-        <b-navbar-brand class="navbar-text" href="#">Task Management</b-navbar-brand>
-      </div>
-    </b-navbar>
-
     <div class="dashboard-container">
       <div class="left-panel">
-        <img src="@/assets/task-bg.jpg" alt="Dashboard Background" class="background-image" />
+        <img
+          src="@/assets/task-bg.jpg"
+          alt="Dashboard Background"
+          class="background-image"
+        />
         <div class="overlay">
           <h1 class="welcome-text">Welcome to Task Management</h1>
         </div>
@@ -60,14 +57,26 @@ const signUp = () => {
       <div class="right-panel">
         <div class="form-container">
           <h2 class="form-title">Login</h2>
-          <input v-model="email" type="email" placeholder="Email Address" class="input-field" />
-          <input v-model="password" type="password" placeholder="Password" class="input-field" />
-          
+          <input
+            v-model="email"
+            type="email"
+            placeholder="Email Address"
+            class="input-field"
+          />
+          <input
+            v-model="password"
+            type="password"
+            placeholder="Password"
+            class="input-field"
+          />
+
           <b-button @click="login" class="btn">Login</b-button>
 
           <div class="divider">OR</div>
 
-          <b-button @click="signUp" class="btn-outline">Firebase Sign-In</b-button>
+          <b-button @click="signUp" class="btn-outline"
+            >Firebase Sign-In</b-button
+          >
         </div>
       </div>
     </div>
@@ -75,9 +84,7 @@ const signUp = () => {
 </template>
 
 <style scoped>
-/* Navbar Styling */
 .navbar {
-  /* background-color: #0b0b0b; */
   padding: 10px 20px;
 }
 .navbar-content {
@@ -95,13 +102,11 @@ const signUp = () => {
   color: #fff;
 }
 
-/* Layout Styling */
 .dashboard-container {
   display: flex;
   height: calc(100vh - 70px);
 }
 
-/* Left Panel */
 .left-panel {
   width: 60%;
   position: relative;
@@ -130,7 +135,6 @@ const signUp = () => {
   text-align: center;
 }
 
-/* Right Panel */
 .right-panel {
   width: 40%;
   background: #f9fafb;
@@ -157,7 +161,6 @@ const signUp = () => {
   text-align: center;
 }
 
-/* Input Fields */
 .input-field {
   padding: 12px;
   border: 1px solid #d1d5db;
@@ -166,7 +169,6 @@ const signUp = () => {
   width: 100%;
 }
 
-/* Buttons */
 .btn {
   background-color: #007bff;
   color: white;
@@ -193,28 +195,11 @@ const signUp = () => {
   color: #ffffff;
 }
 
-/* Divider */
- .divider {
+.divider {
   text-align: center;
   font-size: 14px;
   color: #6b7280;
   margin: 10px 0;
   position: relative;
 }
-/*
-.divider::before,
-.divider::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 40%;
-  height: 1px;
-  background: #d1d5db;
-}
-.divider::before {
-  left: 0;
-}
-.divider::after {
-  right: 0;
-} */
 </style>
