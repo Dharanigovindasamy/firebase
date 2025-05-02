@@ -2,10 +2,16 @@
  <template>
     <div class="auth-box">
       <h3>Email & Password Login</h3>
-      <input v-model="email" type="email" placeholder="Enter your email" class="input-field" />
-      <input v-model="password" type="password" placeholder="Enter your password" class="input-field" />
+      <div class="form-group">
+    <label class="label">Email</label>
+    <input v-model="email" type="email" placeholder="Enter your email address" class="input-field" />
+  </div>
+
+  <div class="form-group">
+    <label class="label">Password</label>
+    <input v-model="password" type="password" placeholder="Enter your password" class="input-field" />
+  </div>
       <div class="button-group">
-        <!-- <button @click="signUp" class="btn">Sign Up</button> -->
         <button @click="login" class="btn">login</button>
       </div>
     </div>
@@ -64,8 +70,30 @@ const login = async () => {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  height: 435px;
 }
 
+.label {
+  font-weight: 600;
+  color: #333;
+  margin: 10px;
+  font-size: 20px;
+}
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
 
 .button-group {
   display: flex;
@@ -82,6 +110,8 @@ const login = async () => {
   cursor: pointer;
   font-size: 16px;
   transition: 0.3s;
+  margin: 30px;
+
 }
 
 .btn:hover {

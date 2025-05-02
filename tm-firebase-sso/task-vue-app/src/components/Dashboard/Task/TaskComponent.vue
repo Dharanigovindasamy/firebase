@@ -65,11 +65,11 @@ onMounted(async () => {
   // if(!taskStore.useAuthStore.isAuthentication) {
    console.log("User authentication!", authStore.isAuthentication);
 
-  // if(!authStore.isAuthentication) {
-  //       console.log("User is not authenticated!", authStore.isAuthentication);
-  //       alert("You are not authenticated!");
-  //       window.location.href = "/";
-  //     }
+  if(!authStore.isAuthentication) {
+        console.log("User is not authenticated!", authStore.isAuthentication);
+        alert("You are not authenticated!");
+        window.location.href = "/";
+      }
       console.log("row data", rowData.value.length);
   if (rowData.value.length === 0) {
     await taskStore.fetchTask();

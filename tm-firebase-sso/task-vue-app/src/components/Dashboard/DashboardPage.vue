@@ -38,6 +38,10 @@ const signUp = () => {
   authStore.setAuthentication(false);
   router.push("/FirebaseSignIn");
 };
+
+const handleForgotPassword = () => {
+  router.push("/PasswordReset");
+};
 </script>
 
 <template>
@@ -57,18 +61,30 @@ const signUp = () => {
       <div class="right-panel">
         <div class="form-container">
           <h2 class="form-title">Login</h2>
-          <input
-            v-model="email"
-            type="email"
-            placeholder="Email Address"
-            class="input-field"
-          />
-          <input
-            v-model="password"
-            type="password"
-            placeholder="Password"
-            class="input-field"
-          />
+
+          <div class="form-group">
+            <label class="label">Email</label>
+            <input
+              v-model="email"
+              type="email"
+              placeholder="Enter your email"
+              class="input-field"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="label">Password</label>
+            <input
+              v-model="password"
+              type="password"
+              placeholder="Enter your password"
+              class="input-field"
+            />
+          </div>
+
+            <div class="forgot-password" @click="handleForgotPassword">
+                <a href="#">Forgot Password?</a>
+            </div>
 
           <b-button @click="login" class="btn">Login</b-button>
 

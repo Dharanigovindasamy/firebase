@@ -68,6 +68,8 @@
 import { ref, computed, onMounted } from "vue";
 import { useTaskStore } from "@/store/taskStore";
 import { useRouter } from "vue-router";
+import { useAuthStore } from "@/store/authStore"; 
+
 // import AppHeader from "../../Layout/AppHeader.vue";
 // import AppFooter from "../../Layout/AppFooter.vue";
 
@@ -79,6 +81,7 @@ export default {
   setup() {
     const taskStore = useTaskStore();
     const router = useRouter();
+    const authStore = useAuthStore();
 
     const lastTaskId = computed(() =>
       taskStore.tasks.length > 0
@@ -95,7 +98,13 @@ export default {
     });
 
     onMounted(() => {
+       if(!authStore.isAuthentication) {
+        console.log("User is not authenticated!", authStore.isAuthentication);
+        alert("You are not authenticated!");
+        window.location.href = "/";
+      }
       task.value.taskId = lastTaskId.value;
+
     });
 
     const handleSubmit = async () => {

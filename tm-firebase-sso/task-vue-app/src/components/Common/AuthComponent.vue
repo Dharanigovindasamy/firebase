@@ -3,14 +3,24 @@
     <!-- <h2>Authentication</h2> -->
 
     <div class="auth-box">
-      <h3>Email & Password Login</h3>
-      <input v-model="email" type="email" placeholder="Enter your email" class="input-field" />
-      <input v-model="password" type="password" placeholder="Enter your password" class="input-field" />
-      <div class="button-group">
-        <button @click="signUp" class="btn">Sign Up</button>
-        <button @click="login" class="btn">login</button>
-      </div>
-    </div>
+  <h3>Email & Password Login</h3>
+
+  <div class="form-group">
+    <label class="label">Email</label>
+    <input v-model="email" type="email" placeholder="Enter your email" class="input-field" />
+  </div>
+
+  <div class="form-group">
+    <label class="label">Password</label>
+    <input v-model="password" type="password" placeholder="Enter your password" class="input-field" />
+  </div>
+
+  <div class="button-group">
+    <button @click="signUp" class="btn">Sign Up</button>
+    <button @click="login" class="btn">Login</button>
+  </div>
+</div>
+
 
     <div class="auth-box">
       <h3>Google Sign-In</h3>
@@ -108,7 +118,7 @@ export default {
     const logout = async () => {
       await signOut(auth);
       user.value = null;
-      authStore.setAuthentication(true); 
+      authStore.setAuthentication(false); 
       sessionStorage.removeItem('jwt');
       alert("User Logged Out!");
     };
@@ -137,19 +147,38 @@ export default {
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
 .input-field {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
 }
 
+
 .button-group {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.label {
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0px 10px 0px;
 }
 
 .btn {

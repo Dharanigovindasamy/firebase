@@ -11,6 +11,8 @@ import AdminComponent from '../components/Dashboard/Admin/AdminComponent.vue';
 import CreateAdminComponent from '../components/Dashboard/Admin/CreateAdminComponent.vue';
 import BaseLayout from '../components/Layout/BaseLayout.vue';
 import TaskComponent from '../components/Dashboard/Task/TaskComponent.vue';
+import PasswordReset from '../components/Common/PasswordReset.vue';
+import ForgotPassword from '../components/Common/ForgotPassword.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,6 +21,20 @@ const router = createRouter({
          path: '/',
          component: DashboardPage,
        },
+
+       {
+        path: '/PasswordReset',
+        name: 'PasswordReset',
+        component: PasswordReset
+
+       },
+
+       {
+        path: '/forgot-password',
+        name: 'ForgotPassword',
+        component: ForgotPassword
+       },
+      
     // {
     //   path: '/',
     //   component: HomePage,

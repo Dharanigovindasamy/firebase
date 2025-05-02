@@ -6,6 +6,7 @@
             <slot>
                 <h3 class = "home-page" > Welcome to home page</h3>
                 <HomePage/>
+                <OrganiseComponent/>
             </slot>
         </main>
         <!-- <AppFooter/> -->

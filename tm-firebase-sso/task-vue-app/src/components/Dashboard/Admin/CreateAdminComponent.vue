@@ -1,10 +1,12 @@
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import { useAdminStore } from '@/store/adminStore'; 
 //import BaseLayout from '../../Layout/BaseLayout.vue';
 // import AppHeader from '../../Layout/AppHeader.vue';
 // import AppFooter from '../../Layout/AppFooter.vue';
 import router from '@/routes';
+import { useAuthStore } from "@/store/authStore"; 
+
 
 export default defineComponent({
   components: {
@@ -20,7 +22,16 @@ export default defineComponent({
     const phone = ref('');
     const role = ref('Admin');
     const adminStore = useAdminStore();
+    const authStore = useAuthStore();
 
+    onMounted(() => {
+      if (!authStore.isAuthentication) {
+        console.log('User is not authenticated!', authStore.isAuthentication);
+        alert('You are not authenticated!');
+        window.location.href = '/';
+      }
+    });
+    
     const submitAdmin = async () => {
       const newAdmin = {
         adminName: adminName.value,

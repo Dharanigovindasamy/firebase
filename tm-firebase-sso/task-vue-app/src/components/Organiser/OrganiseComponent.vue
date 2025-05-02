@@ -1,4 +1,5 @@
 <template>
+<AppNavBar/>
   <div class="task-board">
     <div class="content">
       <h4 class="board-title">Task Board</h4>
@@ -91,7 +92,9 @@ import { onMounted, ref, watch } from "vue";
 import { useTaskStore } from "../../store/taskStore";
 import { useRoute } from "vue-router";
 import { AlertCircleIcon, LoaderIcon, CheckCircleIcon, ClockIcon } from "lucide-vue-next";
-// import BaseLayout from "../Layout/BaseLayout.vue";
+ import AppNavBar from "../Layout/AppNavBar.vue";
+ import { useAuthStore } from "@/store/authStore"; 
+
 export default {
   components: {
     draggable,
@@ -99,6 +102,7 @@ export default {
     LoaderIcon,
     CheckCircleIcon,
     ClockIcon,
+    AppNavBar
   },
   setup() {
     const taskStore = useTaskStore();
@@ -106,6 +110,7 @@ export default {
     const pendingTasks = ref([]);
     const inProgressTasks = ref([]);
     const completedTasks = ref([]);
+    const authStore = useAuthStore();
 
     const updateTaskLists = (tasks) => {
       console.log("Updating task lists with tasks:", tasks);
@@ -178,6 +183,11 @@ export default {
     };
 
     onMounted(() => {
+       if(!authStore.isAuthentication) {
+        console.log("User is not authenticated!", authStore.isAuthentication);
+        alert("You are not authenticated!");
+        window.location.href = "/";
+      }
       const rowData = route.state?.rowData || [];
       console.log("Received rowData from TaskComponent:", rowData);
       if (rowData.length > 0) {

@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import {
   Navigation as CarouselNavigation,
   Carousel,
@@ -35,27 +35,28 @@ import {
   Slide
 } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-import 'vue3-carousel/carousel.css'
+import 'vue3-carousel/carousel.css';
+import { useAuthStore } from "@/store/authStore";
+import { useRouter } from 'vue-router';
+import { onMounted, ref } from 'vue';
 
-export default {
-  name: "HomePage",
-  components: {
-    Carousel,
-    Slide,
-    CarouselNavigation,
-    Pagination
-  },
-  data() {
-    return {
-      images: [
-        "https://picsum.photos/1024/480?random=1",
-        "https://picsum.photos/1024/480?random=2",
-        "https://picsum.photos/1024/480?random=3",
-        "https://picsum.photos/1024/480?random=4"
-      ]
-    };
+const authStore = useAuthStore();
+const router = useRouter();
+
+const images = ref([
+  "https://picsum.photos/1024/480?random=1",
+  "https://picsum.photos/1024/480?random=2",
+  "https://picsum.photos/1024/480?random=3",
+  "https://picsum.photos/1024/480?random=4"
+]);
+
+onMounted(() => {
+  if (!authStore.isAuthenticated) {
+    console.log("User is not authenticated!", authStore.isAuthentication);
+    alert("You are not authenticated!");
+    router.push("/");
   }
-};
+});
 </script>
 
 <style scoped>

@@ -7,6 +7,7 @@ import { useAdminStore } from "@/store/adminStore";
 import router from "@/routes";
 import { ModuleRegistry, ClientSideRowModelModule } from "ag-grid-community";
 import { AgGridVue } from "ag-grid-vue3";
+import { useAuthStore } from "@/store/authStore"; 
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
@@ -26,6 +27,7 @@ export default defineComponent({
     const gridApi = ref(null);
     const rowData = ref([]);
     // const rowData = ref(adminStore.admin.length > 0 ? [...adminStore.admin] : "No Admin available");
+    const authStore = useAuthStore();
 
     const isGridReady = ref(false);
     const modules = [ClientSideRowModelModule];
@@ -55,6 +57,11 @@ export default defineComponent({
     };
 
     onMounted(async () => {
+       if(!authStore.isAuthentication) {
+        console.log("User is not authenticated!", authStore.isAuthentication);
+        alert("You are not authenticated!");
+        window.location.href = "/";
+      }
       await adminStore.retrieveAdmin();
       const adminData = adminStore.state.admin?.$values || [];
       console.log("Admin table", adminData);
