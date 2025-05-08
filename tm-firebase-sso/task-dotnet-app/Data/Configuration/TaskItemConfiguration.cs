@@ -28,7 +28,6 @@ namespace task_dotnet_app.Data.Configuration
                 .HasMaxLength(255)
                 .HasColumnName("category");
 
-
             entity.Property(e => e.Status)
                 .HasMaxLength(255)
                 .HasColumnName("status");
@@ -80,6 +79,17 @@ namespace task_dotnet_app.Data.Configuration
                 .HasForeignKey(d => d.ReporterId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tasks_users_reporter_id");
+
+            entity.Property(e => e.ExecutionsJson)
+                  .HasColumnName("executions")
+                  .HasColumnType("jsonb")
+                  .IsRequired(false);
+
+            entity.HasMany(e => e.Executions)
+             .WithOne(d => d.TaskItem)        
+             .HasForeignKey(d => d.TaskId)
+             .OnDelete(DeleteBehavior.Cascade)
+              .IsRequired(false);
         }
     }
 }

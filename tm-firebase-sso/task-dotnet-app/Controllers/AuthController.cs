@@ -133,9 +133,6 @@ namespace task_dotnet_app.Controllers
             }
         }
 
-
-
-
         private string GenerateJwt(string uid)
         {
             var claims = new[]
@@ -155,7 +152,47 @@ namespace task_dotnet_app.Controllers
                 signingCredentials: creds
             );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+         return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            var user = await _db.LoginModels.FirstOrDefaultAsync(u => u.Email == request.Email);
+            var admin = await _db.Admins.FirstOrDefaultAsync(a => a.Email == request.Email);
+
+            if (user == null && admin == null)
+            {
+                return BadRequest(new { error = "Email does not exist." });
+            }
+
+            if (request.NewPassword != request.ConfirmPassword)
+            {
+                return BadRequest(new { error = "Passwords do not match." });
+            }
+
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
+
+            if (user != null)
+            {
+                user.Password = hashedPassword;
+            }
+
+            if (admin != null)
+            {
+                admin.Password = hashedPassword;
+            }
+
+            await _db.SaveChangesAsync();
+            return Ok(new { message = "Password updated successfully." });
+        }
+
+        public class ForgotPasswordRequest
+        {
+            public string Email { get; set; }
+            public string NewPassword { get; set; }
+            public string ConfirmPassword { get; set; }
+        }
+
+
     }
 }

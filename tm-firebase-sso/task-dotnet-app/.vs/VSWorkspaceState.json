@@ -4,10 +4,8 @@
     "\\Controllers",
     "\\Data",
     "\\Data\\Configuration",
-    "\\Data\\Model",
-    "\\Features\\Task",
-    "\\Features\\Task\\Mutation"
+    "\\Data\\Model"
   ],
-  "SelectedNode": "\\Data\\Configuration\\LoginModelConfiguration.cs",
+  "SelectedNode": "\\Data\\Model\\Execution.cs",
   "PreviewInSolutionExplorer": false
 }

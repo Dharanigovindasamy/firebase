@@ -21,7 +21,7 @@ namespace task_dotnet_app.Data
         public virtual DbSet<FirebaseLoginRequest> FirebaseLoginRequests { get; set; }
         public virtual DbSet<AppUser> AppUsers { get; set; }
         public virtual DbSet<LoginModel> LoginModels { get; set; }
-
+        public virtual DbSet<Admin> Admins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,7 @@ namespace task_dotnet_app.Data
             modelBuilder.ApplyConfiguration(new LoginConfiguration());
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new LoginModelConfiguration());
+            modelBuilder.ApplyConfiguration(new AdminConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }  

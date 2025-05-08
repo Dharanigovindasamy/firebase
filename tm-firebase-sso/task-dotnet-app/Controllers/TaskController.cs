@@ -70,44 +70,39 @@
 
 
 
-//using Microsoft.AspNetCore.Mvc;
-//using System.Collections.Generic;
-//using task_dotnet_app.Data.Model;
-//using task_dotnet_app.Data;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using task_dotnet_app.Data.Model;
+using task_dotnet_app.Data;
+using Microsoft.EntityFrameworkCore;
 
-//namespace TaskApi.Controllers
-//{
-//    [ApiController]
-//    [Route("api/tasks")]
-//    public class TaskController : ControllerBase
-//    {
-//        private readonly TaskDbContext _context;
-    
-//        public TaskController(TaskDbContext context)
-//        {
-//            _context = context;
-//        }
 
-//        [HttpGet]
-//        public ActionResult<List<TaskItems>> GetTasks()
-//        {
-//            Console.WriteLine("GetTasks");
-//            return Ok(_context.TaskItems.ToList());
-//        }
+namespace TaskApi.Controllers
+{
+    [ApiController]
+    [Route("api/tasks")]
+    public class TaskController : ControllerBase
+    {
+        private readonly TaskDbContext _context;
 
-//        [HttpPost("addTask")]
-//        public ActionResult<TaskItems> CreateTask([FromBody] TaskItems task)
-//        {
-//            if (task == null)
-//            {
-//                return BadRequest("Invalid task data");
-//            }
+        public TaskController(TaskDbContext context)
+        {
+            _context = context;
+        }
 
-//            _context.TaskItems.Add(task);
-//            _context.SaveChanges();
+        [HttpPost("{taskId}/executions")]
+        public async Task<IActionResult> AddExecution(int taskId, [FromBody] Execution execution)
+        {
+            var task = await _context.TaskItems.Include(t => t.Executions).FirstOrDefaultAsync(t => t.TaskId == taskId); 
 
-//            return CreatedAtAction(nameof(CreateTask), new { id = task.TaskId }, task);
-//        }
-//    }
-//}
+            if (task == null)
+                return NotFound("Task not found");
+            task.Executions.Add(execution);
+            await _context.SaveChangesAsync();
+
+            return Ok(task);
+        }
+
+    }
+}
 

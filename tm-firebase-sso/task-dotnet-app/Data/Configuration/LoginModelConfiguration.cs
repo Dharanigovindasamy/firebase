@@ -23,6 +23,10 @@ namespace task_dotnet_app.Data.Configuration
             builder.Property(p => p.Password)
                 .HasColumnName("password")
                 .HasMaxLength(100);
+
+            builder.Property(p => p.refreshPassword)
+                .HasColumnName("refresh_password")
+                .HasDefaultValue(true);
         }
     }
 }

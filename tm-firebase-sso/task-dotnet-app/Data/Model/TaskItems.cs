@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net.Mail;
+using System.Text.Json;
+
 
 namespace task_dotnet_app.Data.Model
 {
@@ -10,7 +12,7 @@ namespace task_dotnet_app.Data.Model
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int TaskId { get; set; } 
+        public int TaskId { get; set; }
 
         [Required]
         public string TaskName { get; set; }
@@ -23,6 +25,20 @@ namespace task_dotnet_app.Data.Model
 
         [Required]
         public string Status { get; set; }
+
+      //  public List<Execution> Executions { get; set; } = new();
+       
+        [Column("executions")]
+        public string ExecutionsJson { get; set; } = "[]";
+
+        [NotMapped]
+        public List<Execution>? Executions
+        {
+            get => string.IsNullOrEmpty(ExecutionsJson)
+                ? new List<Execution>()
+                : JsonSerializer.Deserialize<List<Execution>>(ExecutionsJson) ?? new List<Execution>();
+            set => ExecutionsJson = JsonSerializer.Serialize(value);
+        }
 
         public int AssigneeId { get; set; }
         [ForeignKey("AssigneeId")]
