@@ -1,62 +1,94 @@
 <!-- src/components/Login.vue -->
  <template>
-    <div class="auth-box">
-      <h3>Email & Password Login</h3>
-      <div class="form-group">
-    <label class="label">Email</label>
-    <input v-model="email" type="email" placeholder="Enter your email address" class="input-field" />
-  </div>
-
-  <div class="form-group">
-    <label class="label">Password</label>
-    <input v-model="password" type="password" placeholder="Enter your password" class="input-field" />
-  </div>
-      <div class="button-group">
-        <button @click="login" class="btn">login</button>
-      </div>
+  <div class="auth-box">
+    <h3>Email & Password Login</h3>
+    <div class="form-group">
+      <label class="label">Email</label>
+      <input
+        v-model="email"
+        type="email"
+        placeholder="Enter your email address"
+        class="input-field"
+      />
     </div>
- </template>
+
+    <div class="form-group">
+      <label class="label">Password</label>
+      <input
+        v-model="password"
+        type="password"
+        placeholder="Enter your password"
+        class="input-field"
+      />
+    </div>
+    <div class="button-group">
+      <button @click="login" class="btn">login</button>
+    </div>
+  </div>
+</template>
 
 <script setup>
-import { ref } from 'vue'
-import axios from 'axios'
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/store/authStore'
+import { ref } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/store/authStore";
 const authStore = useAuthStore();
-const email = ref('')
-const password = ref('')
-const router = useRouter()
+const email = ref("");
+const password = ref("");
+const router = useRouter();
 
 const login = async () => {
-  sessionStorage.removeItem('jwt');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.(com)$/i;
+  const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+  if (!email.value.trim() || !password.value.trim()) {
+    alert("Email and password are required.");
+    return;
+  }
+
+  if (!emailRegex.test(email.value)) {
+    alert("Please enter a valid email ending with .com");
+    return;
+  }
+
+  if (password.value.length > 15) {
+    alert("Password should not exceed 15 characters.");
+    return;
+  }
+
+  if (!specialCharRegex.test(password.value)) {
+    alert("Password must contain at least one special character.");
+    return;
+  }
+
+  sessionStorage.removeItem("jwt");
   authStore.setAuthentication(false);
   if (!email.value.trim() || !password.value) {
-    alert('Email and password are required.')
-    return
+    alert("Email and password are required.");
+    return;
   }
 
   try {
-    const result = await axios.post('http://localhost:5000/api/auth/login', {
+    const result = await axios.post("http://localhost:5000/api/auth/login", {
       email: email.value,
       password: password.value,
-    })
+    });
 
-    const jwt = result.data.jwt
-    sessionStorage.setItem('jwt', jwt)
-    console.log('Logged in successfully', jwt)
-    alert('Logged in successfully');
-     authStore.setAuthentication(true);
+    const jwt = result.data.jwt;
+    sessionStorage.setItem("jwt", jwt);
+    console.log("Logged in successfully", jwt);
+    alert("Logged in successfully");
+    authStore.setAuthentication(true);
     //window.location.href = '/Home';
-    router.push('/Home')
+    router.push("/Home");
   } catch (err) {
-    console.error(err)
-    alert(err.response?.data?.error || 'Login failed')
+    console.error(err);
+    alert(err.response?.data?.error || "Login failed");
   }
-}
+};
 </script>
 
  <style scoped>
-
 .auth-box {
   margin: 50px auto;
   padding: 20px;
@@ -111,11 +143,9 @@ const login = async () => {
   font-size: 16px;
   transition: 0.3s;
   margin: 30px;
-
 }
 
 .btn:hover {
   background-color: #0056b3;
 }
-
- </style>
+</style>

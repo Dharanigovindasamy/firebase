@@ -3,36 +3,47 @@
     <!-- <h2>Authentication</h2> -->
 
     <div class="auth-box">
-  <h3>Email & Password Login</h3>
+      <h3>Email & Password Login</h3>
 
-  <div class="form-group">
-    <label class="label">Email</label>
-    <input v-model="email" type="email" placeholder="Enter your email" class="input-field" />
-  </div>
+      <div class="form-group">
+        <label class="label">Email</label>
+        <input
+          v-model="email"
+          type="email"
+          placeholder="Enter your email"
+          class="input-field"
+        />
+      </div>
 
-  <div class="form-group">
-    <label class="label">Password</label>
-    <input v-model="password" type="password" placeholder="Enter your password" class="input-field" />
-  </div>
+      <div class="form-group">
+        <label class="label">Password</label>
+        <input
+          v-model="password"
+          type="password"
+          placeholder="Enter your password"
+          class="input-field"
+        />
+      </div>
 
-  <div class="button-group">
-    <button @click="signUp" class="btn">Sign Up</button>
-    <button @click="login" class="btn">Login</button>
-  </div>
-</div>
-
+      <div class="button-group">
+        <button @click="signUp" class="btn">Sign Up</button>
+        <button @click="login" class="btn">Login</button>
+      </div>
+    </div>
 
     <div class="auth-box">
       <h3>Google Sign-In</h3>
-      <button @click="signInWithGoogle" class="google-btn">Sign in with Google</button>
+      <button @click="signInWithGoogle" class="google-btn">
+        Sign in with Google
+      </button>
     </div>
-
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
 import { auth, provider } from "../../Firebase";
 import {
   createUserWithEmailAndPassword,
@@ -41,7 +52,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { useAuthStore } from "@/store/authStore"; 
+import { useAuthStore } from "@/store/authStore";
 
 export default {
   setup() {
@@ -49,14 +60,40 @@ export default {
     const password = ref("");
     const user = ref(null);
     const authStore = useAuthStore();
-
+    const router = useRouter();
     onAuthStateChanged(auth, (currentUser) => {
       user.value = currentUser;
     });
 
     const signUp = async () => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.(com)$/i;
+      const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+      if (!email.value.trim() || !password.value.trim()) {
+        alert("Email and password are required.");
+        return;
+      }
+
+      if (!emailRegex.test(email.value)) {
+        alert("Please enter a valid email ending with .com");
+        return;
+      }
+
+      if (password.value.length > 15) {
+        alert("Password should not exceed 15 characters.");
+        return;
+      }
+
+      if (!specialCharRegex.test(password.value)) {
+        alert("Password must contain at least one special character.");
+        return;
+      }
       try {
-        const result = await createUserWithEmailAndPassword(auth, email.value, password.value);
+        const result = await createUserWithEmailAndPassword(
+          auth,
+          email.value,
+          password.value
+        );
         user.value = result.user;
         alert("User Registered!");
         console.log("sign up", result, auth, provider);
@@ -66,60 +103,104 @@ export default {
     };
 
     const login = async () => {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value)
-    const user = userCredential.user;
-    const idToken = await user.getIdToken();
-    console.log('idToken', idToken);
+      const emailRegex = /^[^\s@]+@[^\s@]+\.(com)$/i;
+      const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
 
-    const response = await axios.post('http://localhost:5000/api/auth/firebase-login', {
-      uid: user.uid,
-      email: user.email,
-      idToken: idToken
-    })
+      if (!email.value.trim() || !password.value.trim()) {
+        alert("Email and password are required.");
+        return;
+      }
 
-    const jwt = response.data.jwt
-    localStorage.setItem('jwt', jwt)
-    alert('Logged in successfully')
-    authStore.setAuthentication(true); 
-    window.location.href = '/Home';
-    
-  } catch (err) {
-    console.error(err)
-    alert('Login failed')
-  }
-}
+      if (!emailRegex.test(email.value)) {
+        alert("Please enter a valid email ending with .com");
+        return;
+      }
+
+      if (password.value.length > 15) {
+        alert("Password should not exceed 15 characters.");
+        return;
+      }
+
+      if (!specialCharRegex.test(password.value)) {
+        alert("Password must contain at least one special character.");
+        return;
+      }
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email.value,
+          password.value
+        );
+        const user = userCredential.user;
+        const idToken = await user.getIdToken();
+        console.log("idToken", idToken);
+
+        const response = await axios.post(
+          "http://localhost:5000/api/auth/firebase-login",
+          {
+            uid: user.uid,
+            email: user.email,
+            idToken: idToken,
+          }
+        );
+
+        const jwt = response.data.jwt;
+        localStorage.setItem("jwt", jwt);
+        alert("Logged in successfully");
+        authStore.setAuthentication(true);
+        window.location.href = "/Home";
+      } catch (err) {
+        console.error(err);
+        alert("Login failed");
+      }
+    };
 
     const signInWithGoogle = async () => {
       try {
         const result = await signInWithPopup(auth, provider);
         user.value = result.user;
         const idToken = await result.user.getIdToken();
-        console.log('sso idToken', idToken);
+        console.log("sso idToken", idToken);
         console.log("sign in with google", result.user.uid, result.user.email);
-      const response = await axios.post('http://localhost:5000/api/auth/sso-login', {
-      uid: result.user.uid,
-      email:  result.user.email,
-      idToken: idToken
-    })
+        const response = await axios.post(
+          "http://localhost:5000/api/auth/sso-login",
+          {
+            uid: result.user.uid,
+            email: result.user.email,
+            idToken: idToken,
+          }
+        );
 
-    const jwt = response.data.jwt;
-    console.log('jwt', jwt);
-    //localStorage.setItem('jwt', jwt); 
-    sessionStorage.setItem('jwt', jwt);
-    authStore.setAuthentication(true); 
-    alert("Google Sign-In Successful!", result);
-    window.location.href = '/Home';
+        const jwt = response.data.jwt;
+        console.log("jwt", jwt);
+        //localStorage.setItem('jwt', jwt);
+        sessionStorage.setItem("jwt", jwt);
+        sessionStorage.setItem("userEmail", result.user.email);
+        sessionStorage.setItem("userId", result.user.uid);
+
+        authStore.setAuthentication(true);
+        console.log(
+          "User authenticated successfully is AUTH!",
+          authStore.isAuthentication
+        );
+        console.log("Authentication successful:", {
+          jwt,
+          isAuthentication: authStore.isAuthentication,
+        });
+
+        await router.push("/home");
       } catch (error) {
         console.error("Google Sign-In Error:", error.message);
+        authStore.setAuthentication(false);
+        alert("Sign-in failed. Please try again.");
       }
     };
 
     const logout = async () => {
       await signOut(auth);
       user.value = null;
-      authStore.setAuthentication(false); 
-      sessionStorage.removeItem('jwt');
+      authStore.setAuthentication(false);
+      sessionStorage.removeItem("jwt");
       alert("User Logged Out!");
     };
 
@@ -167,7 +248,6 @@ export default {
   border-radius: 5px;
   font-size: 16px;
 }
-
 
 .button-group {
   display: flex;

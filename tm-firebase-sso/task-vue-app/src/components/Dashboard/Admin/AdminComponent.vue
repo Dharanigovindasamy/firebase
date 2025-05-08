@@ -119,7 +119,7 @@ export default defineComponent({
   flex-direction: column;
   gap: 16px;
   margin: auto;
-  width: 70%;
+  width: 60%;
   /* align-items: center;
   justify-content: center; */
 }
@@ -144,7 +144,7 @@ export default defineComponent({
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin-left: 300px;
+  margin-left: 400px;
   font-size: 2rem;
 }
 

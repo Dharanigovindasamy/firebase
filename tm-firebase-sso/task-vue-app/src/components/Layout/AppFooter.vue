@@ -12,15 +12,15 @@
     </script>
 
     <style scoped>
-    .footer {
+.footer {
     background-color: #0b0b0b;
     color: #ffffff;
     padding: 20px 0;
-    margin-top: 100px;
     width: 100%;
+    
     }
 
-    .footer-container {
+.footer-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 30px;

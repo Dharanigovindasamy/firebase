@@ -10,8 +10,26 @@ const password = ref("");
 const router = useRouter();
 
 const login = async () => {
-  if (!email.value.trim() || !password.value) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.(com)$/i;
+  const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+  if (!email.value.trim() || !password.value.trim()) {
     alert("Email and password are required.");
+    return;
+  }
+
+  if (!emailRegex.test(email.value)) {
+    alert("Please enter a valid email ending with .com");
+    return;
+  }
+
+  if (password.value.length > 15) {
+    alert("Password should not exceed 15 characters.");
+    return;
+  }
+
+  if (!specialCharRegex.test(password.value)) {
+    alert("Password must contain at least one special character.");
     return;
   }
 
@@ -32,6 +50,7 @@ const login = async () => {
     alert(err.response?.data?.error || "Login failed");
   }
 };
+
 
 const signUp = () => {
   sessionStorage.removeItem("jwt");
@@ -63,21 +82,21 @@ const handleForgotPassword = () => {
           <h2 class="form-title">Login</h2>
 
           <div class="form-group">
-            <label class="label">Email</label>
+            <!-- <label class="label">Email</label> -->
             <input
               v-model="email"
               type="email"
-              placeholder="Enter your email"
+              placeholder="email"
               class="input-field"
             />
           </div>
 
           <div class="form-group">
-            <label class="label">Password</label>
+            <!-- <label class="label">Password</label> -->
             <input
               v-model="password"
               type="password"
-              placeholder="Enter your password"
+              placeholder="password"
               class="input-field"
             />
           </div>
@@ -120,7 +139,7 @@ const handleForgotPassword = () => {
 
 .dashboard-container {
   display: flex;
-  height: calc(100vh - 70px);
+  /* height: calc(100vh - 70px); */
 }
 
 .left-panel {

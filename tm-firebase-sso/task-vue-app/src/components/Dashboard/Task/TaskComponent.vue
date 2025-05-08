@@ -84,6 +84,8 @@ onMounted(async () => {
 const onCellClicked = (event) => {
   if (event.column.colId === "taskId" && event.value) {
     console.log("Navigating to Task Details:", event.value);
+     taskStore.currentTask(event.value);
+    console.log("current task in task component");
     router.push({ name: "TaskDetails", params: { id: event.value } });
   }
 };
@@ -136,13 +138,12 @@ const handleAddTask = () => {
 
 <style>
 .task-list {
-  justify-content: space-between;
-  text-align: center;
-  align-items: center;
-    margin-top: 20px;
-    padding: 15px;
-    font-size: 2rem;
-    margin-left: 450px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+  padding-right:0px !important;
 }
 .task-progress {
   display: flex;
@@ -151,6 +152,7 @@ const handleAddTask = () => {
   margin-top: 5px;
   padding: 10px;
   font-size: 1rem;
+  margin: 10px 150px;
 }
 .deleteTask,
 .addTask {

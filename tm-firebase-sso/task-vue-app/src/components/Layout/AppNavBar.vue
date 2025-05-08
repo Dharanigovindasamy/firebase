@@ -1,16 +1,21 @@
 <script setup>
 import { ref } from "vue";
 import { useAuthStore } from "@/store/authStore";
+import { useRouter } from "vue-router";
+
+
 const authStore = useAuthStore();
 const isMenuOpen = ref(false);
-// const isAuthenticated = ref(false);
+
+const router = useRouter();
+//const isAuthentication = ref(false);
 
 const handleLogout = () => {
   sessionStorage.removeItem("jwt");
   authStore.setAuthentication(false);
   alert("Logged out successfully");
-  authStore.setAuthentication(false);
   window.location.href = "/";
+  router.push("/");
 };
 </script>
 
@@ -18,23 +23,12 @@ const handleLogout = () => {
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info d-flex justify-content-end">      
       <div class="admin-container">
-
-        <RouterLink class="navbar-brand d-flex" to="/admin" @click="isMenuOpen = false">
-          <i class="bi fs-4 me-2"></i>Admin
-        </RouterLink>
-
-        <RouterLink class="navbar-brand d-flex" to="/others" @click="isMenuOpen = false">
-          <i class="bi fs-4 me-2"></i>Others
-        </RouterLink>
-
-        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button> -->
-
-        <div class="collapse navbar-collapse justify-content-center">
+      <div class="collapse navbar-collapse justify-content-center">
           <div class="d-flex gap-4">  
             <RouterLink class="navbar-brand d-flex" to="/Task" @click="isMenuOpen = false">Task</RouterLink>
             <RouterLink class="navbar-brand d-flex" to="/Organise" @click="isMenuOpen = false">Organise</RouterLink>
+            <RouterLink class="navbar-brand d-flex" to="/admin" @click="isMenuOpen = false">Admin</RouterLink>
+            <RouterLink class="navbar-brand d-flex" to="/others" @click="isMenuOpen = false">Others</RouterLink>
           </div>
         </div> 
 

@@ -181,18 +181,47 @@ export const useTaskStore = defineStore("taskStore", () => {
   };
 
   const updateTask = async(updatedTaskData) => {
-    console.log("Updating task with taskId:", updatedTaskData);
+    console.log("Updating task with taskId:", updatedTaskData.taskId);
     const index = tasks.value.findIndex((t) => t.taskId === updatedTaskData.taskId);
     if (index !== -1) {
       tasks.value[index] = { ...updatedTaskData };
     }
     try {
       const result = await updatedTask(updatedTaskData);
-      console.log(result); 
+      console.log("updated task" ,result); 
     } catch (err) {
       console.error("Error caught when calling updateTask:", err);
     }
   };
 
-  return { tasks, fetchTask, createTask, deleteTask, updateTask };
+  const currentTask = (taskId) => {
+    console.log("fetching current task with taskId", taskId);
+    const response =  tasks.value.find((task) => task.taskId === taskId);
+    console.log(response, "current task");
+    
+  };
+
+  // const updateTaskStatus = async (taskId, newStatus) => {
+  //   const index = tasks.value.findIndex((t) => t.taskId === taskId);
+  //   if (index !== -1) {
+  //     tasks.value[index] = { ...tasks.value[index], status: newStatus };
+  //     try {
+  //       await updateTask(tasks.value[index]);
+  //       console.log("Task status updated successfully", tasks.value[index]);
+  //     } catch (error) {
+  //       console.error("Error updating task status:", error);
+  //     }
+  //   } else {
+  //     console.error("Task not found with taskId:", taskId);
+  //   }
+  // };
+  //   const index = this.tasks.findIndex(t => t.taskId === taskId);
+  //   if (index !== -1) {
+  //     this.tasks[index] = { ...this.tasks[index], status: newStatus };
+  //     this.updateTask(this.tasks[index]);
+  //   }
+
+  //   console.log("Task status updated successfully", this.tasks[index]);
+
+  return { tasks, fetchTask, createTask, deleteTask, updateTask, currentTask};
 });

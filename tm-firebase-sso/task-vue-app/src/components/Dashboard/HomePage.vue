@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="home-page" v-if="authStore.isAuthentication">
     <!-- <h2 class="title">Welcome to the Home Page</h2> -->
 
     <Carousel
@@ -38,7 +38,8 @@ import "vue3-carousel/dist/carousel.css";
 import 'vue3-carousel/carousel.css';
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from 'vue-router';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
+import { onBeforeMount } from 'vue';
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -50,19 +51,39 @@ const images = ref([
   "https://picsum.photos/1024/480?random=4"
 ]);
 
-onMounted(() => {
-  if (!authStore.isAuthenticated) {
-    console.log("User is not authenticated!", authStore.isAuthentication);
-    alert("You are not authenticated!");
-    router.push("/");
+// onMounted(() => {
+//   if (!authStore.isAuthenticated) {
+//     console.log("User is not authenticated!", authStore.isAuthentication);
+//     alert("You are not authenticated! in home page");
+//     router.push("/");
+//   }
+// });
+
+onBeforeMount(() => {
+  // Initialize and check auth state
+  authStore.initializeAuth();
+  
+  const jwt = sessionStorage.getItem('jwt');
+  console.log('JWT exists:', !!jwt);
+  console.log('Auth state:', authStore.isAuthentication);
+
+  if (!authStore.checkAuthStatus()) {
+    console.log("User is not authenticated!");
+    alert("You are not authenticated! in home page");
+    router.push('/');
   }
 });
+
 </script>
 
 <style scoped>
 .home-page {
   text-align: center;
   padding: 20px;
+  width: 1400px;
+    margin: 0 auto;
+    padding: 2px !important;
+
 }
 
 .title {

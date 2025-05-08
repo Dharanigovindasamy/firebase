@@ -63,6 +63,10 @@ export default defineComponent({
       }
     };
 
+    const handleBack = () => {
+      router.push('/admin'); 
+    };
+
     return {
       adminName,
       email,
@@ -72,6 +76,7 @@ export default defineComponent({
       role,
       submitAdmin,
       deleteAdmin,
+      handleBack
     };
   },
 });
@@ -80,7 +85,10 @@ export default defineComponent({
 <template>
 <!-- <AppHeader /> -->
   <div class="create-admin-container">
-    <h1 class="title">Create New Admin</h1>
+    <div class="back-button">
+       <h1 class="title">Create New Admin</h1>
+        <button class="back-link" @click="handleBack ">Back</button>
+  </div>
     <form @submit.prevent="submitAdmin" class="admin-form">
 
       <div class="form-group">
@@ -137,6 +145,29 @@ export default defineComponent({
   font-size: 32px;
   color: #111827;
   font-weight: bold;
+}
+
+.back-button {
+      display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    padding: 12px;
+    margin-right: -353px;
+}
+
+.back-link {
+  background: #4c7ee3;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  /* justify-content:space-between; */
+  color: white;
+  margin-right: 10px;
 }
 
 .admin-form {

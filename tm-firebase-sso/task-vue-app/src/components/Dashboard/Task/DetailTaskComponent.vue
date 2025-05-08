@@ -2,7 +2,10 @@
 import { ref, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useTaskStore } from "@/store/taskStore";
+import ExecutionModel from "@/components/model/ExecutionModel.vue";
+import { watch } from "vue";
 
+const showExecutionModal = ref(false); 
 const route = useRoute();
 const router = useRouter();
 const taskStore = useTaskStore();
@@ -22,6 +25,10 @@ onMounted(() => {
   }
 });
 
+watch(showExecutionModal, (newVal) => {
+  document.body.style.overflow = newVal ? "hidden" : "auto";
+});
+
 const enableEdit = () => {
   isEditing.value = true;
 };
@@ -34,11 +41,18 @@ const saveChanges = () => {
   };
 
   taskStore.updateTask(updatedTask);
+//  taskStore.currentTask = updatedTask;
+  console.log("task updated", task.value);
   console.log("updated tasks", updatedTask);
   isEditing.value = false;
-  alert("Tasks updated sucessfully");
-  router.push({ name: "Home" });
+  // alert("Tasks updated sucessfully");
+  // router.push('/task');
 };
+
+const handleExecute = () => {
+  showExecutionModal.value = true;
+  console.log("task executed", task.value.taskId);
+}
 
 const cancelEdit = () => {
   editableTask.value = { ...task.value };
@@ -95,7 +109,7 @@ const cancelEdit = () => {
         >
           Edit
         </button>
-        <button v-if="isEditing" type="submit" class="save-btn">Save</button>
+        <button v-if="isEditing" type="submit" @click = handleExecute class="save-btn">Execute</button>
         <button
           v-if="isEditing"
           @click="cancelEdit"
@@ -106,6 +120,15 @@ const cancelEdit = () => {
         </button>
       </div>
     </form>
+
+     <!-- Execution Modal -->
+    <ExecutionModel
+      v-if="showExecutionModal"
+      :taskId="task.taskId"
+      @close="showExecutionModal = false"
+    />
+
+
   </div>
 </template>
 

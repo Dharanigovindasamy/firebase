@@ -13,6 +13,8 @@ import BaseLayout from '../components/Layout/BaseLayout.vue';
 import TaskComponent from '../components/Dashboard/Task/TaskComponent.vue';
 import PasswordReset from '../components/Common/PasswordReset.vue';
 import ForgotPassword from '../components/Common/ForgotPassword.vue';
+import { useAuthStore } from '../store/authStore.js';
+// import ExecuteComponent from '../components/Organiser/ExecutionModelvue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -58,7 +60,7 @@ const router = createRouter({
       path: '/Home',
       name: 'Home',
       component: BaseLayout,
-      
+      meta: { requiresAuth: true }
     },
     {
       path: '/admin',
@@ -86,6 +88,11 @@ const router = createRouter({
       name: 'Organise',
       component: OrganiseComponent,
     },
+    // {
+    //   path: "/execute/:id",
+    //   name: "Execute",
+    //   component: ExecuteComponent,
+    // },
     {
       path: "/task/:id",
       name: "TaskDetails",
@@ -94,6 +101,36 @@ const router = createRouter({
     }
     
   ],
+});
+
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore();
+  const jwt = sessionStorage.getItem('jwt');
+
+  // Initialize auth state
+  authStore.initializeAuth();
+
+  if (to.meta.requiresAuth) {
+    if (!jwt) {
+      console.log('No JWT found, redirecting to login');
+      next('/');
+      return;
+    }
+    
+    if (!authStore.isAuthentication) {
+      console.log('User not authenticated, redirecting to login');
+      next('/');
+      return;
+    }
+  }
+
+  // If trying to access login page while authenticated, redirect to home
+  if (to.path === '/' && authStore.isAuthentication) {
+    next('/home');
+    return;
+  }
+
+  next();
 });
 
 export default router;
