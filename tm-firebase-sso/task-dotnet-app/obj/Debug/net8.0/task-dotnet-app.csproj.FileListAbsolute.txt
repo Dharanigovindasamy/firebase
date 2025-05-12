@@ -414,3 +414,4 @@ C:\Users\dharani.govindhasamy\Desktop\firebase\tm-firebase-sso\task-dotnet-app\b
 C:\Users\dharani.govindhasamy\Desktop\firebase\tm-firebase-sso\task-dotnet-app\obj\Debug\net8.0\task-dotnet-app.genruntimeconfig.cache
 C:\Users\dharani.govindhasamy\Desktop\firebase\tm-firebase-sso\task-dotnet-app\obj\Debug\net8.0\ref\task-dotnet-app.dll
 C:\Users\dharani.govindhasamy\Desktop\firebase\tm-firebase-sso\task-dotnet-app\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\dharani.govindhasamy\Desktop\firebase\tm-firebase-sso\task-dotnet-app\bin\Debug\net8.0\Npgsql.Json.NET.dll

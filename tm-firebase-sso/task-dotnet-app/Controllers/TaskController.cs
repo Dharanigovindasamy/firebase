@@ -75,8 +75,7 @@ using System.Collections.Generic;
 using task_dotnet_app.Data.Model;
 using task_dotnet_app.Data;
 using Microsoft.EntityFrameworkCore;
-
-
+using Newtonsoft.Json;
 namespace TaskApi.Controllers
 {
     [ApiController]
@@ -91,18 +90,24 @@ namespace TaskApi.Controllers
         }
 
         [HttpPost("{taskId}/executions")]
-        public async Task<IActionResult> AddExecution(int taskId, [FromBody] Execution execution)
+        public async Task<IActionResult> AddExecution(int taskId, [FromBody] Execution newExecution)
         {
-            var task = await _context.TaskItems.Include(t => t.Executions).FirstOrDefaultAsync(t => t.TaskId == taskId); 
-
+            var task = await _context.TaskItems.FirstOrDefaultAsync(t => t.TaskId == taskId);
             if (task == null)
                 return NotFound("Task not found");
-            task.Executions.Add(execution);
+
+            // Ensure all DateTime fields are in UTC
+            task.EnsureUtcDates();
+            newExecution.EnsureUtcDate();
+
+            task.Executions ??= new List<Execution>();
+            task.Executions.Add(newExecution);
+
+            _context.TaskItems.Update(task);
             await _context.SaveChangesAsync();
 
             return Ok(task);
         }
-
     }
 }
 

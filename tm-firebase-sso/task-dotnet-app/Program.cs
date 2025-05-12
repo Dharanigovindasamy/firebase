@@ -97,8 +97,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using task_dotnet_app.Data;
+using Npgsql;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
+NpgsqlConnection.GlobalTypeMapper.UseJsonNet();
 
 builder.WebHost.UseUrls("http://localhost:5000");
 
@@ -151,7 +155,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); // Ensure wwwroot exists or remove this line
+app.UseStaticFiles(); 
 app.UseRouting();
 app.UseCors("AllowAllOrigins");
 app.UseAuthentication();

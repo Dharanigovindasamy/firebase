@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net.Mail;
-using System.Text.Json;
-
+using Newtonsoft.Json;
 
 namespace task_dotnet_app.Data.Model
 {
@@ -26,19 +25,7 @@ namespace task_dotnet_app.Data.Model
         [Required]
         public string Status { get; set; }
 
-      //  public List<Execution> Executions { get; set; } = new();
-       
-        [Column("executions")]
-        public string ExecutionsJson { get; set; } = "[]";
-
-        [NotMapped]
-        public List<Execution>? Executions
-        {
-            get => string.IsNullOrEmpty(ExecutionsJson)
-                ? new List<Execution>()
-                : JsonSerializer.Deserialize<List<Execution>>(ExecutionsJson) ?? new List<Execution>();
-            set => ExecutionsJson = JsonSerializer.Serialize(value);
-        }
+        public List<Execution>? Executions { get; set; } = new List<Execution>();
 
         public int AssigneeId { get; set; }
         [ForeignKey("AssigneeId")]
@@ -55,19 +42,23 @@ namespace task_dotnet_app.Data.Model
 
         [Required]
         public DateTime DueDate { get; set; }
+
         public string? Priority { get; set; }
         public string? Comments { get; set; }
         public string? Attachment { get; set; }
 
-      //  public Users? User { get; set; }
         public int ProjectId { get; set; }
         [ForeignKey("ProjectId")]
         public Projects? Projects { get; set; }
         public List<Roles>? Roles { get; set; } = new List<Roles>();
         public List<UserTasks> UserTasks { get; set; }
 
-
-
-
+        // Ensure UTC for all DateTime properties
+        public void EnsureUtcDates()
+        {
+            if (CreatedAt.Kind != DateTimeKind.Utc) CreatedAt = DateTime.SpecifyKind(CreatedAt, DateTimeKind.Utc);
+            if (StartedAt.Kind != DateTimeKind.Utc) StartedAt = DateTime.SpecifyKind(StartedAt, DateTimeKind.Utc);
+            if (DueDate.Kind != DateTimeKind.Utc) DueDate = DateTime.SpecifyKind(DueDate, DateTimeKind.Utc);
+        }
     }
 }

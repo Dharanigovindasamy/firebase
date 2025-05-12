@@ -19,6 +19,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "9.0.3",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.3",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
+          "Npgsql.Json.NET": "9.0.3",
           "System.IdentityModel.Tokens.Jwt": "8.8.0"
         },
         "runtime": {
@@ -1228,6 +1229,18 @@
           }
         }
       },
+      "Npgsql.Json.NET/9.0.3": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "Npgsql": "9.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Npgsql.Json.NET.dll": {
+            "assemblyVersion": "9.0.3.0",
+            "fileVersion": "9.0.3.0"
+          }
+        }
+      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.10": {
         "dependencies": {
           "SQLitePCLRaw.lib.e_sqlite3": "2.1.10",
@@ -2165,6 +2178,13 @@
       "sha512": "sha512-mw5vcY2IEc7L+IeGrxpp/J5OSnCcjkjAgJYCm/eD52wpZze8zsSifdqV7zXslSMmfJG2iIUGZyo3KuDtEFKwMQ==",
       "path": "npgsql.entityframeworkcore.postgresql/9.0.4",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512"
+    },
+    "Npgsql.Json.NET/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lN8p9UKkoXaGUhX3DHg/1W6YeEfbjQiQ7XrJSGREUoDHXOLxDQHJnZ49P/9P2s/pH6HTVgTgT5dijpKoRLN0vQ==",
+      "path": "npgsql.json.net/9.0.3",
+      "hashPath": "npgsql.json.net.9.0.3.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.10": {
       "type": "package",

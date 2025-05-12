@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VFK/wpWOe/Q=",
+  "dgSpecHash": "5ZhtBxfaMrM=",
   "success": true,
   "projectFilePath": "C:\\Users\\dharani.govindhasamy\\Desktop\\firebase\\tm-firebase-sso\\task-dotnet-app\\task-dotnet-app.csproj",
   "expectedPackageFiles": [
@@ -92,6 +92,7 @@
     "C:\\Users\\dharani.govindhasamy\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\dharani.govindhasamy\\.nuget\\packages\\npgsql\\9.0.3\\npgsql.9.0.3.nupkg.sha512",
     "C:\\Users\\dharani.govindhasamy\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\9.0.4\\npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
+    "C:\\Users\\dharani.govindhasamy\\.nuget\\packages\\npgsql.json.net\\9.0.3\\npgsql.json.net.9.0.3.nupkg.sha512",
     "C:\\Users\\dharani.govindhasamy\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\dharani.govindhasamy\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
     "C:\\Users\\dharani.govindhasamy\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",

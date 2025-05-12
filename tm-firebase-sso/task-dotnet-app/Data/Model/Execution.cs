@@ -1,7 +1,13 @@
-﻿ namespace task_dotnet_app.Data.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Net.Mail;
+
+namespace task_dotnet_app.Data.Model
 {
     public class Execution
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Assignee { get; set; }
         public DateTime Date { get; set; }
@@ -14,11 +20,10 @@
         public double ActualTime { get; set; }
         public string Attachment { get; set; }
 
-        // Foreign key
-        public int TaskId { get; set; }
-
-        // Navigation property
-        public TaskItems TaskItem { get; set; }
+        public void EnsureUtcDate()
+        {
+            if (Date.Kind != DateTimeKind.Utc)
+                Date = DateTime.SpecifyKind(Date, DateTimeKind.Utc);
+        }
     }
-
 }

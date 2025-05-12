@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using task_dotnet_app.Data.Model;
-
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Text.Json;
 
 namespace task_dotnet_app.Data.Configuration
 {
@@ -80,16 +81,11 @@ namespace task_dotnet_app.Data.Configuration
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_tasks_users_reporter_id");
 
-            entity.Property(e => e.ExecutionsJson)
+            // Set Executions as a JSONB field
+            entity.Property(e => e.Executions)
                   .HasColumnName("executions")
                   .HasColumnType("jsonb")
                   .IsRequired(false);
-
-            entity.HasMany(e => e.Executions)
-             .WithOne(d => d.TaskItem)        
-             .HasForeignKey(d => d.TaskId)
-             .OnDelete(DeleteBehavior.Cascade)
-              .IsRequired(false);
         }
     }
 }
