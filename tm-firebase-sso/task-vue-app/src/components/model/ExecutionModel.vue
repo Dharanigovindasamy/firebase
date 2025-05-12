@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useExecutionStore } from "@/store/executionStore";
-import { useTaskStore } from "@/store/taskStore";
 import { useAdminStore } from "@/store/adminStore";
 import { defineProps, defineEmits } from "vue";
 
@@ -9,7 +8,7 @@ const props = defineProps({ taskId: Number });
 console.log("taskId in execution modelllllllllllll", props.taskId);
 const emit = defineEmits(["close"]);
 
-const store = useExecutionStore();
+const executionStore = useExecutionStore();
 const adminStore = useAdminStore();
 
 const admins = ref([]);
@@ -38,19 +37,26 @@ onMounted(() => {
   }
 });
 
-const handleFileUpload = (event) => {
-  const files = event.target.files;
-  newExecution.value.attachments =  Array.from(files);
-    // ? Array.from(files).map((file) => file.name)
-    // : null;
-};
+// const handleFileUpload = (event) => {
+//   const files = event.target.files;
+//   newExecution.value.attachments =  Array.from(files);
+//     // ? Array.from(files).map((file) => file.name)
+//     // : null;
+// };
 
-const addNew = () => {
+const handleAddExecution = async(data) => {
   newExecution.value.taskId = props.taskId;
   console.log("taskId in execution model", newExecution.value.taskId);
-  store.addExecution(newExecution.value);
+  //store.createExecution(newExecution.value);
   console.log("newExecution in execution model", newExecution.value);
-  useTaskStore().updateTask(newExecution.value);
+  console.log("data in execution model", data);
+     try {
+        const result = await executionStore.createExecution(data);
+        console.log("Execution added and store updated", result);
+      } catch (error) {
+        console.error("Error adding execution:", error);
+      }
+
   alert("Execution added successfully!");
   emit("close");
 };
@@ -147,7 +153,7 @@ const close = () => {
             placeholder="Actual Time (in hours)"
             required
           />
-          <label class="label" for="attachments">Attachments</label>
+          <!-- <label class="label" for="attachments">Attachments</label>
           <input
             class="input-field"
             type="file"
@@ -155,7 +161,7 @@ const close = () => {
             multiple
             @change="handleFileUpload"
             required
-          />
+          /> -->
         </form>
       </div>
 
@@ -163,7 +169,7 @@ const close = () => {
         <button
           class="button"
           type="submit"
-          @click="addNew"
+          @click="handleAddExecution(newExecution)"
           form="execution-form"
         >
           Add Execution

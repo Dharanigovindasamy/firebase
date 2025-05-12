@@ -1,17 +1,18 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
-import { createExecution } from "../components/model/Execution.js";
+import { ref,  toRaw } from "vue";
+import { addExecution } from "../service/task/addExecution";
 
 export const useExecutionStore = defineStore("execution", () => {
   const executions = ref([]);
 
-  const addExecution = (executionData) => {
-    
-    executions.value.push({
-      ...createExecution(),
-      ...executionData,
-    });
-    console.log(executions.value,'instore');
+  const createExecution = async (executionData) => {
+    try {
+      const newExecution = await addExecution(toRaw(executionData));
+      console.log(newExecution, "Execution added in store");
+      executions.value.push(newExecution); 
+    } catch (error) {
+      console.error("Error in createExecution:", error);
+    }
   };
 
   const updateExecution = (id, updatedData) => {
@@ -27,7 +28,7 @@ export const useExecutionStore = defineStore("execution", () => {
 
   return {
     executions,
-    addExecution,
+    createExecution,
     updateExecution,
     removeExecution,
   };
