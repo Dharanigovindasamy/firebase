@@ -15,8 +15,10 @@
   color: #ffffff;
   padding: 20px 0;
   width: 100%;
-  position: fixed;
-  bottom: 0;
+  position: sticky;
+  bottom: -10px;
+  z-index: 8000px;
+  
 }
 
 .footer-container {

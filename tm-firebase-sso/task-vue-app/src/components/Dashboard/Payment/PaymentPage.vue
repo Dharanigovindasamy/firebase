@@ -19,16 +19,16 @@
         <b-card-title class = "title">Personal Info</b-card-title>
         <b-card-text>
           <b-form>
-            <b-form-group label="name">
+            <b-form-group label="Name" class="label">
               <b-form-input v-model="name" placeholder="Enter name"/>
             </b-form-group>
           </b-form>
 
-            <b-form-group label="email">
+            <b-form-group label="Email" class="label">
                 <b-form-input v-model="email" placeholder="Enter email"/>
                 </b-form-group>
 
-            <b-form-group label="phone">
+            <b-form-group label="Phone" class="label">
                 <b-form-input v-model="phone" placeholder="Enter phone"/>
                 </b-form-group>
 
@@ -39,30 +39,29 @@
         <b-card-title class = "title">Payment Details - {{ selectedMethod }}</b-card-title>
         <b-card-text>
           <b-form v-if="selectedMethod === 'creditCard' || selectedMethod === 'debitCard'">
-            <b-form-group label="Card Number">
+            <b-form-group label="Card Number" class="label">
               <b-form-input v-model="cardNumber" placeholder="Enter card number" />
             </b-form-group>
 
-            <b-form-group label="Expiry Date">
+            <b-form-group label="Expiry Date" class="label">
               <b-form-input v-model="expiryDate" placeholder="MM/YY" />
             </b-form-group>
 
-            <b-form-group label="CVV">
+            <b-form-group label="CVV" class="label">
               <b-form-input v-model="cvv" placeholder="Enter CVV" />
             </b-form-group>
 
-            <b-form-group label="Card Holder Name">
+            <b-form-group label="Card Holder Name" class="label">
               <b-form-input v-model="cardHolderName" placeholder="Enter card holder name" />
             </b-form-group>
 
-            <b-form-group label="Amount">
+            <b-form-group label="Amount" class="label">
               <b-form-input v-model="amount" placeholder="Enter amount" />
             </b-form-group>
           </b-form>
 
           <div v-else-if="selectedMethod === 'gpay'">
             <p>Use Google Pay to scan and pay via your mobile device.</p>
-            <!-- You could add QR code or UPI ID here -->
           </div>
 
           <div v-else-if="selectedMethod === 'paypal'">
@@ -70,7 +69,7 @@
           </div>
 
           <div v-else-if="selectedMethod === 'netbanking'">
-            <b-form-group label="Select your Bank">
+            <b-form-group label="Select your Bank" class="label">
               <b-form-select :options="banks" v-model="selectedBank" />
             </b-form-group>
           </div>
@@ -80,7 +79,6 @@
       </b-card-body>
     </b-card>
 
-    <!-- Alerts -->
     <b-alert v-model="showAlert" variant="success" dismissible>
       Payment successful!
     </b-alert>
@@ -131,7 +129,6 @@ const selectMethod = (methodName) => {
 };
 
 const pay = () => {
-  // Basic validation logic (simplified)
   if (!name.value || !email.value || !phone.value) {
     showWarningAlert.value = true;
     return;
@@ -148,7 +145,6 @@ const pay = () => {
     return;
   }
 
-  // Simulate payment success
   showAlert.value = true;
   showErrorAlert.value = false;
   showWarningAlert.value = false;

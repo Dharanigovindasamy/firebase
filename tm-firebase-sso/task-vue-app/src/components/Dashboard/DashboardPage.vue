@@ -44,7 +44,7 @@ const login = async () => {
     console.log("Logged in successfully", jwt);
     alert("Logged in successfully");
     authStore.setAuthentication(true);
-    router.push("/Home");
+    router.push("/Task");
   } catch (err) {
     console.error(err);
     alert(err.response?.data?.error || "Login failed");

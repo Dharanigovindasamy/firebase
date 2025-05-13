@@ -47,7 +47,13 @@ function mapToApiModel(task) {
     Priority: task.priority,
     Comments: task.comments,
     Attachment: task.attachment,
-    ProjectId: task.projectId
+    ProjectId: task.projectId,
+    Provider: task.provider,
+    Service: task.service,
+    Memory: task.memory,
+    Storage: task.storage,
+    Price : task.price
+
   };
 }
 export const updatedTask = async (task) => {
