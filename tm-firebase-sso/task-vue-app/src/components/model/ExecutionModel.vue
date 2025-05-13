@@ -2,15 +2,17 @@
 import { ref, onMounted } from "vue";
 import { useExecutionStore } from "@/store/executionStore";
 import { useAdminStore } from "@/store/adminStore";
+// import { useTaskStore } from "@/store/taskStore";
 import { defineProps, defineEmits } from "vue";
-
+// import {taskDetails} from "../Dashboard/Task/DetailTaskComponent.vue";
 const props = defineProps({ taskId: Number });
 console.log("taskId in execution modelllllllllllll", props.taskId);
 const emit = defineEmits(["close"]);
 
+// const taskDetails = taskDetails;
 const executionStore = useExecutionStore();
 const adminStore = useAdminStore();
-
+// const taskStore = useTaskStore();
 const admins = ref([]);
 const newExecution = ref({
   taskId: props.taskId,
@@ -58,7 +60,7 @@ const handleAddExecution = async(data) => {
       }
 
   alert("Execution added successfully!");
-  emit("close");
+  emit("close");   
 };
 
 const close = () => {
@@ -71,7 +73,7 @@ const close = () => {
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="execute">Execution Form</h2>
-        <button class="close-btn" @click="close">X</button>
+        <!-- <button class="close-btn" @click="close">X</button> -->
       </div>
       <div class="modal-body">
         <form class="execute-form" id="execution-form">

@@ -5,7 +5,7 @@ import { useTaskStore } from "@/store/taskStore";
 import ExecutionModel from "@/components/model/ExecutionModel.vue";
 import { watch } from "vue";
 
-const showExecutionModal = ref(false); 
+const showExecutionModal = ref(false);
 const route = useRoute();
 const router = useRouter();
 const taskStore = useTaskStore();
@@ -33,26 +33,35 @@ const enableEdit = () => {
   isEditing.value = true;
 };
 
-const saveChanges = () => {
+const saveChanges = async () => {
   const updatedTask = {
     ...task.value,
     taskName: editableTask.value.taskName,
     category: editableTask.value.category,
+    status: editableTask.value.status,
   };
 
-  taskStore.updateTask(updatedTask);
-//  taskStore.currentTask = updatedTask;
+  await taskStore.updateTask(updatedTask);
   console.log("task updated", task.value);
   console.log("updated tasks", updatedTask);
   isEditing.value = false;
-  // alert("Tasks updated sucessfully");
-  // router.push('/task');
+  showExecutionModal.value = true;
+};
+
+const handleExecutionModalClose = () => {
+  showExecutionModal.value = false;
+
+  if (task.value.category === "Cloud") {
+    router.push({ name: "payment" });
+  } else {
+    router.push({ name: "task" });
+  }
 };
 
 const handleExecute = () => {
   showExecutionModal.value = true;
   console.log("task executed", task.value.taskId);
-}
+};
 
 const cancelEdit = () => {
   editableTask.value = { ...task.value };
@@ -109,7 +118,14 @@ const cancelEdit = () => {
         >
           Edit
         </button>
-        <button v-if="isEditing" type="submit" @click = handleExecute class="save-btn">Execute</button>
+        <button
+          v-if="isEditing"
+          type="submit"
+          @click="handleExecute"
+          class="save-btn"
+        >
+          Execute
+        </button>
         <button
           v-if="isEditing"
           @click="cancelEdit"
@@ -121,14 +137,14 @@ const cancelEdit = () => {
       </div>
     </form>
 
-     <!-- Execution Modal -->
+    <!-- Execution Modal -->
     <ExecutionModel
       v-if="showExecutionModal"
       :taskId="task.taskId"
-      @close="showExecutionModal = false"
+      @close="handleExecutionModalClose"
     />
 
-
+    <router-view />
   </div>
 </template>
 

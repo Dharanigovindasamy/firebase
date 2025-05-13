@@ -14,47 +14,42 @@ import TaskComponent from '../components/Dashboard/Task/TaskComponent.vue';
 import PasswordReset from '../components/Common/PasswordReset.vue';
 import ForgotPassword from '../components/Common/ForgotPassword.vue';
 import { useAuthStore } from '../store/authStore.js';
-// import ExecuteComponent from '../components/Organiser/ExecutionModelvue';
-
+import PaymentPage from '../components/Dashboard/Payment/PaymentPage.vue';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-         path: '/',
-         component: DashboardPage,
-       },
+      path: '/',
+      component: DashboardPage,
+    },
 
-       {
-        path: '/PasswordReset',
-        name: 'PasswordReset',
-        component: PasswordReset
-
-       },
-
-       {
-        path: '/forgot-password',
-        name: 'ForgotPassword',
-        component: ForgotPassword
-       },
-      
-    // {
-    //   path: '/',
-    //   component: HomePage,
-    // },
     {
-      path:'/register-login',
+      path: '/PasswordReset',
+      name: 'PasswordReset',
+      component: PasswordReset
+
+    },
+
+    {
+      path: '/forgot-password',
+      name: 'ForgotPassword',
+      component: ForgotPassword
+    },
+
+    {
+      path: '/register-login',
       component: AuthComponent,
-      name:'REGISTER',
+      name: 'REGISTER',
     },
     {
-      path:'/login',
+      path: '/login',
       component: LoginComponent,
-      name:'Login',
+      name: 'Login',
     },
     {
-      path:'/FirebaseSignIn',
+      path: '/FirebaseSignIn',
       component: AuthComponent,
-      name:'FirebaseSignIn',
+      name: 'FirebaseSignIn',
     },
     {
       path: '/Home',
@@ -66,15 +61,15 @@ const router = createRouter({
       path: '/admin',
       name: 'admin',
       component: AdminComponent,
-      
+
     },
     {
-      path:'/Task',
-      name:'Task',
+      path: '/Task',
+      name: 'Task',
       component: TaskComponent,
     },
     {
-      path: '/admin/createAdmin',  
+      path: '/admin/createAdmin',
       name: 'CreateAdmin',
       component: CreateAdminComponent,
     },
@@ -88,18 +83,27 @@ const router = createRouter({
       name: 'Organise',
       component: OrganiseComponent,
     },
-    // {
-    //   path: "/execute/:id",
-    //   name: "Execute",
-    //   component: ExecuteComponent,
-    // },
     {
       path: "/task/:id",
       name: "TaskDetails",
       component: DetailTaskComponent,
       props: true,
+
+      // children: [
+      //   {
+      //     path: "payment",
+      //     name: "payment",
+      //     component: PaymentPage,
+      //   }
+      // ],
+    },
+    {
+      path: "/task/:id/payment",
+      name: "payment",
+      component: PaymentPage,
     }
-    
+
+
   ],
 });
 
@@ -116,7 +120,7 @@ router.beforeEach(async (to, from, next) => {
       next('/');
       return;
     }
-    
+
     if (!authStore.isAuthentication) {
       console.log('User not authenticated, redirecting to login');
       next('/');
@@ -126,7 +130,7 @@ router.beforeEach(async (to, from, next) => {
 
   // If trying to access login page while authenticated, redirect to home
   if (to.path === '/' && authStore.isAuthentication) {
-    next('/home');
+    next('/Home');
     return;
   }
 

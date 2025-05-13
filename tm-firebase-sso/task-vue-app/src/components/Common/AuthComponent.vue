@@ -188,7 +188,7 @@ export default {
           isAuthentication: authStore.isAuthentication,
         });
 
-        await router.push("/home");
+        await router.push("/Home");
       } catch (error) {
         console.error("Google Sign-In Error:", error.message);
         authStore.setAuthentication(false);
