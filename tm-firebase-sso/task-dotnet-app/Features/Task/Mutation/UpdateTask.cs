@@ -17,6 +17,11 @@ namespace task_dotnet_app.Features.Task.Mutation
             public string TaskName { get; set; }
             public string TaskDescription { get; set; } = string.Empty;
             public string Category { get; set; }
+            public string Provider { get; set; }
+            public string ServiceType {  get; set; }
+            public int Memory { get; set; }
+            public int Storage { get; set; }
+            public double Price { get; set; }
             public string Status { get; set; }
             public int AssigneeId { get; set; }
             public int ReporterId { get; set; }
@@ -50,6 +55,11 @@ namespace task_dotnet_app.Features.Task.Mutation
                 tasks.TaskName = request.TaskName;
                 tasks.TaskDescription = request.TaskDescription;
                 tasks.Category = request.Category;
+                tasks.Provider = request.Provider;
+                tasks.Servicetype = request.ServiceType;
+                tasks.Memory = request.Memory;
+                tasks.Storage = request.Storage;
+                tasks.Price = request.Price;
                 tasks.Status = request.Status;
                 tasks.AssigneeId = request.AssigneeId;
                 tasks.ReporterId = request.ReporterId;

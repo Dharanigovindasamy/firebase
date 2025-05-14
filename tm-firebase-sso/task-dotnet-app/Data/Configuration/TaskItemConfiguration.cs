@@ -86,6 +86,29 @@ namespace task_dotnet_app.Data.Configuration
                   .HasColumnName("executions")
                   .HasColumnType("jsonb")
                   .IsRequired(false);
+
+            entity.Property(e => e.Provider)
+                .HasColumnName("provider")
+                .HasMaxLength(30);
+
+            entity.Property(e => e.Servicetype)
+                .HasColumnName("servicetype")
+                .HasMaxLength(40);
+
+            entity.Property(e => e.Storage)
+                .HasColumnName("storage")
+                .HasColumnType("int");
+
+            entity.Property(e => e.Memory)
+                .HasColumnName("memory")
+                 .HasColumnType("int");
+
+            entity.Property(e => e.Price)
+                .HasColumnName("price")
+                .HasColumnType("double precision");
+
+
+
         }
     }
 }

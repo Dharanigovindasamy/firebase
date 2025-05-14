@@ -22,6 +22,7 @@ namespace task_dotnet_app.Data
         public virtual DbSet<AppUser> AppUsers { get; set; }
         public virtual DbSet<LoginModel> LoginModels { get; set; }
         public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +40,7 @@ namespace task_dotnet_app.Data
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new LoginModelConfiguration());
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }  

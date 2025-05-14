@@ -35,6 +35,12 @@ namespace task_dotnet_app.Data.Model
         [ForeignKey("ReporterId")]
         public Users Reporter { get; set; }
 
+        public string? Provider{ get; set; }
+        public string? Servicetype { get; set; }
+        public int? Storage { get; set; }
+        public int? Memory {  get; set; }
+        public double? Price { get; set; }
+
         [Required]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
@@ -53,7 +59,6 @@ namespace task_dotnet_app.Data.Model
         public List<Roles>? Roles { get; set; } = new List<Roles>();
         public List<UserTasks> UserTasks { get; set; }
 
-        // Ensure UTC for all DateTime properties
         public void EnsureUtcDates()
         {
             if (CreatedAt.Kind != DateTimeKind.Utc) CreatedAt = DateTime.SpecifyKind(CreatedAt, DateTimeKind.Utc);

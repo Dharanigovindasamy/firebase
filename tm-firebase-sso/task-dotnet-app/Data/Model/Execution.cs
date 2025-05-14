@@ -18,7 +18,7 @@ namespace task_dotnet_app.Data.Model
         public string Priority { get; set; }
         public double EstimatedTime { get; set; }
         public double ActualTime { get; set; }
-        public string Attachment { get; set; }
+       // public string Attachment { get; set; }
 
         public void EnsureUtcDate()
         {
