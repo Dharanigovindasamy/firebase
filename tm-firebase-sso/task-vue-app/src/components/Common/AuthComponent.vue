@@ -148,7 +148,7 @@ export default {
         localStorage.setItem("jwt", jwt);
         alert("Logged in successfully");
         authStore.setAuthentication(true);
-        window.location.href = "/Home";
+        window.location.href = "/Task";
       } catch (err) {
         console.error(err);
         alert("Login failed");
@@ -188,7 +188,7 @@ export default {
           isAuthentication: authStore.isAuthentication,
         });
 
-        await router.push("/Home");
+        await router.push("/Task");
       } catch (error) {
         console.error("Google Sign-In Error:", error.message);
         authStore.setAuthentication(false);

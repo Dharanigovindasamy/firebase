@@ -181,7 +181,7 @@ export const useTaskStore = defineStore("taskStore", () => {
   };
 
   const updateTask = async(updatedTaskData) => {
-    console.log("Updating task with taskId:", updatedTaskData.taskId);
+    console.log("Updating task in store:", updatedTaskData);
     const index = tasks.value.findIndex((t) => t.taskId === updatedTaskData.taskId);
     if (index !== -1) {
       tasks.value[index] = { ...updatedTaskData };

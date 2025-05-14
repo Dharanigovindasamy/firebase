@@ -31,14 +31,20 @@
 //   }
 // };
 
-import axios from "axios";
+// import axios from "axios";
 
 function mapToApiModel(task) {
+  console.log ("Mapping task to API model:", task);
   return {
     TaskId: task.taskId,
     TaskName: task.taskName,
     TaskDescription: task.taskDescription,
     Category: task.category,
+    Provider: task.provider,
+    ServiceType: task.serviceType,
+    Memory: task.memory,
+    Storage: task.storage,
+    Price : task.price,
     Status: task.status,
     AssigneeId: task.assigneeId,
     ReporterId: task.reporterId,
@@ -47,32 +53,36 @@ function mapToApiModel(task) {
     Priority: task.priority,
     Comments: task.comments,
     Attachment: task.attachment,
-    ProjectId: task.projectId,
-    Provider: task.provider,
-    Service: task.service,
-    Memory: task.memory,
-    Storage: task.storage,
-    Price : task.price
+    ProjectId: task.projectId
 
   };
 }
-export const updatedTask = async (task) => {
-  try {
-    const payload = mapToApiModel(task);
+export const updatedTask = (task) => {
+  const payload = mapToApiModel(task);
+  console.log("Payload:", payload);
 
-    const response = await axios.put(
-      `http://localhost:5000/api/task/${task.taskId}`,
-      payload,
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+  return fetch(`http://localhost:5000/api/task/${task.taskId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(errData => {
+          throw new Error(errData.message || `HTTP error! status: ${response.status}`);
+        });
       }
-    );
-
-    console.log("Task updated successfully:", response.data);
-  } catch (err) {
-    console.error("Error updating task:", err.response?.data || err.message);
-    throw err;
-  }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Task updated successfully:", data);
+      return data;
+    })
+    .catch(err => {
+      console.error("Error updating task:", err.message);
+      throw err;
+    });
 };
+

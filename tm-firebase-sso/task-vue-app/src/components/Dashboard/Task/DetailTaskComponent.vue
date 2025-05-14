@@ -57,10 +57,10 @@ const enableEdit = () => {
 const saveChanges = async () => {
   const updatedTask = { ...task.value, ...editableTask.value };
   await taskStore.updateTask(updatedTask);
+  console.log("updated price", updatedTask.price);
   isEditing.value = false;
   showExecutionModal.value = true;
-    console.log("task executed", task.value.taskId);
-  alert("Task updated successfully!", task.value);
+  alert("Task updated successfully!");
 };
 
 const cancelEdit = () => {
@@ -69,17 +69,13 @@ const cancelEdit = () => {
   router.push({ name: "Home" });
 };
 
-const handleExecutionModalClose = () => {
+const handleExecutionModalClose = (price) => {
+   console.log("Navigating to payment with price:", price, "and taskId:", taskId);
   showExecutionModal.value = false;
-  router.push({ name: task.value.category === "Cloud" ? "payment" : "Task" });
+  router.push({ name: "payment", params: { id: taskId }, query: { price } });
 };
 
-// const handleExecute = () => {
-
-//   showExecutionModal.value = true;
-// };
-
-const calculatePrice = (provider, service, memory, storage) => {
+const calculatePrice = (provider, serviceType, memory, storage) => {
   const rateMap = {
     AWS: { EC2: 0.12, S3: 0.02, Lambda: 0.08, RDS: 0.15 },
     Azure: { VM: 0.11, "Blob Storage": 0.03, Functions: 0.09, "SQL Database": 0.14 },
@@ -87,7 +83,7 @@ const calculatePrice = (provider, service, memory, storage) => {
     "Oracle Cloud": { Compute: 0.09, Storage: 0.02, Functions: 0.08, Database: 0.12 }
   };
 
-  const baseRate = rateMap[provider]?.[service] || 0;
+  const baseRate = rateMap[provider]?.[serviceType] || 0;
   return Number(((memory + storage) * baseRate).toFixed(2));
 };
 
@@ -102,7 +98,7 @@ const servicesByProvider = {
 <template>
   <div class="task-details-container">
     <h2>Task Details</h2>
-    <form>
+    <form @submit.prevent="saveChanges">
       <div class="form-group">
         <label>Task ID:</label>
         <input type="text" v-model="editableTask.taskId" disabled />
@@ -171,13 +167,13 @@ const servicesByProvider = {
 
       <div class="buttons">
         <button v-if="!isEditing" @click="enableEdit" type="button" class="edit-btn">Edit</button>
-        <button v-if="isEditing" type="submit" @click="saveChanges" class="save-btn">Execute</button>
+        <button v-if="isEditing" type="submit" class="save-btn">Execute</button>
         <button v-if="isEditing" @click="cancelEdit" type="button" class="cancel-btn">Cancel</button>
       </div>
     </form>
 
     <!-- Execution Modal -->
-    <ExecutionModel v-if="showExecutionModal" :taskId="task.taskId" @close="handleExecutionModalClose" />
+    <ExecutionModel v-if="showExecutionModal" :taskId="task.taskId" :price="editableTask.price" @close="handleExecutionModalClose" />
     <router-view />
   </div>
 </template>

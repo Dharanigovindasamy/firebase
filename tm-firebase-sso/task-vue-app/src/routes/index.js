@@ -15,6 +15,9 @@ import PasswordReset from '../components/Common/PasswordReset.vue';
 import ForgotPassword from '../components/Common/ForgotPassword.vue';
 import { useAuthStore } from '../store/authStore.js';
 import PaymentPage from '../components/Dashboard/Payment/PaymentPage.vue';
+import PaymentFailure from '../components/Dashboard/Payment/PaymentFailure.vue';
+import PaymentSuccess from '../components/Dashboard/Payment/PaymentSuccess.vue';
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -101,6 +104,16 @@ const router = createRouter({
       path: "/task/:id/payment",
       name: "payment",
       component: PaymentPage,
+    },
+    {
+      path: '/payment-success',
+      name: 'PaymentSuccess',
+      component: PaymentSuccess
+    },
+    {
+      path: '/payment-failure',
+      name: 'PaymentFailure',
+      component: PaymentFailure
     }
 
 

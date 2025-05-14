@@ -80,7 +80,7 @@ const login = async () => {
     alert("Logged in successfully");
     authStore.setAuthentication(true);
     //window.location.href = '/Home';
-    router.push("/Home");
+    router.push("/Task");
   } catch (err) {
     console.error(err);
     alert(err.response?.data?.error || "Login failed");

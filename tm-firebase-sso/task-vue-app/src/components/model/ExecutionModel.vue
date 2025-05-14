@@ -2,11 +2,10 @@
 import { ref, onMounted } from "vue";
 import { useExecutionStore } from "@/store/executionStore";
 import { useAdminStore } from "@/store/adminStore";
-// import { useTaskStore } from "@/store/taskStore";
 import { defineProps, defineEmits } from "vue";
 // import {taskDetails} from "../Dashboard/Task/DetailTaskComponent.vue";
-const props = defineProps({ taskId: Number });
-console.log("taskId in execution modelllllllllllll", props.taskId);
+const props = defineProps({ taskId: Number , price: Number });
+console.log("taskId in execution modelllllllllllll", props.taskId, "price in execution model", props.price);
 const emit = defineEmits(["close"]);
 
 // const taskDetails = taskDetails;
@@ -60,11 +59,11 @@ const handleAddExecution = async(data) => {
       }
 
   alert("Execution added successfully!");
-  emit("close");   
+  emit("close", props.price);   
 };
 
 const close = () => {
-  emit("close");
+  emit("close",  props.price);
 };
 </script>
 
