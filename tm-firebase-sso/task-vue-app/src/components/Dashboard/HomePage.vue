@@ -103,6 +103,8 @@ onBeforeMount(() => {
   height: 400px;
   object-fit: cover;
   border-radius: 12px;
+  margin : 20px;
+  
 }
 /* 
 .arrows {

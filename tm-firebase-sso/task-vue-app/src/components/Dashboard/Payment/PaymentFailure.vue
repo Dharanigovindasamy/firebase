@@ -3,8 +3,20 @@
     <img src="@/assets/payment-failure.png" alt="Failure" class="status-img" />
     <h1>Payment Failed</h1>
     <p>Sorry, your payment could not be processed. Please try again or contact support.</p>
+
+    <button class = "try-again-button" @click="handlePaymentFailure">Try Again</button>
   </div>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const handlePaymentFailure = () => {
+  router.push('/task');
+};
+</script>
 
 <style scoped>
 .payment-status-container {
@@ -22,4 +34,15 @@
   margin-bottom: 24px;
 }
 h1 { font-size: 2.2rem; margin-bottom: 20px; }
+
+.try-again-button {
+    background-color: #dc3545;
+    margin: 20px;
+    color: #fff;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 </style>
+

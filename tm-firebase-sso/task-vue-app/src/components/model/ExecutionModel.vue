@@ -145,13 +145,13 @@ const close = () => {
             placeholder="Estimated Time (in hours)"
             required
           />
-          <label class="label" for="actualTime">Actual Time (in hours)</label>
+          <label class="label" for="actualTime">Remaining Time (in hours)</label>
           <input
             class="input-field"
             v-model="newExecution.actualTime"
             type="number"
             min="0"
-            placeholder="Actual Time (in hours)"
+            placeholder="Remaining Time (in hours)"
             required
           />
           <!-- <label class="label" for="attachments">Attachments</label>

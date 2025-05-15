@@ -66,7 +66,7 @@ const saveChanges = async () => {
 const cancelEdit = () => {
   editableTask.value = { ...task.value };
   isEditing.value = false;
-  router.push({ name: "Home" });
+  router.push({ name: "Task" });
 };
 
 const handleExecutionModalClose = (price) => {
@@ -97,7 +97,7 @@ const servicesByProvider = {
 
 <template>
   <div class="task-details-container">
-    <h2>Task Details</h2>
+    <h2 class = "task-details-title">Task Details</h2>
     <form @submit.prevent="saveChanges">
       <div class="form-group">
         <label>Task ID:</label>
@@ -179,17 +179,28 @@ const servicesByProvider = {
 </template>
 
 <style scoped>
+
+.task-details-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 20px;
+
+}
 .task-details-container {
   max-width: 500px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background: #f9f9f9;
+    margin: 40px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+    /* height: 600px; */
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin: 15px;
+  margin: 10px;
+  padding: 10px;
 }
 
 label {
@@ -213,6 +224,8 @@ input:disabled {
   display: flex;
   gap: 10px;
   margin-top: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 button {
