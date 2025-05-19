@@ -1,0 +1,30 @@
+input, select, button {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  width: 100%;
+}
+
+.app-container {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    margin-left: 250px;
+    margin-top: 64px;
+    padding: 2rem;
+    width: calc(100% - 250px);
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.main-content h1 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
