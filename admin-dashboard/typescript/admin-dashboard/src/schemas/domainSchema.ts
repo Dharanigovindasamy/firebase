@@ -23,6 +23,35 @@ export interface FieldMetadata {
   };
 }
 
+// Types for domain configuration schema
+export interface DomainField {
+  id: string;
+  type: 'text' | 'select' | 'multi-select';
+  required: boolean;
+  disabled?: boolean;
+  label?: string;
+  options?: { name: string; label: string }[];
+  validation?: {
+    pattern?: RegExp;
+    minLength?: number;
+    maxLength?: number;
+    patternMessage?: string;
+  };
+  dependsOn?: {
+    field: string;
+    value: string;
+  };
+}
+
+export interface DomainSection {
+  name: string;
+  schema: DomainField[];
+}
+
+export interface DomainConfiguration {
+  domainConfiguration: DomainSection[];
+}
+
 // Available departments mapping
 export const departmentMapping: Record<string, string[]> = {
   Asia: ["Admin", "UI", "Server", "Sales"],
@@ -119,5 +148,50 @@ export const domainValidationSchema = {
   department: {
     required: "Please select at least one department"
   }
+};
+
+// Validation functions
+export const validateDomainConfiguration = (config: DomainConfiguration): boolean => {
+  if (!config.domainConfiguration || !Array.isArray(config.domainConfiguration)) {
+    return false;
+  }
+
+  return config.domainConfiguration.every(section => {
+    if (!section.name || !Array.isArray(section.schema)) {
+      return false;
+    }
+
+    return section.schema.every(field => {
+      // Basic validation
+      if (!field.id || !field.type) {
+        return false;
+      }
+
+      // Type-specific validation
+      switch (field.type) {
+        case 'select':
+        case 'multi-select':
+          if (!field.options || !Array.isArray(field.options)) {
+            return false;
+          }
+          return field.options.every(option => 
+            typeof option.name === 'string' && 
+            typeof option.label === 'string'
+          );
+        
+        case 'text':
+          if (field.validation?.pattern && !(field.validation.pattern instanceof RegExp)) {
+            return false;
+          }
+          if (field.validation?.minLength && typeof field.validation.minLength !== 'number') {
+            return false;
+          }
+          return true;
+
+        default:
+          return false;
+      }
+    });
+  });
 }; 
 

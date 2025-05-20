@@ -19,7 +19,7 @@ function App() {
               <Route path="/admin" element={<AdminForm />} />
               <Route path="/domain" element={<DomainForm />} />
               <Route path="/device-config" element={<DeviceConfigForm/>} />
-              <Route path="/" element={<h1>Welcome to Dashboard</h1>} />
+              <Route path="/" element={<AdminForm />} />
             </Routes>
           </main>
         </div>

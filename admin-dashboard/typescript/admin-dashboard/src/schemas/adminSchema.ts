@@ -1,28 +1,268 @@
 import { z } from 'zod';
+import { adminConfiguration, validateAdminField, isFieldRequired } from '../schemas/adminSchema';
 
-// Admin types enum
-export const AdminType = {
-  SUPER_ADMIN: 'Super admin',
-  LOCAL_ADMIN: 'Local admin',
-  AUDIT_ADMIN: 'Audit admin'
-} as const;
+// Types for admin configuration schema
+export enum AdminType {
+  SUPER_ADMIN = 'super_admin',
+  LOCAL_ADMIN = 'local_admin',
+  AUDIT_ADMIN = 'audit_admin'
+}
 
-// Gender enum
-export const Gender = {
-  MALE: 'male',
-  FEMALE: 'female',
-  OTHER: 'other'
-} as const;
+export enum Gender {
+  MALE = 'male',
+  FEMALE = 'female',
+  OTHER = 'other'
+}
 
-// Field types enum
+// Field Types
 export const FieldType = {
   TEXT: 'text',
   EMAIL: 'email',
   PASSWORD: 'password',
-  SELECT: 'select',
   RADIO: 'radio',
+  SELECT: 'select',
   MULTI_SELECT: 'multi-select'
 } as const;
+
+// Validation Patterns
+export const ValidationPatterns = {
+  NAME: /^[a-zA-Z\s]{2,50}$/,
+  USERNAME: /^[a-zA-Z0-9_]{3,20}$/,
+  PASSWORD: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+  EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+} as const;
+
+// Field Interface
+export interface AdminField {
+  id: string;
+  type: keyof typeof FieldType;
+  required: boolean;
+  label: string;
+  placeholder?: string;
+  disabled?: boolean;
+  options?: { name: string; label: string }[];
+  validation?: {
+    pattern?: RegExp;
+    patternMessage?: string;
+    minLength?: number;
+    maxLength?: number;
+  };
+  dependsOn?: {
+    field: string;
+    value: string;
+  };
+}
+
+// Admin Configuration Interface
+export interface AdminConfiguration {
+  adminConfiguration: {
+    name: string;
+    schema: AdminField[];
+  }[];
+}
+
+// Admin Fields Configuration
+export const adminFields: AdminField[] = [
+  {
+    id: 'name',
+    type: 'TEXT',
+    required: true,
+    label: 'Name',
+    placeholder: 'Enter your full name',
+    validation: {
+      pattern: ValidationPatterns.NAME,
+      patternMessage: 'Name should only contain letters and spaces (2-50 characters)',
+      minLength: 2,
+      maxLength: 50
+    }
+  },
+  {
+    id: 'username',
+    type: 'TEXT',
+    required: true,
+    label: 'Username',
+    placeholder: 'Enter your username',
+    validation: {
+      pattern: ValidationPatterns.USERNAME,
+      patternMessage: 'Username should only contain letters, numbers and underscore (3-20 characters)',
+      minLength: 3,
+      maxLength: 20
+    }
+  },
+  {
+    id: 'email',
+    type: 'EMAIL',
+    required: false,
+    label: 'Email',
+    placeholder: 'Enter your email address',
+    validation: {
+      pattern: ValidationPatterns.EMAIL,
+      patternMessage: 'Please enter a valid email address'
+    },
+    dependsOn: {
+      field: 'type',
+      value: AdminType.SUPER_ADMIN
+    }
+  },
+  {
+    id: 'password',
+    type: 'PASSWORD',
+    required: true,
+    label: 'Password',
+    placeholder: 'Enter your password',
+    validation: {
+      pattern: ValidationPatterns.PASSWORD,
+      patternMessage: 'Password must contain at least 8 characters, including uppercase, lowercase, number and special character',
+      minLength: 8
+    }
+  },
+  {
+    id: 'gender',
+    type: 'RADIO',
+    required: true,
+    label: 'Gender',
+    options: [
+      { name: Gender.MALE, label: 'Male' },
+      { name: Gender.FEMALE, label: 'Female' },
+      { name: Gender.OTHER, label: 'Other' }
+    ]
+  },
+  {
+    id: 'type',
+    type: 'SELECT',
+    required: true,
+    label: 'Admin Type',
+    options: [
+      { name: AdminType.SUPER_ADMIN, label: 'Super Admin' },
+      { name: AdminType.LOCAL_ADMIN, label: 'Local Admin' },
+      { name: AdminType.AUDIT_ADMIN, label: 'Audit Admin' }
+    ]
+  },
+  {
+    id: 'domain',
+    type: 'SELECT',
+    required: true,
+    label: 'Domain',
+    options: [] // Will be populated dynamically from server
+  },
+  {
+    id: 'department',
+    type: 'MULTI_SELECT',
+    required: true,
+    label: 'Department',
+    options: [], // Will be populated based on domain selection
+    dependsOn: {
+      field: 'domain',
+      value: '' // Will be set dynamically
+    }
+  }
+];
+
+// Validation Functions
+export const validateAdminField = (field: AdminField, value: any): string | null => {
+  // Required field validation
+  if (field.required && !value) {
+    return `${field.label} is required`;
+  }
+
+  // Skip validation if no value and not required
+  if (!value) return null;
+
+  // Type-specific validation
+  switch (field.type) {
+    case 'TEXT':
+    case 'EMAIL':
+    case 'PASSWORD':
+      if (field.validation?.pattern && !field.validation.pattern.test(value)) {
+        return field.validation.patternMessage || 'Invalid format';
+      }
+      if (field.validation?.minLength && value.length < field.validation.minLength) {
+        return `${field.label} must be at least ${field.validation.minLength} characters`;
+      }
+      if (field.validation?.maxLength && value.length > field.validation.maxLength) {
+        return `${field.label} must not exceed ${field.validation.maxLength} characters`;
+      }
+      break;
+
+    case 'MULTI_SELECT':
+      if (!Array.isArray(value) || value.length === 0) {
+        return `Please select at least one ${field.label.toLowerCase()}`;
+      }
+      break;
+  }
+
+  return null;
+};
+
+// Check if field is required based on dependencies
+export const isFieldRequired = (field: AdminField, values: Record<string, any>): boolean => {
+  if (!field.dependsOn) return field.required;
+
+  const { field: dependentField, value: dependentValue } = field.dependsOn;
+  return field.required && values[dependentField] === dependentValue;
+};
+
+// Admin Configuration
+export const adminConfiguration: AdminConfiguration = {
+  adminConfiguration: [
+    {
+      name: 'Basic Information',
+      schema: adminFields
+    }
+  ]
+};
+
+// Validation functions
+export const validateAdminConfiguration = (config: AdminConfiguration): boolean => {
+  if (!config.adminConfiguration || !Array.isArray(config.adminConfiguration)) {
+    return false;
+  }
+
+  return config.adminConfiguration.every(section => {
+    if (!section.name || !Array.isArray(section.schema)) {
+      return false;
+    }
+
+    return section.schema.every(field => {
+      // Basic validation
+      if (!field.id || !field.type) {
+        return false;
+      }
+
+      // Type-specific validation
+      switch (field.type) {
+        case 'select':
+        case 'multi-select':
+          if (!field.options || !Array.isArray(field.options)) {
+            return false;
+          }
+          return field.options.every(option => 
+            typeof option.name === 'string' && 
+            typeof option.label === 'string'
+          );
+        
+        case 'email':
+          if (field.validation?.pattern && !(field.validation.pattern instanceof RegExp)) {
+            return false;
+          }
+          return true;
+
+        case 'password':
+          if (field.validation?.minLength && typeof field.validation.minLength !== 'number') {
+            return false;
+          }
+          return true;
+
+        case 'text':
+        case 'radio':
+          return true;
+
+        default:
+          return false;
+      }
+    });
+  });
+};
 
 // Field metadata interface
 export interface FieldMetadata {
@@ -242,4 +482,6 @@ export const adminValidationSchema = {
   department: {
     required: "Please select at least one department"
   }
-}; 
+};
+
+const fields = adminConfiguration.adminConfiguration[0].schema; 
