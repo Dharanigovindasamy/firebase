@@ -1,0 +1,19 @@
+
+
+.advanced-configuration {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 35px;
+}
+
+.advanced-configuration h3 {
+    margin-bottom: 20px;
+}
+
+.advanced-configuration .success-message {
+    margin-bottom: 20px;
+}       
+
+

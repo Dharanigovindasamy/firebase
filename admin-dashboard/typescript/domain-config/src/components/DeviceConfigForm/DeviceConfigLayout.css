@@ -1,0 +1,108 @@
+.device-config-layout {
+  display: flex;
+  height: calc(100vh - 64px);
+  background-color: #f8f9fa;
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
+}
+
+.device-config-sidebar {
+  width: 280px;
+  min-width: 280px;
+  background-color: #ffffff;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+.device-config-sidebar h2 {
+  margin-bottom: 24px;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.device-config-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.device-config-tab {
+  padding: 14px 16px;
+  border: none;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #495057;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.device-config-tab:hover {
+  background-color: #e9ecef;
+  transform: translateX(4px);
+}
+
+.device-config-tab.active {
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+.device-config-tab.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: #007bff;
+}
+
+.device-config-content {
+  flex: 1;
+  width: calc(100% - 280px);
+  padding: 24px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Scrollbar styling */
+.device-config-sidebar::-webkit-scrollbar,
+.device-config-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.device-config-sidebar::-webkit-scrollbar-track,
+.device-config-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.device-config-sidebar::-webkit-scrollbar-thumb,
+.device-config-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.device-config-sidebar::-webkit-scrollbar-thumb:hover,
+.device-config-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+} 

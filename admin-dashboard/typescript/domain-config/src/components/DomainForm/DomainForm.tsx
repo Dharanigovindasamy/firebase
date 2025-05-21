@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import "./DomainForm.css";
-import { validateDomainForm } from "../../schemas/domainSchema";
+// import { validateDomainForm } from "../../schemas/domainSchema";
 import { useDomainStore } from "../../store/domainStore";
 
 interface FormValues {
@@ -38,21 +38,23 @@ const countryDepartments: Record<string, string[]> = {
 };
 
 const DomainForm = () => {
-  const { setDomain,  } = useDomainStore();
-  const [, setFormErrors] = useState<Record<string, string>>({});
+  const { setDomain } = useDomainStore();
   const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
   const [departments, setDepartments] = useState<string[]>([]);
   const [continents, setContinents] = useState<Continent[]>([]);
   const [countries, setCountries] = useState<Country[]>([]);
   const [isLoadingContinents, setIsLoadingContinents] = useState(false);
   const [isLoadingCountries, setIsLoadingCountries] = useState(false);
+  const [ , setSubmitError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     watch,
     setValue,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm<FormValues>({
     defaultValues: {
       domainName: "",
@@ -77,7 +79,6 @@ const DomainForm = () => {
 
   useEffect(() => {
     if (selectedCountry) {
-      // Update departments based on selected country
       const countryDepts = countryDepartments[selectedCountry] || [];
       setDepartments(countryDepts);
       setSelectedDepartments([]);
@@ -86,11 +87,10 @@ const DomainForm = () => {
   }, [selectedCountry, setValue]);
 
   const fetchContinents = async () => {
-    if (continents.length > 0) return; // Don't fetch if already loaded
+    if (continents.length > 0) return; 
     
     setIsLoadingContinents(true);
     try {
-      // Using REST Countries API for continents
       const response = await axios.get('https://restcountries.com/v3.1/all');
       console.log("continent", response.data);
       const uniqueContinents = Array.from(new Set(response.data.map((country: any) => country.region)))
@@ -149,16 +149,11 @@ const DomainForm = () => {
   };
 
   const onSubmit = async (data: FormValues) => {
-    const validationErrors = validateDomainForm(data);
-    if (Object.keys(validationErrors).length > 0) {
-      setFormErrors(validationErrors);
-      return;
-    }
-
     try {
       // Store the domain data in the store
       setDomain({
         domainName: data.domainName,
+        
         continent: data.continent,
         country: data.country,
         department: data.department
@@ -167,29 +162,34 @@ const DomainForm = () => {
       console.log("Domain data stored in Zustand store:", data);
       console.log("Current Domain Store State:", useDomainStore.getState());
 
-      // Optional: Make API call to save data
-      // const response = await axios.post("/api/domains", data);
-      // console.log("Domain saved to server:", response.data);
+      // Show success message
+      setSuccessMessage("Domain added successfully!");
+      setSubmitError(null);
 
       // Reset form after successful submission
-      setValue("domainName", "");
-      setValue("continent", "");
-      setValue("country", "");
-      setValue("department", []);
+      reset();
       setSelectedDepartments([]);
-      setFormErrors({});
+
+      // Clear success message after 3 seconds
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 3000);
 
     } catch (error) {
       console.error("Error saving domain:", error);
-      setFormErrors({
-        submit: "Failed to save domain. Please try again."
-      });
+      setSubmitError("Failed to save domain. Please try again.");
+      setSuccessMessage(null);
     }
   };
 
   return (
     <div className="domain-container">
       <h2>Domain Configuration</h2>
+      {successMessage && (
+        <div className="success-message">
+          {successMessage}
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className="domain-form">
         {/* Domain Name Field */}
         <div className="form-group">

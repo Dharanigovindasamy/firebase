@@ -8,10 +8,13 @@
     top: 64px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    color: #2040d3;
 }
 
-.sidebar h2 {
-    margin-top: 0;
+.sidebar h3 {
     color: #333;
-    font-size: 1.2rem;
-} 
+    font-size: 1rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}

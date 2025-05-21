@@ -23,12 +23,14 @@ const AdminForm = () => {
   const [departments, setDepartments] = useState<string[]>([]);
   const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     watch,
     setValue,
+    reset
   } = useForm<FormValues>();
 
   const selectedType = watch('type');
@@ -78,12 +80,36 @@ const AdminForm = () => {
       return;
     }
 
-    console.log("Admin Form Submitted Data:", data);
-    setAdmin(data);
-    console.log("Admin data stored in Zustand store:", data);
-    addAdmin(data);
-    console.log("Admin added to list in store");
-    console.log("Current Admin Store State:", useAdminStore.getState());
+    try {
+      console.log("Admin Form Submitted Data:", data);
+      setAdmin(data);
+      console.log("Admin data stored in Zustand store:", data);
+      addAdmin(data);
+      console.log("Admin added to list in store");
+      console.log("Current Admin Store State:", useAdminStore.getState());
+
+      // Show success message
+      setSuccessMessage("Admin added successfully!");
+      setFormErrors({});
+      alert("Admin added successfully!");
+      console.log("Admin added successfully!");
+
+      // Reset form
+      reset();
+      setSelectedDepartments([]);
+
+      // Clear success message after 3 seconds
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 3000);
+
+    } catch (error) {
+      console.error("Error saving admin:", error);
+      setFormErrors({
+        submit: "Failed to save admin. Please try again."
+      });
+      setSuccessMessage(null);
+    }
   };
 
   if (!domain) {
@@ -98,7 +124,11 @@ const AdminForm = () => {
   return (
     <div className="admin-container">
       <h2>Admin Configuration</h2>
-      
+      {successMessage && (
+        <div className="success-message">
+          {successMessage}
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className="admin-form">
         {/* Name Field */}
         <div className="form-group">

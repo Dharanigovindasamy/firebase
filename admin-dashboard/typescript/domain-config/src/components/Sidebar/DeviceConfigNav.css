@@ -1,0 +1,41 @@
+.device-config-nav {
+  margin-top: 20px;
+  padding: 0 15px;
+}
+
+.device-config-nav h3 {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.device-config-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.device-config-tabs .tab-button {
+  padding: 8px 12px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #666;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.device-config-tabs .tab-button:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.device-config-tabs .tab-button.active {
+  background-color: #1890ff;
+  color: white;
+} 
