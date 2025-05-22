@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-//import useBasicDetailsStore from '../../../store/basicDetailsStore';
+import useDeviceConfigStore from '../../../store/deviceConfigStore';
 import { Outlet } from 'react-router-dom';
 import './DeviceConfiguration.css';
 
@@ -17,23 +17,45 @@ const DeviceConfiguration = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isSubnetValid, setIsSubnetValid] = useState(false);
 
-  // Get basic details from store
-  //const { } = useBasicDetailsStore();
+  // Get device config from store
+  const {
+    deviceId,
+    deviceName,
+    deviceType,
+    macAddress: storedMacAddress,
+    firmwareVersion: storedFirmwareVersion,
+    ipAssignment: storedIpAssignment,
+    subnetMask: storedSubnetMask,
+    ipAddress: storedIpAddress,
+    gateway: storedGateway,
+    setDeviceConfig
+  } = useDeviceConfigStore();
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors }
   } = useForm<DeviceConfigForm>({
     defaultValues: {
-      firmwareVersion: '3.14.5',
-      ipAssignment: 'DHCP'
+      firmwareVersion: storedFirmwareVersion,
+      ipAssignment: storedIpAssignment
     }
   });
 
-  const subnetMask = watch('subnetMask');
-  const ipAssignment = watch('ipAssignment');
+  // Set initial values from store
+  useEffect(() => {
+    setValue('macAddress', storedMacAddress);
+    setValue('firmwareVersion', storedFirmwareVersion);
+    setValue('ipAssignment', storedIpAssignment);
+    setValue('subnetMask', storedSubnetMask);
+    setValue('ipAddress', storedIpAddress);
+    setValue('gateway', storedGateway);
+  }, [setValue, storedMacAddress, storedFirmwareVersion, storedIpAssignment, storedSubnetMask, storedIpAddress, storedGateway]);
+
+  const currentSubnetMask = watch('subnetMask');
+  const currentIpAssignment = watch('ipAssignment');
 
   const validateSubnetMask = (mask: string) => {
     const pattern = /^(\d{1,3}\.){3}\d{1,3}$/;
@@ -76,27 +98,49 @@ const DeviceConfiguration = () => {
   };
 
   const onSubmit = (data: DeviceConfigForm) => {
+    setDeviceConfig(data);
     console.log('Device Configuration Form Data:', data);
     setSuccessMessage('Device configuration saved successfully!');
     setTimeout(() => setSuccessMessage(null), 3000);
   };
 
   useEffect(() => {
-    if (subnetMask) {
-      setIsSubnetValid(validateSubnetMask(subnetMask));
+    if (currentSubnetMask) {
+      setIsSubnetValid(validateSubnetMask(currentSubnetMask));
     } else {
       setIsSubnetValid(false);
     }
-  }, [subnetMask]);
+  }, [currentSubnetMask]);
 
   return (
     <div className="device-configuration">
       <h3>Device Configuration</h3>
+      
+      {/* Display Basic Details */}
+      <div className="basic-details-summary">
+        <h4>Basic Details</h4>
+        <div className="summary-grid">
+          <div className="summary-item">
+            <label>Device ID:</label>
+            <span>{deviceId}</span>
+          </div>
+          <div className="summary-item">
+            <label>Device Name:</label>
+            <span>{deviceName}</span>
+          </div>
+          <div className="summary-item">
+            <label>Device Type:</label>
+            <span>{deviceType}</span>
+          </div>
+        </div>
+      </div>
+
       {successMessage && (
         <div className="success-message">
           {successMessage}
         </div>
       )}
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label htmlFor="macAddress">MAC Address</label>
@@ -120,7 +164,7 @@ const DeviceConfiguration = () => {
           <input
             id="firmwareVersion"
             type="text"
-            value="3.14.5"
+            value={storedFirmwareVersion}
             disabled
           />
         </div>
@@ -170,7 +214,7 @@ const DeviceConfiguration = () => {
               validate: value => validateIPAddress(value) || 'IP must be in range 10.0.0.0 to 10.0.0.255'
             })}
             className={errors.ipAddress ? 'error' : ''}
-            disabled={!isSubnetValid || ipAssignment === 'DHCP'}
+            disabled={!isSubnetValid || currentIpAssignment === 'DHCP'}
           />
           {errors.ipAddress && (
             <span className="error-message">{errors.ipAddress.message}</span>
@@ -188,7 +232,7 @@ const DeviceConfiguration = () => {
               validate: value => validateGateway(value) || 'Invalid gateway format'
             })}
             className={errors.gateway ? 'error' : ''}
-            disabled={ipAssignment === 'DHCP'}
+            disabled={currentIpAssignment === 'DHCP'}
           />
           {errors.gateway && (
             <span className="error-message">{errors.gateway.message}</span>

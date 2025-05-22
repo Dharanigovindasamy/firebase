@@ -26,7 +26,6 @@ const BasicDetails: React.FC = () => {
     deviceId,
     deviceName,
     deviceType,
-    isSaved,
     setDeviceId,
     saveBasicDetails
   } = useBasicDetailsStore();
@@ -37,9 +36,8 @@ const BasicDetails: React.FC = () => {
       deviceId,
       deviceName,
       deviceType,
-      isSaved
     });
-  }, [deviceId, deviceName, deviceType, isSaved]);
+  }, [deviceId, deviceName, deviceType]);
 
   const {
     register,

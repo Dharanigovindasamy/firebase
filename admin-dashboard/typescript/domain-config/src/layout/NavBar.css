@@ -1,39 +1,66 @@
 .navbar {
-    background-color: #333;
-    padding: 0 2rem;
-    color: white;
-    height: 64px;
+    background-color: #8fa9f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+
+}
+
+.navbar-left {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
 }
 
 .nav-list {
-    list-style: none;
     display: flex;
-    gap: 2rem;
+    list-style: none;
     margin: 0;
     padding: 0;
-    height: 100%;
-    align-items: center;
+    gap: 2rem;
+    margin-left: 1150px;
+
 }
 
-.nav-link {
-    color: white;
-    text-decoration: none;
+.nav-item {
+    color: #333;
+    cursor: pointer;
     font-size: 1rem;
     font-weight: 500;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    position: relative;
+    transition: color 0.3s ease;
 }
 
-.nav-link:hover {
-    color: #fff;
-    background-color: rgba(255, 255, 255, 0.1);
-} 
+.nav-item:hover {
+    color: #007bff;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #007bff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* Active state styling */
+.nav-item.active {
+    color: #007bff;
+}
+
+.nav-item.active::after {
+    width: 100%;
+}
+

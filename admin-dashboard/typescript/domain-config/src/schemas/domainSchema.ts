@@ -175,7 +175,7 @@ export const isFieldRequired = (field: DomainField, values: Record<string, any>)
 export const domainConfiguration: DomainConfiguration = {
   domainConfiguration: [
     {
-      name: 'Basic Information',
+      name: 'Domain Details',
       schema: domainFields
     }
   ]

@@ -197,7 +197,7 @@ export const validateAdminForm = (data: Record<string, any>): Record<string, str
 export const adminConfiguration: AdminConfiguration = {
   adminConfiguration: [
     {
-      name: 'Basic Information',
+      name: 'Admin Details',
       schema: adminFields
     }
   ]
