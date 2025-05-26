@@ -19,9 +19,6 @@ const DeviceConfiguration = () => {
 
   // Get device config from store
   const {
-    deviceId,
-    deviceName,
-    deviceType,
     macAddress: storedMacAddress,
     firmwareVersion: storedFirmwareVersion,
     ipAssignment: storedIpAssignment,
@@ -117,7 +114,7 @@ const DeviceConfiguration = () => {
       <h3>Device Configuration</h3>
       
       {/* Display Basic Details */}
-      <div className="basic-details-summary">
+      {/* <div className="basic-details-summary">
         <h4>Basic Details</h4>
         <div className="summary-grid">
           <div className="summary-item">
@@ -133,7 +130,7 @@ const DeviceConfiguration = () => {
             <span>{deviceType}</span>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {successMessage && (
         <div className="success-message">

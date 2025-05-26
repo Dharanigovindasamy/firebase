@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useBasicDetailsStore from '../../../store/basicDetailsStore';
 import { Outlet } from 'react-router-dom';
-// import './TabStyles.css';
+import { deviceConfiguration } from '../../../schemas/deviceSchema';
 import './BasicDetails.css';
 
 interface BasicDetailsForm {
@@ -11,16 +11,7 @@ interface BasicDetailsForm {
   deviceType: string;
 }
 
-const deviceTypes = [
-  'Dect',
-  'Ice mobile',
-  'Ip phone',
-  'Standard device',
-  'Wifi phones',
-  'SIP'
-];
-
-const BasicDetails: React.FC = () => {
+const BasicDetails = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const {
     deviceId,
@@ -30,19 +21,15 @@ const BasicDetails: React.FC = () => {
     saveBasicDetails
   } = useBasicDetailsStore();
 
-  // Log store data whenever it changes
-  useEffect(() => {
-    console.log('Basic Details Store:', {
-      deviceId,
-      deviceName,
-      deviceType,
-    });
-  }, [deviceId, deviceName, deviceType]);
+  const basicDetailsSchema = deviceConfiguration.deviceConfiguration.find(
+    config => config.name === 'Basic Details'
+  );
 
   const {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors }
   } = useForm<BasicDetailsForm>({
     defaultValues: {
@@ -52,8 +39,19 @@ const BasicDetails: React.FC = () => {
     }
   });
 
+  // Watch all form fields
+  const formValues = watch();
+
+  // Log form values whenever they change
   useEffect(() => {
-    // Generate a random 16-digit ID if not already set
+    console.log('Basic Details Form Values:', {
+      deviceId: formValues.deviceId,
+      deviceName: formValues.deviceName,
+      deviceType: formValues.deviceType
+    });
+  }, [formValues]);
+
+  useEffect(() => {
     if (!deviceId) {
       const generateDeviceId = () => {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -71,79 +69,97 @@ const BasicDetails: React.FC = () => {
   }, [deviceId, setDeviceId, setValue]);
 
   const onSubmit = (data: BasicDetailsForm) => {
+    console.log('Submitting Basic Details:', {
+      deviceId: data.deviceId,
+      deviceName: data.deviceName,
+      deviceType: data.deviceType
+    });
     saveBasicDetails(data);
-    console.log('Saving Basic Details:', data);
     setSuccessMessage('Basic details saved successfully!');
-    setTimeout(() => setSuccessMessage(null), 3000);
+  };
+
+  const generateFormFields = () => {
+    if (!basicDetailsSchema) return null;
+
+    return basicDetailsSchema.schema.map((fieldGroup, groupIndex) => {
+      return fieldGroup.map((field, fieldIndex) => {
+        if (field.type === 'TEXT') {
+          return (
+            <div key={`${groupIndex}-${fieldIndex}`} className="form-group">
+              <label htmlFor={field.id}>{field.label}</label>
+              <input
+                id={field.id}
+                type="text"
+                disabled={field.disabled}
+                placeholder={field.placeholder}
+                {...register(field.id as keyof BasicDetailsForm, {
+                  required: field.required ? `${field.label} is required` : false,
+                  pattern: field.validation?.pattern ? {
+                    value: field.validation.pattern,
+                    message: field.validation.patternMessage || 'Invalid format'
+                  } : undefined
+                })}
+                className={`form-control ${errors[field.id as keyof BasicDetailsForm] ? 'error' : ''}`}
+              />
+              {errors[field.id as keyof BasicDetailsForm] && (
+                <span className="error-message">
+                  {errors[field.id as keyof BasicDetailsForm]?.message}
+                </span>
+              )}
+            </div>
+          );
+        } else if (field.type === 'list') {
+          return (
+            <div key={`${groupIndex}-${fieldIndex}`} className="form-group">
+              <label htmlFor={field.id}>{field.label}</label>
+              <select
+                id={field.id}
+                {...register(field.id as keyof BasicDetailsForm, {
+                  required: field.required ? `${field.label} is required` : false
+                })}
+                className={`form-control ${errors[field.id as keyof BasicDetailsForm] ? 'error' : ''}`}
+              >
+                <option value="">Select {field.label}</option>
+                {field.options?.map((option) => (
+                  <option key={option.name} value={option.name}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              {errors[field.id as keyof BasicDetailsForm] && (
+                <span className="error-message">
+                  {errors[field.id as keyof BasicDetailsForm]?.message}
+                </span>
+              )}
+            </div>
+          );
+        }
+        return null;
+      });
+    });
   };
 
   return (
     <div className="tab-container">
       <div className="tab-header">
-        <h3>Basic Details</h3>
+        <h3>{basicDetailsSchema?.name || 'Basic Details'}</h3>
       </div>
       <div className="tab-content">
         <div className="card">
           <div className="card-header">
             <h4 className="card-title">Device Information</h4>
           </div>
-          <div className="grid">
-            <div className="form-group">
-              <label htmlFor="deviceId">Device ID</label>
-              <input
-                id="deviceId"
-                type="text"
-                value={deviceId}
-                disabled
-                className="form-control"
-              />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="grid">
+              {generateFormFields()}
             </div>
-            <div className="form-group">
-              <label htmlFor="deviceName">Device Name</label>
-              <input
-                id="deviceName"
-                type="text"
-                {...register('deviceName', {
-                  required: 'Device name is required',
-                  pattern: {
-                    value: /^[a-zA-Z0-9\s-]{3,50}$/,
-                    message: 'Device name must be 3-50 characters and can only contain letters, numbers, spaces, and hyphens'
-                  }
-                })}
-                className={`form-control ${errors.deviceName ? 'error' : ''}`}
-              />
-              {errors.deviceName && (
-                <span className="error-message">{errors.deviceName.message}</span>
-              )}
+            <div className="flex-between">
+              <button type="button" className="btn btn-secondary">Cancel</button>
+              <button type="submit" className="btn btn-primary">
+                Save Changes
+              </button>
             </div>
-            <div className="form-group">
-              <label htmlFor="deviceType">Device Type</label>
-              <select
-                id="deviceType"
-                {...register('deviceType', {
-                  required: 'Device type is required'
-                })}
-                className={`form-control ${errors.deviceType ? 'error' : ''}`}
-              >
-                <option value="">Select Device Type</option>
-                {deviceTypes.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
-              {errors.deviceType && (
-                <span className="error-message">{errors.deviceType.message}</span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="flex-between">
-          <button className="btn btn-secondary">Cancel</button>
-          <button type="submit" className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
-            Save Changes
-          </button>
+          </form>
         </div>
       </div>
       {successMessage && (

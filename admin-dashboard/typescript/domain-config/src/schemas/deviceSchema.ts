@@ -38,230 +38,101 @@ export interface DeviceConfiguration {
   }[];
 }
 
-export const deviceFields: DeviceField[] = [
-  // Basic Details Tab
-  {
-    id: 'deviceId',
-    type: 'TEXT',
-    required: true,
-    label: 'Device ID',
-    disabled: true,
-    generatorFunction: 'generate16DigitId',
-    validation: {
-      pattern: ValidationPatterns.DEVICE_ID,
-      patternMessage: 'Invalid device ID format'
-    }
-  },
-  {
-    id: 'deviceName',
-    type: 'TEXT',
-    required: true,
-    label: 'Device Name',
-    placeholder: 'Enter device name',
-    validation: {
-      pattern: ValidationPatterns.DEVICE_NAME,
-      patternMessage: 'Device name must be 3-50 characters and can only contain letters, numbers, spaces, and hyphens'
-    }
-  },
-  {
-    id: 'deviceType',
-    type: 'list',
-    required: true,
-    label: 'Device Type',
-    options: [
-      { name: 'dect', label: 'Dect' },
-      { name: 'icemobile', label: 'Ice mobile' },
-      { name: 'ipphone', label: 'IP Phone' },
-      { name: 'standarddevice', label: 'Standard Device' },
-      { name: 'wifiphone', label: 'Wifi phones' },
-      { name: 'sip', label: 'SIP' }
+export const deviceFields = {
+  basicDetails: {
+    name: "Basic Details",
+    schema: [
+      {
+        name: "deviceId",
+        type: "text",
+        label: "Device ID",
+        placeholder: "Enter device ID",
+        required: true
+      },
+      {
+        name: "deviceName",
+        type: "text",
+        label: "Device Name",
+        placeholder: "Enter device name",
+        required: true
+      },
+      {
+        name: "deviceType",
+        type: "select",
+        label: "Device Type",
+        required: true,
+        options: [
+          { value: "Dect", label: "Dect" },
+          { value: " Ice mobile", label: " Ice mobile" },
+          { value: "Ip phone", label: "Ip phone" },
+          { value: "Standard device", label: "Standard device" },
+          { value: "Wifi phones", label: "Wifi phones" },
+          { value: "SIP", label: "SIP" }
+        ]
+      }
     ]
   },
-
-  // Device Configuration Tab
-  {
-    id: 'macAddress',
-    type: 'TEXT',
-    required: true,
-    label: 'MAC Address',
-    placeholder: '00:1A:2B:3C:4D:5E',
-    validation: {
-      pattern: ValidationPatterns.MAC_ADDRESS,
-      patternMessage: 'Invalid MAC address format (e.g., 00:1A:2B:3C:4D:5E)'
-    }
-  },
-  {
-    id: 'firmwareVersion',
-    type: 'TEXT',
-    required: true,
-    label: 'Firmware Version',
-    disabled: true,
-    defaultValue: '3.14.5'
-  },
-  {
-    id: 'ipAssignment',
-    type: 'list',
-    required: true,
-    label: 'IP Assignment',
-    options: [
-      { name: 'static', label: 'Static' },
-      { name: 'dhcp', label: 'DHCP' }
+  deviceConfig: {
+    name: "Device Configuration",
+    schema: [
+      {
+        name: "ipAddress",
+        type: "text",
+        label: "IP Address",
+        placeholder: "Enter IP address",
+        required: true
+      },
+      {
+        name: "port",
+        type: "text",
+        label: "Port",
+        placeholder: "Enter port number",
+        required: true
+      },
+      {
+        name: "protocol",
+        type: "select",
+        label: "Protocol",
+        required: true,
+        options: [
+          { value: "http", label: "HTTP" },
+          { value: "https", label: "HTTPS" },
+          { value: "mqtt", label: "MQTT" }
+        ]
+      }
     ]
   },
-  {
-    id: 'subnetMask',
-    type: 'TEXT',
-    required: true,
-    label: 'Subnet Mask',
-    placeholder: '255.255.255.0',
-    validation: {
-      pattern: ValidationPatterns.SUBNET_MASK,
-      patternMessage: 'Invalid subnet mask format (e.g., 255.255.255.0)'
-    }
-  },
-  {
-    id: 'ipAddress',
-    type: 'TEXT',
-    required: true,
-    label: 'IP Address',
-    placeholder: '10.0.0.0',
-    validation: {
-      pattern: ValidationPatterns.IP_ADDRESS,
-      patternMessage: 'IP must be in range 10.0.0.0 to 10.0.0.255'
-    },
-    conditionalMandatory: true,
-    conditionalMandatoryField: 'ipAssignment',
-    conditionalMandatoryValue: 'static'
-  },
-  {
-    id: 'gateway',
-    type: 'TEXT',
-    required: true,
-    label: 'Gateway',
-    placeholder: '192.168.1.1',
-    validation: {
-      pattern: ValidationPatterns.GATEWAY,
-      patternMessage: 'Invalid gateway format'
-    },
-    conditionalMandatory: true,
-    conditionalMandatoryField: 'ipAssignment',
-    conditionalMandatoryValue: 'static'
-  },
-
-  // Advanced Configuration Tab
-  {
-    id: 'enableLogging',
-    type: 'checkbox',
-    required: true,
-    label: 'Enable Logging',
-    conditionalMandatory: true,
-    conditionalMandatoryField: 'deviceType',
-    conditionalMandatoryValue: 'wifiphone'
-  },
-  {
-    id: 'logLevel',
-    type: 'list',
-    required: true,
-    label: 'Log Level',
-    options: [
-      { name: 'error', label: 'Error' },
-      { name: 'warning', label: 'Warning' },
-      { name: 'info', label: 'Info' },
-      { name: 'debug', label: 'Debug' }
-    ],
-    conditionalMandatory: true,
-    conditionalMandatoryField: 'enableLogging',
-    conditionalMandatoryValue: 'true'
-  },
-  {
-    id: 'locationTag',
-    type: 'TEXT',
-    required: true,
-    label: 'Location Tag',
-    placeholder: 'e.g., Floor 2 - South Wing',
-    conditionalMandatory: true,
-    conditionalMandatoryField: 'deviceType',
-    conditionalMandatoryValue: ['sip', 'wifiphone']
-  },
-  {
-    id: 'assignedUser',
-    type: 'list',
-    required: true,
-    label: 'Assigned User',
-    options: [
-      { name: 'user1', label: 'User 1' },
-      { name: 'user2', label: 'User 2' },
-      { name: 'user3', label: 'User 3' },
-      { name: 'user4', label: 'User 4' },
-      { name: 'user5', label: 'User 5' },
-      { name: 'user6', label: 'User 6' },
-      { name: 'user7', label: 'User 7' },
-      { name: 'user8', label: 'User 8' },
-      { name: 'user9', label: 'User 9' },
-      { name: 'user10', label: 'User 10' }
+  advancedConfig: {
+    name: "Advanced Configuration",
+    schema: [
+      {
+        name: "timeout",
+        type: "text",
+        label: "Timeout (ms)",
+        placeholder: "Enter timeout value",
+        required: true
+      },
+      {
+        name: "retryCount",
+        type: "text",
+        label: "Retry Count",
+        placeholder: "Enter retry count",
+        required: true
+      },
+      {
+        name: "encryption",
+        type: "select",
+        label: "Encryption",
+        required: true,
+        options: [
+          { value: "none", label: "None" },
+          { value: "aes", label: "AES" },
+          { value: "ssl", label: "SSL" }
+        ]
+      }
     ]
-  },
-  {
-    id: 'qosProfile',
-    type: 'list',
-    required: true,
-    label: 'QoS Profile',
-    options: [
-      { name: 'high', label: 'High' },
-      { name: 'medium', label: 'Medium' },
-      { name: 'low', label: 'Low' }
-    ]
-  },
-  {
-    id: 'timezone',
-    type: 'list',
-    required: true,
-    label: 'Timezone',
-    options: [
-      { name: 'UTC+01:00', label: 'UTC+01:00' },
-      { name: 'UTC+02:00', label: 'UTC+02:00' },
-      { name: 'UTC+03:00', label: 'UTC+03:00' },
-      { name: 'UTC+04:00', label: 'UTC+04:00' },
-      { name: 'UTC+05:00', label: 'UTC+05:00' },
-      { name: 'UTC+06:00', label: 'UTC+06:00' },
-      { name: 'UTC+07:00', label: 'UTC+07:00' },
-      { name: 'UTC+08:00', label: 'UTC+08:00' },
-      { name: 'UTC+09:00', label: 'UTC+09:00' },
-      { name: 'UTC+10:00', label: 'UTC+10:00' },
-      { name: 'UTC+11:00', label: 'UTC+11:00' },
-      { name: 'UTC+12:00', label: 'UTC+12:00' },
-      { name: 'UTC-01:00', label: 'UTC-01:00' },
-      { name: 'UTC-02:00', label: 'UTC-02:00' },
-      { name: 'UTC-03:00', label: 'UTC-03:00' },
-      { name: 'UTC-04:00', label: 'UTC-04:00' },
-      { name: 'UTC-05:00', label: 'UTC-05:00' },
-      { name: 'UTC-06:00', label: 'UTC-06:00' },
-      { name: 'UTC-07:00', label: 'UTC-07:00' },
-      { name: 'UTC-08:00', label: 'UTC-08:00' },
-      { name: 'UTC-09:00', label: 'UTC-09:00' },
-      { name: 'UTC-10:00', label: 'UTC-10:00' },
-      { name: 'UTC-11:00', label: 'UTC-11:00' },
-      { name: 'UTC-12:00', label: 'UTC-12:00' },
-      { name: 'PST', label: 'PST' },
-      { name: 'EST', label: 'EST' },
-      { name: 'CST', label: 'CST' },
-      { name: 'MST', label: 'MST' }
-    ],
-    conditionalMandatory: true,
-    conditionalMandatoryField: 'deviceType',
-    conditionalMandatoryValue: ['sip', 'wifiphone']
-  },
-  {
-    id: 'rebootSchedule',
-    type: 'time',
-    required: true,
-    label: 'Reboot Schedule',
-    placeholder: 'HH:MM',
-    conditionalMandatory: true,
-    conditionalMandatoryField: 'deviceType',
-    conditionalMandatoryValue: ['sip', 'wifiphone']
   }
-];
+};
 
 export const deviceConfiguration: DeviceConfiguration = {
   deviceConfiguration: [
