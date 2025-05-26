@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import useDeviceConfigStore from '../../../store/deviceConfigStore';
 import { Outlet } from 'react-router-dom';
-// import './DeviceConfigForm.css';
+import './DeviceConfigurationForm.css';
 
 interface DeviceConfigForm {
   macAddress: string;
