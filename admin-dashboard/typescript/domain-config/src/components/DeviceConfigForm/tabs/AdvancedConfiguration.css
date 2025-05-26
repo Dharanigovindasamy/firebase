@@ -3,9 +3,11 @@
 .advanced-configuration {
     display: flex;
     flex-direction: column;
-    max-width: 800px;
-    margin: auto;
     margin-top: 35px;
+    margin: 0 auto;
+    padding: 24px;
+    width: 80%;
+    max-width: 800px;
 }
 
 .advanced-configuration h3 {

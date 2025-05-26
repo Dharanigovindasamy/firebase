@@ -151,7 +151,7 @@
 
 .form-group input,
 .form-group select {
-  width: 100%;
+  width: 80%;
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -268,13 +268,18 @@
 }
 
 .device-config-content {
-  flex: 1;
-  padding: 30px;
-  background-color: #fff;
-  margin: 20px 20px 20px 270px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  min-height: calc(100vh - 40px);
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: calc(100vh - 140px);
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: calc(100vh - 140px);
+    width: calc(100% - 250px);
+    margin-top: 85px;
 }
 
 /* Form Styles */

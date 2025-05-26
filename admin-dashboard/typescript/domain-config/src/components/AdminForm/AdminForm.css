@@ -44,20 +44,20 @@
     gap: 1.5rem;
 }
 
-.admin-form-container {
+/* .admin-form-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 2rem;
     background: rgb(247, 246, 246);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+} */
 
-.admin-form-container h2 {
+/* .admin-form-container h2 {
     color: #333;
     margin-bottom: 2rem;
     text-align: center;
-}
+} */
 
 .form-group {
     display: flex;

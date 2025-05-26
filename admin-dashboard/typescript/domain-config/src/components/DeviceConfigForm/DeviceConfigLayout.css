@@ -1,11 +1,11 @@
-.device-config-layout {
+/* .device-config-layout {
   display: flex;
   height: calc(100vh - 64px);
   background-color: #f8f9fa;
   width: 100%;
   gap: 20px;
   padding: 20px;
-}
+} */
 
 .device-config-sidebar {
   width: 280px;
@@ -98,11 +98,11 @@
 
 .device-config-sidebar::-webkit-scrollbar-thumb,
 .device-config-content::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: #888;
   border-radius: 4px;
 }
 
 .device-config-sidebar::-webkit-scrollbar-thumb:hover,
 .device-config-content::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: #555;
 } 

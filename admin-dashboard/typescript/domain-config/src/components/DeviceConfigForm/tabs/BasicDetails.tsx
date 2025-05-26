@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useBasicDetailsStore from '../../../store/basicDetailsStore';
-import { Outlet } from 'react-router-dom';
 import { deviceConfiguration } from '../../../schemas/deviceSchema';
-import './BasicDetails.css';
+import './TabStyles.css';
 
 interface BasicDetailsForm {
   deviceId: string;
@@ -86,7 +85,10 @@ const BasicDetails = () => {
         if (field.type === 'TEXT') {
           return (
             <div key={`${groupIndex}-${fieldIndex}`} className="form-group">
-              <label htmlFor={field.id}>{field.label}</label>
+              <label htmlFor={field.id}>
+                {field.label}
+                {field.required && <span className="required-mark">*</span>}
+              </label>
               <input
                 id={field.id}
                 type="text"
@@ -99,7 +101,7 @@ const BasicDetails = () => {
                     message: field.validation.patternMessage || 'Invalid format'
                   } : undefined
                 })}
-                className={`form-control ${errors[field.id as keyof BasicDetailsForm] ? 'error' : ''}`}
+                className={errors[field.id as keyof BasicDetailsForm] ? 'error' : ''}
               />
               {errors[field.id as keyof BasicDetailsForm] && (
                 <span className="error-message">
@@ -111,13 +113,16 @@ const BasicDetails = () => {
         } else if (field.type === 'list') {
           return (
             <div key={`${groupIndex}-${fieldIndex}`} className="form-group">
-              <label htmlFor={field.id}>{field.label}</label>
+              <label htmlFor={field.id}>
+                {field.label}
+                {field.required && <span className="required-mark">*</span>}
+              </label>
               <select
                 id={field.id}
                 {...register(field.id as keyof BasicDetailsForm, {
                   required: field.required ? `${field.label} is required` : false
                 })}
-                className={`form-control ${errors[field.id as keyof BasicDetailsForm] ? 'error' : ''}`}
+                className={errors[field.id as keyof BasicDetailsForm] ? 'error' : ''}
               >
                 <option value="">Select {field.label}</option>
                 {field.options?.map((option) => (
@@ -145,29 +150,23 @@ const BasicDetails = () => {
         <h3>{basicDetailsSchema?.name || 'Basic Details'}</h3>
       </div>
       <div className="tab-content">
-        <div className="card">
-          <div className="card-header">
-            <h4 className="card-title">Device Information</h4>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="grid">
+            {generateFormFields()}
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid">
-              {generateFormFields()}
-            </div>
-            <div className="flex-between">
-              <button type="button" className="btn btn-secondary">Cancel</button>
-              <button type="submit" className="btn btn-primary">
-                Save Changes
-              </button>
-            </div>
-          </form>
-        </div>
+          <div className="flex-between">
+            <button type="button" className="btn btn-secondary">Cancel</button>
+            <button type="submit" className="btn btn-primary">
+              Save Changes
+            </button>
+          </div>
+        </form>
       </div>
       {successMessage && (
         <div className="alert alert-success">
           {successMessage}
         </div>
       )}
-      <Outlet />
     </div>
   );
 };

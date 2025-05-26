@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import useDeviceConfigStore from '../../../store/deviceConfigStore';
 import { Outlet } from 'react-router-dom';
-import './DeviceConfiguration.css';
+// import './DeviceConfigForm.css';
 
 interface DeviceConfigForm {
   macAddress: string;
@@ -13,7 +13,7 @@ interface DeviceConfigForm {
   gateway: string;
 }
 
-const DeviceConfiguration = () => {
+const DeviceConfigurationForm = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isSubnetValid, setIsSubnetValid] = useState(false);
 
@@ -110,34 +110,13 @@ const DeviceConfiguration = () => {
   }, [currentSubnetMask]);
 
   return (
-    <div className="device-configuration">
+    <div className="device-configurationform">
       <h3>Device Configuration</h3>
-      
-      {/* Display Basic Details */}
-      {/* <div className="basic-details-summary">
-        <h4>Basic Details</h4>
-        <div className="summary-grid">
-          <div className="summary-item">
-            <label>Device ID:</label>
-            <span>{deviceId}</span>
-          </div>
-          <div className="summary-item">
-            <label>Device Name:</label>
-            <span>{deviceName}</span>
-          </div>
-          <div className="summary-item">
-            <label>Device Type:</label>
-            <span>{deviceType}</span>
-          </div>
-        </div>
-      </div> */}
-
       {successMessage && (
         <div className="success-message">
           {successMessage}
         </div>
       )}
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label htmlFor="macAddress">MAC Address</label>
@@ -155,7 +134,6 @@ const DeviceConfiguration = () => {
             <span className="error-message">{errors.macAddress.message}</span>
           )}
         </div>
-
         <div className="form-group">
           <label htmlFor="firmwareVersion">Firmware Version</label>
           <input
@@ -165,7 +143,6 @@ const DeviceConfiguration = () => {
             disabled
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="ipAssignment">IP Assignment</label>
           <select
@@ -182,7 +159,6 @@ const DeviceConfiguration = () => {
             <span className="error-message">{errors.ipAssignment.message}</span>
           )}
         </div>
-
         <div className="form-group">
           <label htmlFor="subnetMask">Subnet Mask</label>
           <input
@@ -199,7 +175,6 @@ const DeviceConfiguration = () => {
             <span className="error-message">{errors.subnetMask.message}</span>
           )}
         </div>
-
         <div className="form-group">
           <label htmlFor="ipAddress">IP Address</label>
           <input
@@ -217,7 +192,6 @@ const DeviceConfiguration = () => {
             <span className="error-message">{errors.ipAddress.message}</span>
           )}
         </div>
-
         <div className="form-group">
           <label htmlFor="gateway">Gateway</label>
           <input
@@ -235,7 +209,6 @@ const DeviceConfiguration = () => {
             <span className="error-message">{errors.gateway.message}</span>
           )}
         </div>
-
         <button type="submit" className="submit-button">
           Save Device Configuration
         </button>
@@ -245,4 +218,4 @@ const DeviceConfiguration = () => {
   );
 };
 
-export default DeviceConfiguration; 
+export default DeviceConfigurationForm; 

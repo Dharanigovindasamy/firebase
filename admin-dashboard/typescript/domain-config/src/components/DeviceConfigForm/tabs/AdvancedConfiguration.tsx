@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './AdvancedConfiguration.css';
+import useBasicDetailsStore from '../../../store/basicDetailsStore';
+import { deviceConfiguration } from '../../../schemas/deviceSchema';
 
 interface AdvancedConfigForm {
   enableLogging: boolean;
@@ -61,7 +63,8 @@ const users = [
 
 const AdvancedConfiguration = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [isLoggingEnabled, setIsLoggingEnabled] = useState(false);
+  const { deviceType } = useBasicDetailsStore();
+  const isWifiPhone = deviceType?.toLowerCase() === 'wifiphone';
 
   const {
     register,
@@ -78,6 +81,60 @@ const AdvancedConfiguration = () => {
 
   //const deviceType = watch('deviceType');
  // const enableLogging = watch('enableLogging');
+
+  // Find the Location Tag field schema
+  const advancedConfigSchema = deviceConfiguration.deviceConfiguration.find(cfg => cfg.name === 'Advanced Configuration');
+  const locationTagField = advancedConfigSchema?.schema.flat().find(field => field.id === 'locationTag');
+  const timezoneField = advancedConfigSchema?.schema.flat().find(field => field.id === 'timezone');
+  const rebootScheduleField = advancedConfigSchema?.schema.flat().find(field => field.id === 'rebootSchedule');
+
+  let locationTagRequired = false;
+  let locationTagDisabled = false;
+  if (locationTagField?.conditionalMandatory) {
+    const condVal = locationTagField.conditionalMandatoryValue;
+    if (Array.isArray(condVal)) {
+      locationTagRequired = condVal.includes(deviceType?.toLowerCase());
+      locationTagDisabled = !locationTagRequired;
+    } else {
+      locationTagRequired = condVal === deviceType?.toLowerCase();
+      locationTagDisabled = !locationTagRequired;
+    }
+  } else {
+    locationTagRequired = !!locationTagField?.required;
+    locationTagDisabled = false;
+  }
+
+  let timezoneRequired = false;
+  let timezoneDisabled = false;
+  if (timezoneField?.conditionalMandatory) {
+    const condVal = timezoneField.conditionalMandatoryValue;
+    if (Array.isArray(condVal)) {
+      timezoneRequired = condVal.includes(deviceType?.toLowerCase());
+      timezoneDisabled = !timezoneRequired;
+    } else {
+      timezoneRequired = condVal === deviceType?.toLowerCase();
+      timezoneDisabled = !timezoneRequired;
+    }
+  } else {
+    timezoneRequired = !!timezoneField?.required;
+    timezoneDisabled = false;
+  }
+
+  let rebootScheduleRequired = false;
+  let rebootScheduleDisabled = false;
+  if (rebootScheduleField?.conditionalMandatory) {
+    const condVal = rebootScheduleField.conditionalMandatoryValue;
+    if (Array.isArray(condVal)) {
+      rebootScheduleRequired = condVal.includes(deviceType?.toLowerCase());
+      rebootScheduleDisabled = !rebootScheduleRequired;
+    } else {
+      rebootScheduleRequired = condVal === deviceType?.toLowerCase();
+      rebootScheduleDisabled = !rebootScheduleRequired;
+    }
+  } else {
+    rebootScheduleRequired = !!rebootScheduleField?.required;
+    rebootScheduleDisabled = false;
+  }
 
   const onSubmit = (data: AdvancedConfigForm) => {
     console.log('Advanced Configuration Form Data:', data);
@@ -98,14 +155,20 @@ const AdvancedConfiguration = () => {
           <label className="checkbox-label">
             <input
               type="checkbox"
-              {...register('enableLogging')}
-              onChange={(e) => setIsLoggingEnabled(e.target.checked)}
+              {...register('enableLogging', {
+                required: isWifiPhone ? 'Enable Logging is required for Wifi phones' : false,
+                disabled: !isWifiPhone
+              })}
             />
             Enable Logging
+            {isWifiPhone && <span className="required-mark">*</span>}
           </label>
+          {errors.enableLogging && (
+            <span className="error-message">{errors.enableLogging.message}</span>
+          )}
         </div>
 
-        {isLoggingEnabled && (
+        {isWifiPhone && (
           <div className="form-group">
             <label htmlFor="logLevel">Log Level</label>
             <select
@@ -128,13 +191,16 @@ const AdvancedConfiguration = () => {
         )}
 
         <div className="form-group">
-          <label htmlFor="locationTag">Location Tag</label>
+          <label htmlFor="locationTag">Location Tag
+            {locationTagRequired && <span className="required-mark">*</span>}
+          </label>
           <input
             id="locationTag"
             type="text"
             placeholder="e.g., Floor 2 - South Wing"
+            disabled={locationTagDisabled}
             {...register('locationTag', {
-              required: 'Location tag is required'
+              required: locationTagRequired ? 'Location tag is required' : false
             })}
             className={errors.locationTag ? 'error' : ''}
           />
@@ -185,11 +251,14 @@ const AdvancedConfiguration = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="timezone">Timezone</label>
+          <label htmlFor="timezone">Timezone
+            {timezoneRequired && <span className="required-mark">*</span>}
+          </label>
           <select
             id="timezone"
+            disabled={timezoneDisabled}
             {...register('timezone', {
-              required: 'Timezone is required'
+              required: timezoneRequired ? 'Timezone is required' : false
             })}
             className={errors.timezone ? 'error' : ''}
           >
@@ -206,12 +275,15 @@ const AdvancedConfiguration = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="rebootSchedule">Reboot Schedule</label>
+          <label htmlFor="rebootSchedule">Reboot Schedule
+            {rebootScheduleRequired && <span className="required-mark">*</span>}
+          </label>
           <input
             id="rebootSchedule"
             type="time"
+            disabled={rebootScheduleDisabled}
             {...register('rebootSchedule', {
-              required: 'Reboot schedule is required'
+              required: rebootScheduleRequired ? 'Reboot schedule is required' : false
             })}
             className={errors.rebootSchedule ? 'error' : ''}
           />
