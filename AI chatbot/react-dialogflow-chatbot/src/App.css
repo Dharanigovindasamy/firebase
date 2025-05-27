@@ -1,0 +1,18 @@
+.App {
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  margin-top: 50px;
+}
+
+df-messenger {
+  --df-messenger-bot-message: #e6e6e6;
+  --df-messenger-button-titlebar-color: #6200ee;
+  --df-messenger-chat-background-color: #ffffff;
+  --df-messenger-font-color: #000000;
+  --df-messenger-send-icon: #6200ee;
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+}
+
+
