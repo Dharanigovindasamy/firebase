@@ -45,14 +45,15 @@
 // export default App;
 
 import React from 'react';
-import ChatBot from './ChatBot';
+import ChatBox from './component/chatBox';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 function App() {
   return (
     <div className="App">
       <h2 className="text-center mt-4">AI Daily Planner Chat</h2>
-      <ChatBot />
+      <ChatBox />
     </div>
   );
 }

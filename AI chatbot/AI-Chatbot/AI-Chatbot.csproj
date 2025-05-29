@@ -8,7 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.69.0" />
+    <PackageReference Include="Google.Cloud.Dialogflow.Cx.V3" Version="2.23.0" />
     <PackageReference Include="Google.Cloud.Dialogflow.V2" Version="4.26.0" />
+    <PackageReference Include="Grpc.Auth" Version="2.71.0" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,6 @@
     "",
     "\\Controllers",
     "\\Models",
-    "\\obj\\Debug",
     "\\Properties"
   ],
   "SelectedNode": "\\Controllers\\DialogflowController.cs",

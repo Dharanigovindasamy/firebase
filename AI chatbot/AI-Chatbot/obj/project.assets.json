@@ -61,10 +61,10 @@
           }
         }
       },
-      "Google.Apis/1.68.0": {
+      "Google.Apis/1.69.0": {
         "type": "package",
         "dependencies": {
-          "Google.Apis.Core": "1.68.0"
+          "Google.Apis.Core": "1.69.0"
         },
         "compile": {
           "lib/net6.0/Google.Apis.dll": {
@@ -77,11 +77,11 @@
           }
         }
       },
-      "Google.Apis.Auth/1.68.0": {
+      "Google.Apis.Auth/1.69.0": {
         "type": "package",
         "dependencies": {
-          "Google.Apis": "1.68.0",
-          "Google.Apis.Core": "1.68.0",
+          "Google.Apis": "1.69.0",
+          "Google.Apis.Core": "1.69.0",
           "System.Management": "7.0.2"
         },
         "compile": {
@@ -95,7 +95,7 @@
           }
         }
       },
-      "Google.Apis.Core/1.68.0": {
+      "Google.Apis.Core/1.69.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
@@ -107,6 +107,24 @@
         },
         "runtime": {
           "lib/net6.0/Google.Apis.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Google.Cloud.Dialogflow.Cx.V3/2.23.0": {
+        "type": "package",
+        "dependencies": {
+          "Google.Api.Gax.Grpc": "[4.9.0, 5.0.0)",
+          "Google.Cloud.Location": "[2.3.0, 3.0.0)",
+          "Google.LongRunning": "[3.3.0, 4.0.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Cloud.Dialogflow.Cx.V3.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Cloud.Dialogflow.Cx.V3.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -174,11 +192,11 @@
           }
         }
       },
-      "Grpc.Auth/2.66.0": {
+      "Grpc.Auth/2.71.0": {
         "type": "package",
         "dependencies": {
-          "Google.Apis.Auth": "1.68.0",
-          "Grpc.Core.Api": "2.66.0"
+          "Google.Apis.Auth": "1.69.0",
+          "Grpc.Core.Api": "2.71.0"
         },
         "compile": {
           "lib/netstandard2.0/Grpc.Auth.dll": {
@@ -191,7 +209,7 @@
           }
         }
       },
-      "Grpc.Core.Api/2.66.0": {
+      "Grpc.Core.Api/2.71.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/Grpc.Core.Api.dll": {
@@ -488,16 +506,16 @@
         "lib/netstandard2.0/Google.Api.Gax.Grpc.xml"
       ]
     },
-    "Google.Apis/1.68.0": {
-      "sha512": "s2MymhdpH+ybZNBeZ2J5uFgFHApBp+QXf9FjZSdM1lk/vx5VqIknJwnaWiuAzXxPrLEkesX0Q+UsiWn39yZ9zw==",
+    "Google.Apis/1.69.0": {
+      "sha512": "1TfjsXFejwIf7iWaE7A0FbnOEsk8FPlbdFAt1r+I8aSMQfLLdSVWCLdZz6TzuWVwoCGEuJUHTZ/FXdptdU3qWw==",
       "type": "package",
-      "path": "google.apis/1.68.0",
+      "path": "google.apis/1.69.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.apis.1.68.0.nupkg.sha512",
+        "google.apis.1.69.0.nupkg.sha512",
         "google.apis.nuspec",
         "lib/net462/Google.Apis.dll",
         "lib/net462/Google.Apis.pdb",
@@ -510,16 +528,16 @@
         "lib/netstandard2.0/Google.Apis.xml"
       ]
     },
-    "Google.Apis.Auth/1.68.0": {
-      "sha512": "hFx8Qz5bZ4w0hpnn4tSmZaaFpjAMsgVElZ+ZgVLUZ2r9i+AKcoVgwiNfv1pruNS5cCvpXqhKECbruBCfRezPHA==",
+    "Google.Apis.Auth/1.69.0": {
+      "sha512": "ar07yxn/s41jdqQ3sMh8EAehiSvXQ9yE1MS4McmZINeSWvolnLHmIZ9Yxj4tHVIYYz0c7H/lpToVqm7C2aYx9g==",
       "type": "package",
-      "path": "google.apis.auth/1.68.0",
+      "path": "google.apis.auth/1.69.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.apis.auth.1.68.0.nupkg.sha512",
+        "google.apis.auth.1.69.0.nupkg.sha512",
         "google.apis.auth.nuspec",
         "lib/net462/Google.Apis.Auth.dll",
         "lib/net462/Google.Apis.Auth.pdb",
@@ -532,16 +550,16 @@
         "lib/netstandard2.0/Google.Apis.Auth.xml"
       ]
     },
-    "Google.Apis.Core/1.68.0": {
-      "sha512": "pAqwa6pfu53UXCR2b7A/PAPXeuVg6L1OFw38WckN27NU2+mf+KTjoEg2YGv/f0UyKxzz7DxF1urOTKg/6dTP9g==",
+    "Google.Apis.Core/1.69.0": {
+      "sha512": "SXUcurNUPxYMtOnawvB2Av18VrPBC9W7So9q9ikmXIXLGiv4RX7Zbu4kc+8PbwTdd8wLt54r0PBGOT5RaKoTjQ==",
       "type": "package",
-      "path": "google.apis.core/1.68.0",
+      "path": "google.apis.core/1.69.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.apis.core.1.68.0.nupkg.sha512",
+        "google.apis.core.1.69.0.nupkg.sha512",
         "google.apis.core.nuspec",
         "lib/net462/Google.Apis.Core.dll",
         "lib/net462/Google.Apis.Core.pdb",
@@ -552,6 +570,25 @@
         "lib/netstandard2.0/Google.Apis.Core.dll",
         "lib/netstandard2.0/Google.Apis.Core.pdb",
         "lib/netstandard2.0/Google.Apis.Core.xml"
+      ]
+    },
+    "Google.Cloud.Dialogflow.Cx.V3/2.23.0": {
+      "sha512": "Zw0+ve77C2YXsWk3PIuQeO6jWef5Te2iars7b1sAGJ2Lnd/FQuTih58+20RszhCukXgLF168gNAXza5d830f+A==",
+      "type": "package",
+      "path": "google.cloud.dialogflow.cx.v3/2.23.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.cloud.dialogflow.cx.v3.2.23.0.nupkg.sha512",
+        "google.cloud.dialogflow.cx.v3.nuspec",
+        "lib/net462/Google.Cloud.Dialogflow.Cx.V3.dll",
+        "lib/net462/Google.Cloud.Dialogflow.Cx.V3.pdb",
+        "lib/net462/Google.Cloud.Dialogflow.Cx.V3.xml",
+        "lib/netstandard2.0/Google.Cloud.Dialogflow.Cx.V3.dll",
+        "lib/netstandard2.0/Google.Cloud.Dialogflow.Cx.V3.pdb",
+        "lib/netstandard2.0/Google.Cloud.Dialogflow.Cx.V3.xml"
       ]
     },
     "Google.Cloud.Dialogflow.V2/4.26.0": {
@@ -634,15 +671,15 @@
         "lib/netstandard2.0/Google.Protobuf.xml"
       ]
     },
-    "Grpc.Auth/2.66.0": {
-      "sha512": "FRQlhMAcHf0GjAXIfhN6RydfZncLLXNNTOtpLL1bt57kp59vu40faW+dr6Vwl7ef/IUFfF38aiB5jvhAA/9Aow==",
+    "Grpc.Auth/2.71.0": {
+      "sha512": "t2aGh/pMgqmc3GimtYfC7VcgVY/VSbk6SLH+61wewsgK45tzxxD9nYYItT5bpLn7fbebirmHXfgJcVKIArd0cg==",
       "type": "package",
-      "path": "grpc.auth/2.66.0",
+      "path": "grpc.auth/2.71.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "grpc.auth.2.66.0.nupkg.sha512",
+        "grpc.auth.2.71.0.nupkg.sha512",
         "grpc.auth.nuspec",
         "lib/net462/Grpc.Auth.dll",
         "lib/net462/Grpc.Auth.pdb",
@@ -653,15 +690,15 @@
         "packageIcon.png"
       ]
     },
-    "Grpc.Core.Api/2.66.0": {
-      "sha512": "HsjsQVAHe4hqP4t4rpUnmq+MZvPdyrlPsWF4T5fbMvyP3o/lMV+KVJfDlaNH8+v0aGQTVT3EsDFufbhaWb52cw==",
+    "Grpc.Core.Api/2.71.0": {
+      "sha512": "QquqUC37yxsDzd1QaDRsH2+uuznWPTS8CVE2Yzwl3CvU4geTNkolQXoVN812M2IwT6zpv3jsZRc9ExJFNFslTg==",
       "type": "package",
-      "path": "grpc.core.api/2.66.0",
+      "path": "grpc.core.api/2.71.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "grpc.core.api.2.66.0.nupkg.sha512",
+        "grpc.core.api.2.71.0.nupkg.sha512",
         "grpc.core.api.nuspec",
         "lib/net462/Grpc.Core.Api.dll",
         "lib/net462/Grpc.Core.Api.pdb",
@@ -969,7 +1006,10 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Google.Cloud.Dialogflow.V2 >= 4.26.0"
+      "Google.Apis.Auth >= 1.69.0",
+      "Google.Cloud.Dialogflow.Cx.V3 >= 2.23.0",
+      "Google.Cloud.Dialogflow.V2 >= 4.26.0",
+      "Grpc.Auth >= 2.71.0"
     ]
   },
   "packageFolders": {
@@ -1017,9 +1057,21 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Google.Apis.Auth": {
+            "target": "Package",
+            "version": "[1.69.0, )"
+          },
+          "Google.Cloud.Dialogflow.Cx.V3": {
+            "target": "Package",
+            "version": "[2.23.0, )"
+          },
           "Google.Cloud.Dialogflow.V2": {
             "target": "Package",
             "version": "[4.26.0, )"
+          },
+          "Grpc.Auth": {
+            "target": "Package",
+            "version": "[2.71.0, )"
           }
         },
         "imports": [
