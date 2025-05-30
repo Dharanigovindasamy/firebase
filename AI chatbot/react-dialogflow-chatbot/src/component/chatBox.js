@@ -5,7 +5,7 @@ import './chatBox.css';
 
 function ChatBot() {
   const [messages, setMessages] = useState([
-    { text: "Hi! I'm your PlannerBot. How can I help you?", sender: 'bot' }
+    { text: "Hi! Let's create your personalized day plan. What time do you usually wake up?", sender: 'bot' }
   ]);
   const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
