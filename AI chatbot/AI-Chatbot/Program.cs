@@ -2,6 +2,14 @@
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using AI_Chatbot.Data;
+using AI_Chatbot.Data.Models;
+using AI_Chatbot.Data.Configuration;
+using System;
+
 
 namespace AI_Chatbot
 {
@@ -21,6 +29,9 @@ namespace AI_Chatbot
                           .AllowAnyHeader();
                 });
             });
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+              options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 

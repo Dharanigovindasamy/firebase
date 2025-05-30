@@ -6,8 +6,8 @@
     "iisExpress": {
       "applicationUrl": "http://localhost:5779",
       "sslPort": 44354,
-      "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\dharani.govindhasamy\\sample_task\\AI chatbot\\chataibot-461307-07230f5aa18b.json",
-      "projectId": "chataibot-461307",
+      "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\dharani.govindhasamy\\sample_task\\AI chatbot\\chataibot-461307-52c4592175b5.json",
+      "projectId": "chataibot-461307"
 
     }
   },
@@ -18,8 +18,8 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\dharani.govindhasamy\\sample_task\\AI chatbot\\chataibot-461307-07230f5aa18b.json",
-          "projectId": "chataibot-461307"
+        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\dharani.govindhasamy\\sample_task\\AI chatbot\\chataibot-461307-52c4592175b5.json",
+        "projectId": "chataibot-461307"
 
       }
     },
@@ -30,7 +30,7 @@
       "applicationUrl": "https://localhost:7031;http://localhost:5217",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\dharani.govindhasamy\\sample_task\\AI chatbot\\chataibot-461307-07230f5aa18b.json",
+        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\dharani.govindhasamy\\sample_task\\AI chatbot\\chataibot-461307-52c4592175b5.json",
         "projectId": "chataibot-461307"
 
       }
@@ -40,7 +40,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\dharani.govindhasamy\\sample_task\\AI chatbot\\chataibot-461307-07230f5aa18b.json",
+        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\dharani.govindhasamy\\sample_task\\AI chatbot\\chataibot-461307-52c4592175b5.json",
         "projectId": "chataibot-461307"
 
 
