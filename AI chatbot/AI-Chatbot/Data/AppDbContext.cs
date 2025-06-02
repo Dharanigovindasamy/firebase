@@ -17,6 +17,23 @@ namespace AI_Chatbot.Data
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+   //         var utcConverter = new ValueConverter<DateTime, DateTime>(
+   //    v => v.ToUniversalTime(),
+   //    v => DateTime.SpecifyKind(v, DateTimeKind.Utc)
+   //);
+
+   //         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+   //         {
+   //             foreach (var property in entityType.GetProperties())
+   //             {
+   //                 if (property.ClrType == typeof(DateTime))
+   //                 {
+   //                     property.SetValueConverter(utcConverter);
+   //                 }
+   //             }
+   //         }
+
             modelBuilder.HasAnnotation("Relational:Collation", "English_United States.1252");
 
             modelBuilder.ApplyConfiguration(new SchedulePlanConfiguration());

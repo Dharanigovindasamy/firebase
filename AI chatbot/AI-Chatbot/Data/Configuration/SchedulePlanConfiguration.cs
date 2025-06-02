@@ -10,21 +10,21 @@ namespace AI_Chatbot.Data.Configuration
 
         public void Configure(EntityTypeBuilder<SchedulePlan> entity)
         {
-            entity.ToTable("SchedulePlan");
+            entity.ToTable("scheduleplan");
 
             entity.Property(e => e.Id)
-                .HasColumnName("Id")
+                .HasColumnName("id")
                 .ValueGeneratedOnAdd()
                 .UseIdentityAlwaysColumn();
             entity.Property(e => e.WakeUpTime)
                 .HasMaxLength(255)
-                .HasColumnName("wakeUpTime");
+                .HasColumnName("wakeuptime");
             entity.Property(e => e.Work)
                 .HasMaxLength(255)
                 .HasColumnName("work");
             entity.Property(e => e.WorkTime)
                 .HasMaxLength(255)
-                .HasColumnName("workTime");
+                .HasColumnName("worktime");
             entity.Property(e => e.Duration)
                 .HasMaxLength(255)
                 .HasColumnName("duration");
@@ -35,12 +35,12 @@ namespace AI_Chatbot.Data.Configuration
 
 
             entity.Property(e => e.DateTime)
-                .HasColumnName("dateTime");
+                .HasColumnName("datetime");
 
 
             entity.Property(e => e.UserMessage)
                 .HasMaxLength(300)
-                .HasColumnName("message");
+                .HasColumnName("usermessage");
         }
     }
 }

@@ -4,8 +4,9 @@
     "\\Controllers",
     "\\Data",
     "\\Data\\Configuration",
-    "\\Data\\Models"
+    "\\Data\\Models",
+    "\\Properties"
   ],
-  "SelectedNode": "\\Program.cs",
+  "SelectedNode": "\\Data\\AppDbContext.cs",
   "PreviewInSolutionExplorer": false
 }
